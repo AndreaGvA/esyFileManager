@@ -1,6 +1,6 @@
 <?
 /**
- * 
+ *
  *
  * @author AndreaG
  * @version 0.0.1
@@ -11,51 +11,52 @@
 /**
  * CLASSI FILE MANAGER
  */
- 
- /**
-  * undocumented class
-  *
-  * @package esyFileManager
-  * @author  AndreaG
-  */
- class esyFileManager {
- 	
-	private $app_folder; 
-	private $files_folder;
-	
- 	function __construct() {
-		$app_folder=APP_FOLDER;
-		$files_folder=$_SERVER['DOCUMENT_ROOT'].FILES_FOLDER;
- 	}
-	
+
+/**
+ * undocumented class
+ *
+ * @package esyFileManager
+ * @author  AndreaG
+ */
+class esyFileManager {
+
+	private $app_folder, $files_folder;
+
+	function esyFileManager() {
+		$this -> app_folder = APP_FOLDER;
+		$this -> files_folder = FILES_FOLDER;
+	}
+
 	/**
 	 * listFiles()
 	 *
-	 * @return Elencha i files di un determinato tipo contenuti nella directory specificata
+	 * @return Elenca i files e le directory
 	 * @author AndreaG
 	 */
-	private function listFiles($dirname=$this->files_folder) {
-		echo $dirname;
+	function listFiles($livello = 0, $dirname = "") {
+		if ($dirname == "")
+			$dirname = $this -> files_folder;
+		//echo $dirname;
 		if (file_exists($dirname)) {
 			$handle = opendir($dirname);
+			//echo "<br>Apro la dir";
+			$n = 0;
 			while (false !== ($file = readdir($handle))) {
-				if (is_file($dirname . $file)) {
-					echo "<ul>
-						  	<li>$file</li>
-						  </ul>";
-					//array_push($arrayfiles, $file);
-				} else if(is_dir($dirname . $file)) {
-					echo "<ul>
-						  	<li>DIR - $file</li>
-						  </ul>";
+				if ($file != "." && $file != "..") {
+					echo "<ul>";
+					echo "<li rel='$dirname'>$file";
+					if (is_dir($dirname . $file)) {
+						$new_liv = $livello + 1;
+						$this -> listFiles($new_liv, $dirname . $file);
+					}
+					echo "</li>";
+					echo "</ul>";
+					$n++;
 				}
 			}
 			$handle = closedir($handle);
 		}
-		sort($arrayfiles);
-		return $arrayfiles;
 	}
 
- } // END
- 
+} // END
  ?>

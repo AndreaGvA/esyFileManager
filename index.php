@@ -13,12 +13,14 @@
  */
  
  require_once "config.php";
- require_once "classes/class.filemanager.php"
+ require_once "classes/class.filemanager.php";
  
 /**
  * INDEX APP
  */
- 
- $FM=new esyFileManager;
- $FM->listFiles();
+ echo "EsyFileManager";
+ $FM = new esyFileManager();
+ $array=$FM->listFiles();
+ echo "<br><br>";
+ print_r($array);
  ?>

@@ -12,9 +12,9 @@
  * FILE DI CONFIGURAZIONE
  */
 
- define("APP_FOLDER", "/esyFileManager/"); // il path del filemanager a partire dalla root del sito 
+ define("APP_FOLDER", "/esyfilemanager/"); // il path del filemanager a partire dalla root del sito 
  
- define("FILES_FOLDER", "/public"); //il path della cartella dei files a partire dalla root del sito
+ define("FILES_FOLDER", "public/"); //il path della cartella dei files a partire dalla root del sito
  
  /**
   * FINE FILE DI CONFIGURAZIONE
