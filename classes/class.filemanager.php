@@ -25,6 +25,37 @@ class esyFileManager {
 	function esyFileManager() {
 		$this -> app_folder = APP_FOLDER;
 		$this -> files_folder = FILES_FOLDER;
+		echo "<ul><li rel='$dirname' class='dir edit'><div class='filename'>public</div><div class='opendir'></div>";
+		$this->listFiles();
+		echo "</li></ul>";
+	}
+
+	private function dropIconClass($filename) {
+
+		$fileInfo = pathinfo($filename);
+		$ext = $fileInfo['extension'];
+		if ($ext == 'wmv' || $ext == 'mp4' || $ext == 'avi' || $ext == 'flv') {
+			$ico = 'video';
+		} else if ($ext == 'pdf') {
+			$ico = 'pdf';
+		} else if ($ext == 'zip') {
+			$ico = 'zip';
+		} else if ($ext == 'gif') {
+			$ico = 'gif';
+		} else if ($ext == 'jpg') {
+			$ico = 'jpg';
+		} else if ($ext == 'bmp' || $ext == 'png' || $ext == 'tif') {
+			$ico = 'jpg';
+		} else if ($ext == 'ppt' || $ext == 'pps') {
+			$ico = 'ppt';
+		} else if ($ext == 'xls') {
+			$ico = 'xls';
+		} else if ($ext == 'mp3' || $ext == 'wma' || $ext == 'aif' || $ext == 'wav') {
+			$ico = 'ico';
+		} else {
+			$ico = 'ico';
+		}
+		return $ico;
 	}
 
 	/**
@@ -37,7 +68,9 @@ class esyFileManager {
 		if ($dirname == "")
 			$dirname = $this -> files_folder;
 		//echo $dirname;
+		
 		if (file_exists($dirname)) {
+			
 			$handle = opendir($dirname);
 			//echo "<br>Apro la dir";
 			$n = 0;
@@ -72,9 +105,9 @@ class esyFileManager {
 				for ($n = 0; $n < $num; $n++) {
 					//echo $item[$n]['type']." ".$item[$n]['file']."<br>";
 					if ($item[$n]['type'] == 1) {
-						echo "<li rel='" . $item[$n]['dirname'] . "' class='file edit'><span>" . $item[$n]['file'] . "</span> \n";
+						echo "<li rel='" . $item[$n]['dirname'] . "' class='file edit ".$this->dropIconClass($item[$n]['file']) ."'><div class='filename'>" . $item[$n]['file'] . "</div> \n";
 					} else if ($item[$n]['type'] == 0) {
-						echo "<li rel='" . $item[$n]['dirname'] . "' class='dir edit'><span>" . $item[$n]['file'] . "</span> \n";
+						echo "<li rel='" . $item[$n]['dirname'] . "' class='dir edit'><div class='filename'>" . $item[$n]['file'] . "</div><div class='opendir'></div> \n";
 						$new_liv = $livello + 1;
 						$this -> listFiles($new_liv, $item[$n]['dirname'] . $item[$n]['file'] . "/");
 					}
@@ -84,7 +117,9 @@ class esyFileManager {
 
 			$handle = closedir($handle);
 			echo "</ul>";
+			
 		}
+		
 	}
 
 } // END
