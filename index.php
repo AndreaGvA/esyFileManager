@@ -23,34 +23,8 @@ require_once "classes/class.filemanager.php";
 		<title>esyFileManager</title>
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-		<script>
-			$(document).ready(function() {
-				$('.dir').children("ul").hide();
-				$('.dir').children("span").click(function() {
-					$(this).parent().children('ul').toggle();
-				});
-
-				$(".edit").children("span").dblclick(function() {
-					var a = $(this);
-					var i = $(this).children("input");
-					var testo = a.html();
-					if (testo.indexOf("<input name=") > -1) {
-						var testo = i.attr("value");
-						a.html(testo);
-					} else {
-						var uniqid = new Date().getUTCMilliseconds();
-						a.html("<input name='" + testo + "' id='" + uniqid + "' value='" + testo + "' />");
-						$('#' + uniqid).focus();
-						$('#' + uniqid).blur(function() {
-							var a = $(this).parent();
-							var testo = $(this).attr("value");
-							a.html(testo);
-						});
-					}
-				});
-			});
-
-		</script>
+		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+		<script src="js/jquery.FileManager.js"></script>
 		<!-- TemplateEndEditable -->
 		<!-- TemplateBeginEditable name="head" -->
 		<!-- TemplateEndEditable -->
@@ -80,31 +54,18 @@ require_once "classes/class.filemanager.php";
 						<a href="#">Link four</a>
 					</li>
 				</ul>
-				<aside>
-					<p>
-						The above links demonstrate a basic navigational structure using an unordered list styled with CSS. Use this as a starting point and modify the properties to produce your own unique look. If you require flyout menus, create your own using a Spry menu, a menu widget from Adobe's Exchange or a variety of other javascript or CSS solutions.
-					</p>
-					<p>
-						If you would like the navigation along the top, simply move the ul to the top of the page and recreate the styling.
-					</p>
-				</aside>
 				<!-- end .sidebar1 -->
 			</div>
 			<article class="content">
-				<h1>Instructions</h1>
 				<div class="filemanager">
 					<?
 					/**
 					 * INDEX APP
 					 */
-					echo "EsyFileManager";
+					
 					$FM = new esyFileManager();
-					$array = $FM -> listFiles();
-					echo "
-					<br>
-					<br>
-					";
-					print_r($array);
+					
+					
 					?>
 				</div>
 				<!-- end .content -->
