@@ -1,5 +1,5 @@
 body {
-	font: 100%/1.4 Verdana, Arial, Helvetica, sans-serif;
+	font: 90%/1.3 Verdana, Arial, Helvetica, sans-serif;
 	background-color: #42413C;
 	margin: 0;
 	padding: 0;
@@ -32,9 +32,10 @@ a:hover, a:active, a:focus { /* this group of selectors will give a keyboard nav
 }
 /* ~~ This fixed width container surrounds all other blocks ~~ */
 .container {
-	width: 960px;
+	width: 100%;
 	background-color: #FFFFFF;
 	margin: 0 auto; /* the auto value on the sides, coupled with the width, centers the layout */
+	height:800px;
 }
 /* ~~ The header is not given a width. It will extend the full width of your layout. ~~ */
 header {
@@ -52,15 +53,17 @@ header {
 
 */
 .sidebar1 {
-	float: right;
+	float: left;
 	width: 180px;
 	background-color: #EADCAE;
 	padding-bottom: 10px;
 }
 .content {
 	padding: 10px 0;
-	width: 780px;
-	float: right;
+	width:auto;
+	overflow:auto;
+	height:600px;
+	border:1px solid #000;
 }
 
 /* ~~ This grouped selector gives the lists in the .content area space ~~ */
@@ -88,6 +91,24 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* this changes the background
 	background-color: #ADB96E;
 	color: #FFF;
 }
+
+.filemanager { width:auto; height:600px; padding:40px; }
+.filemanager ul{ padding:0px; list-style: none; }
+.filemanager ul li {position:relative;}
+.filemanager ul li div{ position:relative;}
+.filemanager ul li div.opendir{ position:absolute; width:30px; height:30px; top:0px; left:0px; cursor:pointer;}
+.filemanager ul li div.opend{ position:absolute; width:30px; height:30px; top:0px; left:0px; cursor:pointer;}
+
+.selected { background-color:#efefef; cursor:move;}
+.drop { background-color:#efefef;}
+.dir{ background: url('../images/dir.jpg') no-repeat; padding-left:40px; padding-top:5px; padding-bottom:5px;}
+.jpg{ background: url('../images/jpg.jpg') no-repeat; padding-left:40px; padding-top:5px; padding-bottom:5px;}
+.pdf{ background: url('../images/pdf.jpg') no-repeat; padding-left:40px; padding-top:5px; padding-bottom:5px;}
+.zip{ background: url('../images/zip.jpg') no-repeat; padding-left:40px; padding-top:5px; padding-bottom:5px;}
+.gif{ background: url('../images/gif.jpg') no-repeat; padding-left:40px; padding-top:5px; padding-bottom:5px;}
+.ppt{ background: url('../images/ppt.jpg') no-repeat; padding-left:40px; padding-top:5px; padding-bottom:5px;}
+.xsl{ background: url('../images/xsl.jpg') no-repeat; padding-left:40px; padding-top:5px; padding-bottom:5px;}
+.ico{ background: url('../images/ico.jpg') no-repeat; padding-left:40px; padding-top:5px; padding-bottom:5px;}
 
 /* ~~ The footer ~~ */
 footer {
