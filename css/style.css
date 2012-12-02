@@ -110,6 +110,8 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* this changes the background
 .xsl{ background: url('../images/xsl.jpg') no-repeat; padding-left:40px; padding-top:5px; padding-bottom:5px;}
 .ico{ background: url('../images/ico.jpg') no-repeat; padding-left:40px; padding-top:5px; padding-bottom:5px;}
 
+.rename{ background-color:none; border:none; outline:none;}
+
 /* ~~ The footer ~~ */
 footer {
 	padding: 10px 0;
