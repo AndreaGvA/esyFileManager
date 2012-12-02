@@ -20,7 +20,7 @@ var debug = true;
 /**
  * Funzione debug
  */
-function _debug(value) {
+ _debug = function(value) {
 	if (debug == true) {
 		if (console) {
 			console.log(value);
@@ -39,7 +39,7 @@ beginsWith = function(needle, haystack) {
 /**
  * Funzione dragTree - Permette il drag&drop ecc.
  */
-function dragTree(selector) {
+dragTree=function(selector) {
 	/**
 	 * Rimuovo ovunque la classe selected
 	 */
@@ -122,13 +122,47 @@ function dragTree(selector) {
 		helper : "clone"
 	});
 	/**
+	 * Funzione per il drag&drop nel cestino
+	 * Rendo il cetino droppable
+	 */
+	$('.trash').droppable({
+		activeClass : "ui-state-default",
+		hoverClass : "trashon",
+		accept : ":not(.maindir)",
+		drop: function(event, ui) {
+			/**
+			 * Se è una cartella 
+			 */
+			var bool = $('.selected').parent('li').hasClass('dir');
+			if (bool=true){
+				var move_from = $('.selected').parent('li').attr('rel');
+				var file = $('.selected').html();
+				var li_to_move = $('.selected').parent("li");
+				if (confirm("Vuoi eliminare definitivamente la cartella e tutti i files in essa contenuti?"))
+				{
+					$('.selected').remove();
+					li_to_move.remove();
+					_debug("Elimina cartella:" +move_from+file);
+				} else _debug("Eliminazione cartella annullata: "+move_from+file);
+			} else {
+				if (confirm("Vuoi eliminare definitivamente il file?"))
+				{
+					$('.selected').remove();
+					li_to_move.remove();
+					_debug("Elimina file:" +move_from+file);
+				} else _debug("Eliminazione file annullata: "+move_from+file);
+			}
+			
+		}
+	})
+	/**
 	 * Rendo le cartelle droppable
 	 * imposto le classi per il drag&drop
 	 */
 	$('.dir').children('.filename').droppable({
 		activeClass : "ui-state-default",
 		hoverClass : "drop",
-		accept : ":not(.ui-sortable-helper)",
+		accept : ":not(.maindir)",
 		/**
 		 * Quando sto il draggable è sopra a un droppable ne recupero il path
 		 */
@@ -163,6 +197,7 @@ function dragTree(selector) {
 				 */
 				var error = beginsWith(move_from + file, move_in + folder);
 				if (error == true)
+					alert("Non puoi spostare una cartella in se stessa");
 					_debug("Non puoi spostare una cartella in se stessa");
 				if (error == false) {
 					var ul_to_append = $('.selected').parent("li").children('ul').html();
