@@ -24,7 +24,6 @@ require_once "classes/class.filemanager.php";
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
-		<script src="js/jquery.moudehold.js"></script>
 		<script src="js/jquery.FileManager.js"></script>
 		<!-- TemplateEndEditable -->
 		<!-- TemplateBeginEditable name="head" -->
@@ -58,6 +57,7 @@ require_once "classes/class.filemanager.php";
 				<!-- end .sidebar1 -->
 			</div>
 			<article class="content">
+				<div class="trash">&nbsp</div>
 				<div class="filemanager">
 					<?
 					/**
