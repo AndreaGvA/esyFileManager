@@ -25,7 +25,10 @@ class esyFileManager {
 	function esyFileManager() {
 		$this -> app_folder = APP_FOLDER;
 		$this -> files_folder = FILES_FOLDER;
-		echo "<ul><li rel='$dirname' class='dir edit'><div class='filename'>public</div><div class='opendir'></div>";
+	}
+	
+	function init() {
+		echo "<ul><li rel='$dirname' class='dir edit'><div class='filename maindir'>public</div><div class='opendir'></div>";
 		$this -> listFiles();
 		echo "</li></ul>";
 	}
