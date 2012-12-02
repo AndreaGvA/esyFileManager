@@ -28,23 +28,36 @@ _debug = function(value) {
 		}
 	}
 }
-
-createUploader = function(folder, image) {
-	var uploader = new qq.FileUploader({
-		element : document.getElementById('imgGal'),
-		action : 'classes/gallery/upload.multiple.php?folder=' + folder + '&image_id=' + image + '',
-		allowedExtensions : ['jpg', 'jpeg', 'png', 'gif'],
-		multiple : true,
-		onComplete : function(id, fileName, responseJSON) {
-			$('#reloadGal').load('_aj_functions.php?action=aj_Gal&id=' + image, function() {
-				img_sort();
-			});
-			//$('#logo_img').attr('src', 'engines/phpThumb/phpThumb.php?src=../../../public/system/'+fileName+'&w=190&bg=ffffff');
-		},
-		template : '<div class="qq-uploader">' + '<div class="qq-upload-drop-area"><span>Drop files here to upload</span></div>' + '<div class="qq-upload-button">Select images</div>' + '<ul class="qq-upload-list"></ul>' + '</div>',
-		debug : true
-	});
+/**
+ * Funzione per le icone
+ */
+function dropIconClass(filename) {
+	var ico;
+	var ext = filename.substr((filename.lastIndexOf('.') + 1));
+	if (ext == 'wmv' || ext == 'mp4' || ext == 'avi' || ext == 'flv') {
+		ico = 'video';
+	} else if (ext == 'pdf') {
+		ico = 'pdf';
+	} else if (ext == 'zip') {
+		ico = 'zip';
+	} else if (ext == 'gif') {
+		ico = 'gif';
+	} else if (ext == 'jpg') {
+		ico = 'jpg';
+	} else if (ext == 'bmp' || ext == 'png' || ext == 'tif') {
+		ico = 'jpg';
+	} else if (ext == 'ppt' || ext == 'pps') {
+		ico = 'ppt';
+	} else if (ext == 'xls') {
+		ico = 'xls';
+	} else if (ext == 'mp3' || ext == 'wma' || ext == 'aif' || ext == 'wav') {
+		ico = 'ico';
+	} else {
+		ico = 'ico';
+	}
+	return ico;
 }
+
 /**
  * Funzione per le stringhe
  */
@@ -300,6 +313,66 @@ $(document).ready(function() {
 
 	$(".edit").find(".filename").click(function() {
 		dragTree(this);
+	});
+
+	/**
+	 * Seleziono la cartella per l'upload
+	 */
+	upload_folder = $('.main').val();
+	$("#upload_folder").change(function() {
+		upload_folder = $(this).find("option:selected").val();
+		_debug("Change:" + upload_folder);
+	})
+	/**
+	 * Creo l'uploader per i files
+	 */
+	$('.uploader').fineUploader({
+		request : {
+			endpoint : '_aj_calls.php',
+		},
+		debug : true
+		/**
+		 * In caso di errore mi fermo
+		 */
+	}).on('error', function(event, id, filename, reason) {
+		_debug(reason);
+	}).on('complete', function(event, id, filename, responseJSON) {
+		if (responseJSON.exists == "true") {
+			//alert("ERRORE: Già esiste un file con questo nome in questa cartella");
+			_debug("ERRORE: Già esiste un file con questo nome in questa cartella");
+		} else {
+			/**
+			 * In caso di successo aggiungo l'elemento nella cartella di destinazione
+			 */
+			$(".dir").each(function(index) {
+				var rel_content = $(this).attr('rel');
+				var rel_file = $(this).find(".filename").html();
+				/**
+				 * Blocco dragTree
+				 */
+				$(".edit").find(".filename").unbind("click");
+				if ((rel_content + rel_file + "/") == (upload_folder)) {
+					var ico = dropIconClass(filename);
+					$(this).children('ul').append('<li rel="' + upload_folder + '" class="file edit ' + ico + '"><div class="filename">' + filename + '</div></li>');
+					_debug(rel_content + rel_file + "/");
+				}
+				/**
+				 * Riattivo la funzione dragTree
+				 */
+				$(".edit").find(".filename").click(function() {
+					dragTree(this);
+				});
+			});
+			_debug("upload success!!");
+		}
+		/**
+		 * On Submit faccio il push dei parametri
+		 */
+	}).on("submit", function() {
+		$(this).fineUploader('setParams', {
+			'action' : 'upload',
+			'folder' : upload_folder
+		});
 	});
 
 });
