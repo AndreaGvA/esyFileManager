@@ -2,11 +2,23 @@ var move_in;
 var folder;
 
 function dragTree(selector) {
-	$('.selected').removeClass('selected');
+	
+	$('.selected').each(function(){
+		$(this).removeClass('selected');
+	});
+	
 	$(selector).addClass('selected');
-
 	// FUNZIONE PER IL RENAME
-	$(".selected").click(function() {
+	/*
+	var timeoutId = 0;
+	
+	$('#myElement').mousedown(function() {
+	    timeoutId = setTimeout(myFunction, 1000);
+	}).bind('mouseup mouseleave', function() {
+	    clearTimeout(timeoutId);
+	});
+	*/
+	$(".selected").dblclick(function() {
 		var a = $(this);
 		var i = $(this).children("input");
 		var testo = a.html();
@@ -27,7 +39,8 @@ function dragTree(selector) {
 		}
 	});
 	//END RENAME
-
+	
+	
 	// DRAG & DROP
 	$(".selected").draggable({
 		appendTo : "body",
@@ -79,6 +92,7 @@ function dragTree(selector) {
 			});
 		}
 	});
+	
 	var selected_folder = $('.selected').parent().attr('rel');
 	var selected_file = $(selector).html();
 	console.log(selected_folder + selected_file);
