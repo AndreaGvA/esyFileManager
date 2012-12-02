@@ -13,4 +13,5 @@ Changelog:
 ```
 
 Questo progetto usa i seguenti plugin:
+
 [file-uploader](https://github.com/valums/file-uploader)
