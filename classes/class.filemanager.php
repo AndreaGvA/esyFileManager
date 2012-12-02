@@ -20,10 +20,9 @@
  */
 class esyFileManager {
 
-	private $app_folder, $files_folder;
+	private $files_folder;
 
 	function esyFileManager() {
-		$this -> app_folder = APP_FOLDER;
 		$this -> files_folder = FILES_FOLDER;
 	}
 
