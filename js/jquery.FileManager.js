@@ -13,14 +13,13 @@
  * Inizializzo le variabili pubbliche
  */
 
-var move_in;
-var folder;
+var move_in, folder, upload_folder;
 var hold_timeout = 1000;
 var debug = true;
 /**
  * Funzione debug
  */
- _debug = function(value) {
+_debug = function(value) {
 	if (debug == true) {
 		if (console) {
 			console.log(value);
@@ -30,6 +29,22 @@ var debug = true;
 	}
 }
 
+createUploader = function(folder, image) {
+	var uploader = new qq.FileUploader({
+		element : document.getElementById('imgGal'),
+		action : 'classes/gallery/upload.multiple.php?folder=' + folder + '&image_id=' + image + '',
+		allowedExtensions : ['jpg', 'jpeg', 'png', 'gif'],
+		multiple : true,
+		onComplete : function(id, fileName, responseJSON) {
+			$('#reloadGal').load('_aj_functions.php?action=aj_Gal&id=' + image, function() {
+				img_sort();
+			});
+			//$('#logo_img').attr('src', 'engines/phpThumb/phpThumb.php?src=../../../public/system/'+fileName+'&w=190&bg=ffffff');
+		},
+		template : '<div class="qq-uploader">' + '<div class="qq-upload-drop-area"><span>Drop files here to upload</span></div>' + '<div class="qq-upload-button">Select images</div>' + '<ul class="qq-upload-list"></ul>' + '</div>',
+		debug : true
+	});
+}
 /**
  * Funzione per le stringhe
  */
@@ -39,7 +54,7 @@ beginsWith = function(needle, haystack) {
 /**
  * Funzione dragTree - Permette il drag&drop ecc.
  */
-dragTree=function(selector) {
+dragTree = function(selector) {
 	/**
 	 * Rimuovo ovunque la classe selected
 	 */
@@ -129,30 +144,30 @@ dragTree=function(selector) {
 		activeClass : "ui-state-default",
 		hoverClass : "trashon",
 		accept : ":not(.maindir)",
-		drop: function(event, ui) {
+		drop : function(event, ui) {
 			/**
-			 * Se è una cartella 
+			 * Se è una cartella
 			 */
 			var bool = $('.selected').parent('li').hasClass('dir');
-			if (bool=true){
+			if ( bool = true) {
 				var move_from = $('.selected').parent('li').attr('rel');
 				var file = $('.selected').html();
 				var li_to_move = $('.selected').parent("li");
-				if (confirm("Vuoi eliminare definitivamente la cartella e tutti i files in essa contenuti?"))
-				{
+				if (confirm("Vuoi eliminare definitivamente la cartella e tutti i files in essa contenuti?")) {
 					$('.selected').remove();
 					li_to_move.remove();
-					_debug("Elimina cartella:" +move_from+file);
-				} else _debug("Eliminazione cartella annullata: "+move_from+file);
+					_debug("Elimina cartella:" + move_from + file);
+				} else
+					_debug("Eliminazione cartella annullata: " + move_from + file);
 			} else {
-				if (confirm("Vuoi eliminare definitivamente il file?"))
-				{
+				if (confirm("Vuoi eliminare definitivamente il file?")) {
 					$('.selected').remove();
 					li_to_move.remove();
-					_debug("Elimina file:" +move_from+file);
-				} else _debug("Eliminazione file annullata: "+move_from+file);
+					_debug("Elimina file:" + move_from + file);
+				} else
+					_debug("Eliminazione file annullata: " + move_from + file);
 			}
-			
+
 		}
 	})
 	/**
@@ -198,7 +213,7 @@ dragTree=function(selector) {
 				var error = beginsWith(move_from + file, move_in + folder);
 				if (error == true)
 					alert("Non puoi spostare una cartella in se stessa");
-					_debug("Non puoi spostare una cartella in se stessa");
+				_debug("Non puoi spostare una cartella in se stessa");
 				if (error == false) {
 					var ul_to_append = $('.selected').parent("li").children('ul').html();
 					ul_to_append = ul_to_append.replace(/move_from/g, move_in + folder + "/");
@@ -226,7 +241,7 @@ dragTree=function(selector) {
 			 * Rimuovo il blocco spostato
 			 * Faccio partire la funzione hide/show sulla classe univoca
 			 */
-			if ( error == false) {
+			if (error == false) {
 				var li_to_move = $('.selected').parent("li");
 				$('.selected').remove();
 				li_to_move.remove();
@@ -239,8 +254,8 @@ dragTree=function(selector) {
 					}
 				});
 
-				_debug("Sposto: " +move_from + file);
-				_debug("Nella cartella: "+ move_in + folder);
+				_debug("Sposto: " + move_from + file);
+				_debug("Nella cartella: " + move_in + folder);
 			}
 			/**
 			 * Faccio ripartire la funzione di click per click su .filename
@@ -256,11 +271,10 @@ dragTree=function(selector) {
 	var selected_folder = $('.selected').parent().attr('rel');
 	var selected_file = $(selector).html();
 	if (!(selected_file.indexOf("<input class=") > -1)) {
-		_debug("Selezionato: " +selected_folder + selected_file);
+		_debug("Selezionato: " + selected_folder + selected_file);
 	}
 
 }
-
 /**
  * Fine Funzione dragTree
  */
@@ -285,7 +299,6 @@ $(document).ready(function() {
 	});
 
 	$(".edit").find(".filename").click(function() {
-
 		dragTree(this);
 	});
 
