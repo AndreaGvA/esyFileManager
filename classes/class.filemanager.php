@@ -26,7 +26,7 @@ class esyFileManager {
 		$this -> app_folder = APP_FOLDER;
 		$this -> files_folder = FILES_FOLDER;
 		echo "<ul><li rel='$dirname' class='dir edit'><div class='filename'>public</div><div class='opendir'></div>";
-		$this->listFiles();
+		$this -> listFiles();
 		echo "</li></ul>";
 	}
 
@@ -64,13 +64,13 @@ class esyFileManager {
 	 * @return Elenca i files e le directory
 	 * @author AndreaG
 	 */
-	function listFiles($livello = 0, $dirname = "") {
+	private function listFiles($livello = 0, $dirname = "") {
 		if ($dirname == "")
 			$dirname = $this -> files_folder;
 		//echo $dirname;
-		
+
 		if (file_exists($dirname)) {
-			
+
 			$handle = opendir($dirname);
 			//echo "<br>Apro la dir";
 			$n = 0;
@@ -105,7 +105,7 @@ class esyFileManager {
 				for ($n = 0; $n < $num; $n++) {
 					//echo $item[$n]['type']." ".$item[$n]['file']."<br>";
 					if ($item[$n]['type'] == 1) {
-						echo "<li rel='" . $item[$n]['dirname'] . "' class='file edit ".$this->dropIconClass($item[$n]['file']) ."'><div class='filename'>" . $item[$n]['file'] . "</div> \n";
+						echo "<li rel='" . $item[$n]['dirname'] . "' class='file edit " . $this -> dropIconClass($item[$n]['file']) . "'><div class='filename'>" . $item[$n]['file'] . "</div> \n";
 					} else if ($item[$n]['type'] == 0) {
 						echo "<li rel='" . $item[$n]['dirname'] . "' class='dir edit'><div class='filename'>" . $item[$n]['file'] . "</div><div class='opendir'></div> \n";
 						$new_liv = $livello + 1;
@@ -117,9 +117,9 @@ class esyFileManager {
 
 			$handle = closedir($handle);
 			echo "</ul>";
-			
+
 		}
-		
+
 	}
 
 } // END

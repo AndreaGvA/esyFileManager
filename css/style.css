@@ -35,7 +35,7 @@ a:hover, a:active, a:focus { /* this group of selectors will give a keyboard nav
 	width: 100%;
 	background-color: #FFFFFF;
 	margin: 0 auto; /* the auto value on the sides, coupled with the width, centers the layout */
-	height:800px;
+	height:550px;
 }
 /* ~~ The header is not given a width. It will extend the full width of your layout. ~~ */
 header {
@@ -62,7 +62,7 @@ header {
 	padding: 10px 0;
 	width:auto;
 	overflow:auto;
-	height:600px;
+	height:400px;
 	border:1px solid #000;
 }
 
