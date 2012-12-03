@@ -73,6 +73,43 @@ sposta = function(file, new_file) {
 		}
 	});
 }
+create_folder = function(folder){
+	$.ajax({
+		type : 'post', url : '_aj_calls.php', data : {
+			'folder' : folder, 'action' : 'new'
+		}, complete : function(jqXHR) {
+			var result = $.parseJSON(jqXHR.responseText);
+			if (result.status == "true") {
+				var uniqid = new Date().getUTCMilliseconds();
+				new_folder_element='<li rel="'+folder+'" class="dir edit"><div class="filename ui-draggable ui-droppable">'+result.dirname+'</div><div class="opendir ' + uniqid + '"/><ul style="display: block; "/></li>';
+				$('.dir').each(function(){
+					var attr=$(this).attr('rel');
+					var nome=$(this).find('.filename').html();
+					if (attr+nome+"/" ==folder) {
+						$(".edit").find(".filename").unbind("click");
+						$(this).append(new_folder_element);
+						
+						$(".edit").find(".filename").click(function(e) {
+							dragTree(this, e);
+						});
+						$('.' + uniqid).click(function() {
+							var da_nascondere = $(this).parent().children('ul');
+							if (da_nascondere.is(':visible')) {
+								da_nascondere.hide();
+							} else {
+								da_nascondere.show();
+							}
+						});
+						_debug('Creata: ' + folder + result.dirname);
+					}
+				});
+				
+			} else {
+				alert('Errore: ' + result.errore);
+			}
+		}
+	});
+}
 /**
  * Funzione per le icone
  */
@@ -123,7 +160,7 @@ dragTree = function(selector, event) {
 	/**
 	 * Aggiungo la classe selected al file selezionato
 	 */
-	$(selector).addClass('selected');
+	$(selector).toggleClass('selected');
 
 	/**
 	 * Imposto la funzione per il Remname
@@ -444,6 +481,14 @@ $(document).ready(function() {
 	} else {
 		$('.qq-upload-list').wrap("<div id='up-list' />");
 	}
+	
+	/**
+	 * Script per la creazione delle cartelle
+	 */
+	$("#crea_cartella").click(function(){
+		create_folder(upload_folder);
+		_debug("Crea cartella in: "+upload_folder);
+	})
 
 	/**
 	 * Un po di js per il template
@@ -453,7 +498,6 @@ $(document).ready(function() {
 	$(".filemanager").height(cont_height-15);
 	$(".inner-sidebar").height(cont_height);
 	
-	$("SELECT").selectBox();
 
 });
 $(window).resize(function() {
