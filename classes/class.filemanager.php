@@ -113,7 +113,12 @@ class esyFileManager {
 				for ($n = 0; $n < $num; $n++) {
 					//echo $item[$n]['type']." ".$item[$n]['file']."<br>";
 					if ($item[$n]['type'] == 0) {
-						echo "<option value='" . $item[$n]['dirname'] . $item[$n]['file'] . "/'>" . $item[$n]['dirname'] . $item[$n]['file'] . "</option> \n";
+						$nome_da_stampare="";
+						for($ct=0; $livello>$ct; $ct++) {
+								$nome_da_stampare.="&nbsp;&nbsp;&nbsp;";
+						}
+						$nome_da_stampare.="- ".$item[$n]['file'];
+						echo "<option value='" . $item[$n]['dirname'] . $item[$n]['file'] . "/'>" . $nome_da_stampare . "</option> \n";
 						$new_liv = $livello + 1;
 						$this -> listDirs($new_liv, $item[$n]['dirname'] . $item[$n]['file'] . "/");
 					}

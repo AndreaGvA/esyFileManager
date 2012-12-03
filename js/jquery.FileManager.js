@@ -14,26 +14,25 @@
  */
 
 /*
-function selectValue(id)
-{
-    // open popup window and pass field id
-    window.open('sku.php?id=' + encodeURIComponent(id),'popuppage',
-      'width=400,toolbar=1,resizable=1,scrollbars=yes,height=400,top=100,left=100');
-}
+ function selectValue(id)
+ {
+ // open popup window and pass field id
+ window.open('sku.php?id=' + encodeURIComponent(id),'popuppage',
+ 'width=400,toolbar=1,resizable=1,scrollbars=yes,height=400,top=100,left=100');
+ }
 
-function updateValue(id, value)
-{
-    // this gets called from the popup window and updates the field with a new value
-    document.getElementById(id).value = value;
-}
-function sendValue(value)
-{
-    var parentId = <?php echo json_encode($_GET['id']); ?>;
-    window.opener.updateValue(parentId, value);
-    window.close();
-}
+ function updateValue(id, value)
+ {
+ // this gets called from the popup window and updates the field with a new value
+ document.getElementById(id).value = value;
+ }
+ function sendValue(value)
+ {
+ var parentId = <?php echo json_encode($_GET['id']); ?>;
+ window.opener.updateValue(parentId, value);
+ window.close();
+ }
  */
-
 
 var move_in, folder, upload_folder;
 var hold_timeout = 1000;
@@ -52,32 +51,25 @@ _debug = function(value) {
 }
 elimina = function(file) {
 	$.ajax({
-		type : 'post',
-		url : '_aj_calls.php',
-		data : {
-			'file' : file,
-			'action' : 'delete'
-		},
-		complete : function(data) {
+		type : 'post', url : '_aj_calls.php', data : {
+			'file' : file, 'action' : 'delete'
+		}, complete : function(data) {
 			//$(o.result).html(data);
 			_debug('Eliminato: ' + file);
 		}
 	});
 }
-rinomina = function(file, new_file) {
+sposta = function(file, new_file) {
 	$.ajax({
-		type : 'post',
-		url : '_aj_calls.php',
-		data : {
-			'file' : file,
-			'new_file' : new_file,
-			'action' : 'move'
-		},
-		complete : function(jqXHR) {
-			//$(o.result).html(data);
+		type : 'post', url : '_aj_calls.php', data : {
+			'file' : file, 'new_file' : new_file, 'action' : 'move'
+		}, complete : function(jqXHR) {
 			var result = $.parseJSON(jqXHR.responseText);
-			_debug('Spostato: ' + file);
-			return result;
+			if (result.status == "true") {
+				_debug('Spostato: ' + file);
+			} else {
+				alert('Errore: ' + result.errore);
+			}
 		}
 	});
 }
@@ -119,13 +111,15 @@ beginsWith = function(needle, haystack) {
 /**
  * Funzione dragTree - Permette il drag&drop ecc.
  */
-dragTree = function(selector) {
+dragTree = function(selector, event) {
 	/**
 	 * Rimuovo ovunque la classe selected
 	 */
-	$('.selected').each(function() {
-		$(this).removeClass('selected');
-	});
+	if (!(event.ctrlKey || event.altKey)) {
+		$('.selected').each(function() {
+			$(this).removeClass('selected');
+		});
+	}
 	/**
 	 * Aggiungo la classe selected al file selezionato
 	 */
@@ -198,46 +192,42 @@ dragTree = function(selector) {
 	 * Rendo l'elemento selezionato draggable
 	 */
 	$(".selected").draggable({
-		appendTo : "body",
-		helper : "clone"
+		appendTo : "body", helper : "clone"
 	});
 	/**
 	 * Funzione per il drag&drop nel cestino
 	 * Rendo il cetino droppable
 	 */
 	$('.trash').droppable({
-		activeClass : "ui-state-default",
-		hoverClass : "trashon",
-		accept : ":not(.maindir)",
-		drop : function(event, ui) {
+		activeClass : "ui-state-default", hoverClass : "trashon", accept : ":not(.maindir)", drop : function(event, ui) {
 			/**
 			 * Se è una cartella
 			 */
-			var bool = $('.selected').parent('li').hasClass('dir');
-			var move_from = $('.selected').parent('li').attr('rel');
-			var file = $('.selected').html();
-			var li_to_move = $('.selected').parent("li");
-			if (bool == true) {
-				if (confirm("Vuoi eliminare definitivamente la cartella e tutti i files in essa contenuti?")) {
-					$('.selected').remove();
-					li_to_move.remove();
-					_debug("Elimina cartella:" + move_from + file);
-					elimina(move_from + file + "/");
-				} else
-					_debug("Eliminazione cartella annullata: " + move_from + file);
-			} else {
-				if (confirm("Vuoi eliminare definitivamente il file?")) {
-					$('.selected').remove();
-					li_to_move.remove();
-					/**
-					 * Imposto la chiamata aJax per la rimozione del file
-					 */
-					_debug("Elimina file:" + move_from + file);
-					elimina(move_from + file);
-				} else
-					_debug("Eliminazione file annullata: " + move_from + file);
-			}
-
+			if (confirm("Vuoi eliminare definitivamente tutti i file selezionati?")) {
+				$('.selected').each(function() {
+					var bool = $(this).parent('li').hasClass('dir');
+					var move_from = $(this).parent('li').attr('rel');
+					if (move_from != undefined) {
+						var file = $(this).html();
+						var li_to_move = $(this).parent("li");
+						if (bool == true) {
+							$(this).remove();
+							li_to_move.remove();
+							_debug("Elimina cartella:" + move_from + file);
+							elimina(move_from + file + "/");
+						} else {
+							$(this).remove();
+							li_to_move.remove();
+							/**
+							 * Imposto la chiamata aJax per la rimozione del file
+							 */
+							_debug("Elimina file:" + move_from + file);
+							elimina(move_from + file);
+						}
+					}
+				});
+			} else
+				_debug("Eliminazione file annullata: " + move_from + file);
 		}
 	})
 	/**
@@ -245,9 +235,7 @@ dragTree = function(selector) {
 	 * imposto le classi per il drag&drop
 	 */
 	$('.dir').children('.filename').droppable({
-		activeClass : "ui-state-default",
-		hoverClass : "drop",
-		accept : ":not(.maindir)",
+		activeClass : "ui-state-default", hoverClass : "drop", accept : ":not(.maindir)",
 		/**
 		 * Quando sto il draggable è sopra a un droppable ne recupero il path
 		 */
@@ -261,98 +249,89 @@ dragTree = function(selector) {
 		 * Recupero i l path del file da spostare
 		 */
 		drop : function(event, ui) {
+			var dropfolder = $(this);
 			$(".edit").find(".filename").unbind("click");
-			var move_from = $('.selected').parent('li').attr('rel');
-			var file = $('.selected').html();
-			/**
-			 * Recupero la classe dell'elemento da spostare
-			 * Recupero il nome della nuova cartella
-			 */
-			var new_class = $('.selected').parent('li').attr('class');
-			var new_dir = move_in + folder + "/";
-			var bool = $('.selected').parent('li').hasClass('dir');
-			/**
-			 * Se sto spostando una directory
-			 * Recupero l'html delle sottodirectory e ne sostituisco il path con quello nuovo
-			 * Creo una classe univoca per il nuovo elemento
-			 */
-			if (bool == true) {
-				/**
-				 * Controllo che non sto spostando una cartella dentro se stessa
-				 */
-				file = file + "/";
-				var error = beginsWith(move_from + file, move_in + folder);
-				if (error == true)
-					alert("Non puoi spostare una cartella in se stessa");
-				_debug("Non puoi spostare una cartella in se stessa");
-				if (error == false) {
-					var ul_to_append = $('.selected').parent("li").children('ul').html();
-					ul_to_append = ul_to_append.replace(/move_from/g, move_in + folder + "/");
-					var uniqid = new Date().getUTCMilliseconds();
+			$('.selected').each(function() {
+				var move_from = $(this).parent('li').attr('rel');
+				if (move_from != undefined) {
+					var file = $(this).html();
 					/**
-					 * Inserisco l'elemento nella nuova cartella
-					 * applico la classe unica per tutti i sottoelementi (serve per hide/show)
+					 * Recupero la classe dell'elemento da spostare
+					 * Recupero il nome della nuova cartella
 					 */
-					$(this).parent().children('ul').append("<li class='" + new_class + "' rel='" + new_dir + "'><div class='filename'>" + ui.draggable.text() + "</div><div class='opendir " + uniqid + "'></div><ul style='display:block;'>" + ul_to_append + "</ul></li>");
-					$('.' + uniqid).parent().find('.opendir').each(function() {
-						$(this).attr('class', 'opendir ' + uniqid);
-					});
-				}
-			} else {
-				var error = false;
-				/**
-				 * Se sto spostando un file
-				 * Inserisco l'elemento nella nuova cartella
-				 */
-				$(this).parent().children('ul').append("<li class='" + new_class + "' rel='" + new_dir + "'><div class='filename'>" + ui.draggable.text() + "</div></li>");
-			}
-			/**
-			 * Seleziono l'elemento da rimuovere
-			 * Rimuovo il div selezionato
-			 * Rimuovo il blocco spostato
-			 * Faccio partire la funzione hide/show sulla classe univoca
-			 */
-			if (error == false) {
-
-				$.ajax({
-					type : 'post',
-					url : '_aj_calls.php',
-					data : {
-						'file' : move_from + file,
-						'new_file' : move_in + folder + "/" + file,
-						'action' : 'move'
-					},
-					complete : function(jqXHR) {
-						//$(o.result).html(data);
-						var result = $.parseJSON(jqXHR.responseText);
-						if (result.status == "true") {
-							var li_to_move = $('.selected').parent("li");
-							$('.selected').remove();
-							li_to_move.remove();
-							$('.' + uniqid).click(function() {
-								var da_nascondere = $(this).parent().children('ul');
-								if (da_nascondere.is(':visible')) {
-									da_nascondere.hide();
-								} else {
-									da_nascondere.show();
-								}
-							});
-							_debug('Spostato: ' + file);
-						} else {
-							alert('Errore: ' + result.errore);
+					var new_class = $(this).parent('li').attr('class');
+					var new_dir = move_in + folder + "/";
+					var bool = $(this).parent('li').hasClass('dir');
+					/**
+					 * Se sto spostando una directory
+					 * Recupero l'html delle sottodirectory e ne sostituisco il path con quello nuovo
+					 * Creo una classe univoca per il nuovo elemento
+					 */
+					$('.ui-draggable-dragging').remove();
+					if (bool == true) {
+						/**
+						 * Controllo che non sto spostando una cartella dentro se stessa
+						 */
+						filet = file;
+						file = file + "/";
+						var error = beginsWith(move_from + file, move_in + folder);
+						if (error == true) {
+							alert("Non puoi spostare una cartella in se stessa");
+							_debug("Non puoi spostare una cartella in se stessa");
 						}
-
+						if (error == false) {
+							var ul_to_append = $(this).parent("li").children('ul').html();
+							ul_to_append = ul_to_append.replace(/move_from/g, move_in + folder + "/");
+							var uniqid = new Date().getUTCMilliseconds();
+							/**
+							 * Inserisco l'elemento nella nuova cartella
+							 * applico la classe unica per tutti i sottoelementi (serve per hide/show)
+							 */
+							dropfolder.parent().children('ul').append("<li class='" + new_class + "' rel='" + new_dir + "'><div class='filename'>" + filet + "</div><div class='opendir " + uniqid + "'></div><ul style='display:block;'>" + ul_to_append + "</ul></li>");
+							$('.' + uniqid).parent().find('.opendir').each(function() {
+								$(this).attr('class', 'opendir ' + uniqid);
+							});
+						}
+					} else {
+						var error = false;
+						/**
+						 * Se sto spostando un file
+						 * Inserisco l'elemento nella nuova cartella
+						 */
+						dropfolder.parent().children('ul').append("<li class='" + new_class + "' rel='" + new_dir + "'><div class='filename'>" + file + "</div></li>");
 					}
-				});
+					/**
+					 * Seleziono l'elemento da rimuovere
+					 * Rimuovo il div selezionato
+					 * Rimuovo il blocco spostato
+					 * Faccio partire la funzione hide/show sulla classe univoca
+					 */
+					if (error == false) {
+						sposta(move_from + file, move_in + folder + "/" + file);
 
-				//_debug("Sposto: " + move_from + file);
-				//_debug("Nella cartella: " + move_in + folder + "/" + file);
-			}
+						var li_to_move = $(this).parent("li");
+						$(this).remove();
+						li_to_move.remove();
+						$('.' + uniqid).click(function() {
+							var da_nascondere = $(this).parent().children('ul');
+							if (da_nascondere.is(':visible')) {
+								da_nascondere.hide();
+							} else {
+								da_nascondere.show();
+							}
+						});
+						_debug("Sposto: " + move_from + file);
+						_debug("Nella cartella: " + move_in + folder + "/" + file);
+					}
+				}
+
+			});
+
 			/**
 			 * Faccio ripartire la funzione di click per click su .filename
 			 */
-			$(".filename").click(function() {
-				dragTree(this);
+			$(".filename").click(function(e) {
+				dragTree(this, e);
 			});
 		}
 	});
@@ -389,8 +368,8 @@ $(document).ready(function() {
 		}
 	});
 
-	$(".edit").find(".filename").click(function() {
-		dragTree(this);
+	$(".edit").find(".filename").click(function(e) {
+		dragTree(this, e);
 	});
 
 	/**
@@ -407,8 +386,7 @@ $(document).ready(function() {
 	$('.uploader').fineUploader({
 		request : {
 			endpoint : '_aj_calls.php',
-		},
-		debug : true
+		}, debug : true
 		/**
 		 * In caso di errore mi fermo
 		 */
@@ -418,10 +396,10 @@ $(document).ready(function() {
 		if (responseJSON.exists == "true") {
 			//alert("ERRORE: Già esiste un file con questo nome in questa cartella");
 			/*
-			setTimeout(function(){
-				$('.qq-upload-fail').remove()
-			}, 1500);
-			*/
+			 setTimeout(function(){
+			 $('.qq-upload-fail').remove()
+			 }, 1500);
+			 */
 			_debug("ERRORE: Già esiste un file con questo nome in questa cartella");
 		} else {
 			/**
@@ -442,43 +420,45 @@ $(document).ready(function() {
 				/**
 				 * Riattivo la funzione dragTree
 				 */
-				$(".edit").find(".filename").click(function() {
-					dragTree(this);
+				$(".edit").find(".filename").click(function(ev) {
+					dragTree(this, ev);
 				});
 			});
 			_debug("upload success!!");
 			/*
-			setTimeout(function(){
-				$('.qq-upload-success').remove()
-			}, 1500);
-			*/
-			
+			 setTimeout(function(){
+			 $('.qq-upload-success').remove()
+			 }, 1500);
+			 */
+
 		}
 		/**
 		 * On Submit faccio il push dei parametri
 		 */
 	}).on("submit", function() {
 		$(this).fineUploader('setParams', {
-			'action' : 'upload',
-			'folder' : upload_folder
+			'action' : 'upload', 'folder' : upload_folder
 		});
 	});
-	if($('#up-list').length > 0) {} else {
-			$('.qq-upload-list').wrap("<div id='up-list' />");
-		}
-	
+	if ($('#up-list').length > 0) {
+	} else {
+		$('.qq-upload-list').wrap("<div id='up-list' />");
+	}
+
 	/**
 	 * Un po di js per il template
 	 */
-	var height=$(document).height();
-	var cont_height=height-90-40;
-	$(".filemanager").height(cont_height);
-	$(".sidebar1").height(cont_height);
+	var height = $(document).height();
+	var cont_height = height - 80 - 40 -20;
+	$(".filemanager").height(cont_height-15);
+	$(".inner-sidebar").height(cont_height);
 	
+	$("SELECT").selectBox();
+
 });
 $(window).resize(function() {
-	var height=$(this).height();
-	var cont_height=height-90-40;
-	$(".filemanager").height(cont_height);
-	$(".sidebar1").height(cont_height);
+	var height = $(this).height();
+	var cont_height = height - 80 - 40 -20;
+	$(".filemanager").height(cont_height-15);
+	$(".inner-sidebar").height(cont_height);
 });

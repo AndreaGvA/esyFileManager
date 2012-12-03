@@ -22,6 +22,7 @@ $FM = new esyFileManager();
 		<meta charset="UTF-8">
 		<!-- TemplateBeginEditable name="doctitle" -->
 		<title>esyFileManager</title>
+		<link rel="stylesheet" type="text/css" href="css/jquery.selectBox.css" />
 		<link rel="stylesheet" type="text/css" href="css/fineuploader.css" />
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
@@ -39,35 +40,45 @@ $FM = new esyFileManager();
 	<body>
 		<div class="container">
 			<header>
-				<a href="#"><img src="" alt="Insert Logo Here" width="180" height="90" id="Insert_logo" style="background-color: #C6D580; display:block;" /></a>
+				&nbsp;
 			</header>
 			<div class="sidebar1">
+				<div class="inner-sidebar">
+				<div class="selectb">
 				<select id="upload_folder">
-					<option class="main" value="<?=FILES_FOLDER?>"><?=FILES_FOLDER?></option>
+					<option class="main" value="<?=FILES_FOLDER ?>"><?=FILES_FOLDER ?></option>
 					<?
-					$FM->listDirs();
+					$FM -> listDirs();
 					?>
 				</select>
+				</div>
+				<input type="button" class="button" id="crea_cartella" value="Crea una cartella" />
 				<div class="uploader"></div>
 				<!-- end .sidebar1 -->
+				</div>
 			</div>
 			<article class="content">
 				<div class="trash">
 					&nbsp;
 				</div>
+				<div class="order">
+					&nbsp;&nbsp;&nbsp;Nome
+				</div>
 				<div class="filemanager">
+					<div class="bg">
 					<?
 					/**
 					 * INDEX APP
 					 */
 					$FM -> init();
 					?>
+					</div>
 				</div>
 				<!-- end .content -->
 			</article>
 			<footer>
 				<p>
-					footer
+					&nbsp;
 				</p>
 			</footer>
 			<!-- end .container -->
