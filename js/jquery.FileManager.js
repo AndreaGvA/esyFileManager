@@ -79,19 +79,15 @@ create_folder = function(folder){
 			'folder' : folder, 'action' : 'new'
 		}, complete : function(jqXHR) {
 			var result = $.parseJSON(jqXHR.responseText);
+			var uniqid = new Date().getUTCMilliseconds();
 			if (result.status == "true") {
-				var uniqid = new Date().getUTCMilliseconds();
 				new_folder_element='<li rel="'+folder+'" class="dir edit"><div class="filename ui-draggable ui-droppable">'+result.dirname+'</div><div class="opendir ' + uniqid + '"/><ul style="display: block; "/></li>';
 				$('.dir').each(function(){
 					var attr=$(this).attr('rel');
 					var nome=$(this).find('.filename').html();
 					if (attr+nome+"/" ==folder) {
 						$(".edit").find(".filename").unbind("click");
-						$(this).append(new_folder_element);
-						
-						$(".edit").find(".filename").click(function(e) {
-							dragTree(this, e);
-						});
+						$(this).children("ul").append(new_folder_element);
 						$('.' + uniqid).click(function() {
 							var da_nascondere = $(this).parent().children('ul');
 							if (da_nascondere.is(':visible')) {
@@ -100,6 +96,10 @@ create_folder = function(folder){
 								da_nascondere.show();
 							}
 						});
+						$(".edit").find(".filename").click(function(e) {
+							dragTree(this, e);
+						});
+						
 						_debug('Creata: ' + folder + result.dirname);
 					}
 				});
@@ -175,6 +175,7 @@ dragTree = function(selector, event) {
 			 * Seleziono l'input in .selected e ne prendo il testo dividendo estensione e nome file
 			 */
 			var a = $('.selected');
+			var folder_w=a.parent("li").attr('rel');
 			var i = a.children("input");
 			var testo = a.html();
 			/**
@@ -208,6 +209,7 @@ dragTree = function(selector, event) {
 					var a = $(this).parent();
 					var testo = $(this).attr("value");
 					var new_filename = testo + ext;
+					sposta(folder_w+filename + ext, folder_w+new_filename);
 					a.html(new_filename);
 				});
 

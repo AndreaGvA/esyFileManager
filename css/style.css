@@ -149,11 +149,19 @@ header {
 	border:1px solid #ccc;
 }
 .selected {
-	background-color: #00299d;
 	color: #fff;
 	cursor: move;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
+	min-width:200px;
+	min-height:20px;
+	background: -moz-linear-gradient(top,  #00299d 0%, #c1d4ff 47%, #103485 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#00299d), color-stop(47%,#c1d4ff), color-stop(100%,#103485));
+	background: -webkit-linear-gradient(top,  #00299d 0%,#c1d4ff 47%,#103485 100%);
+	background: -o-linear-gradient(top,  #00299d 0%,#c1d4ff 47%,#103485 100%);
+	background: -ms-linear-gradient(top,  #00299d 0%,#c1d4ff 47%,#103485 100%);
+	background: linear-gradient(top,  #00299d 0%,#c1d4ff 47%,#103485 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00299d', endColorstr='#103485',GradientType=0 );
 }
 .button{
 	display: block;
@@ -188,7 +196,7 @@ header {
 	color: #fff;
 }
 .drop {
-	background-color: #efefef;
+	background-color: #f9e9f0;
 }
 .dir {
 	background: url('../images/dir.png') no-repeat;
@@ -244,7 +252,7 @@ header {
 	width: 60px;
 	height: 60px;
 	top: -70px;
-	right: 20px;
+	right: 150px;
 }
 .trashon {
 	background: url('../images/Recycle-Bin-full-icon.png') no-repeat;

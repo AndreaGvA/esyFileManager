@@ -113,11 +113,11 @@ class esyFileManager {
 				for ($n = 0; $n < $num; $n++) {
 					//echo $item[$n]['type']." ".$item[$n]['file']."<br>";
 					if ($item[$n]['type'] == 0) {
-						$nome_da_stampare="";
-						for($ct=0; $livello>$ct; $ct++) {
-								$nome_da_stampare.="&nbsp;&nbsp;&nbsp;";
+						$nome_da_stampare = "";
+						for ($ct = 0; $livello > $ct; $ct++) {
+							$nome_da_stampare .= "&nbsp;&nbsp;&nbsp;";
 						}
-						$nome_da_stampare.="- ".$item[$n]['file'];
+						$nome_da_stampare .= "- " . $item[$n]['file'];
 						echo "<option value='" . $item[$n]['dirname'] . $item[$n]['file'] . "/'>" . $nome_da_stampare . "</option> \n";
 						$new_liv = $livello + 1;
 						$this -> listDirs($new_liv, $item[$n]['dirname'] . $item[$n]['file'] . "/");
@@ -194,14 +194,14 @@ class esyFileManager {
 		}
 
 	}
-	
+
 	/**
 	 * eliminafiles($dirname)
 	 *
 	 * @return Elimina files ricorsivamente in una cartella e poi elimina la cartella
 	 * @author AndreaG
 	 */
-	function eliminafiles($dirname) {
+	function old_eliminafiles($dirname) {
 		if (file_exists($dirname) && is_file($dirname)) {
 			unlink($dirname);
 		} elseif (is_dir($dirname)) {
@@ -209,22 +209,45 @@ class esyFileManager {
 			while (false !== ($file = readdir($handle))) {
 				if (is_file($dirname . $file)) {
 					unlink($dirname . $file);
-				} else if(is_dir($dirname . $file)) {
-					$this->eliminafiles($dirname . $file);
+				} else if (is_dir($dirname . $file)) {
+					echo $file . "<br>";
+					if ($file != "." && $file != "..") {
+						$this -> eliminafiles($dirname . $file);
+					}
 				}
 			}
 			$handle = closedir($handle);
 			rmdir($dirname);
 		}
 	}
-	
-	
-	function new_folder_name($folder, $n){
-		$new_name="nuova_cartella_$n";
-		if (is_dir($folder.$new_name)) {
+
+	function eliminafiles($dirname) {
+		if (is_dir($dirname)) {
+			$dir_handle = opendir($dirname);
+		} else if(is_file($dirname)){
+			unlink($dirname);
+		}
+		if (!$dir_handle)
+			return false;
+		while ($file = readdir($dir_handle)) {
+			if ($file != "." && $file != "..") {
+				if (!is_dir($dirname . "/" . $file))
+					unlink($dirname . "/" . $file);
+				else
+					$this->eliminafiles($dirname . '/' . $file);
+			}
+		}
+		closedir($dir_handle);
+		rmdir($dirname);
+		return true;
+	}
+
+	function new_folder_name($folder, $n) {
+		$new_name = "nuova_cartella_$n";
+		if (is_dir($folder . $new_name)) {
 			$n++;
-			$new_name=$this->new_folder_name($folder, $n);
-		} 
+			$new_name = $this -> new_folder_name($folder, $n);
+		}
 		return $new_name;
 	}
 
