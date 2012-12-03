@@ -15,14 +15,13 @@ Changelog:
 
 ToDo:
 ```
-
 1.Filtri per ordinamento per nome, dimensione e data
 2.Disk quota
 3.Box dettagli file
 4.Rinomina file e cartelle
 5.Navigazione profonda
 6.Skin OSX like
-
+7.Funzione nuova cartella
 ```
 
 Questo progetto usa i seguenti plugin:
