@@ -466,5 +466,19 @@ $(document).ready(function() {
 	if($('#up-list').length > 0) {} else {
 			$('.qq-upload-list').wrap("<div id='up-list' />");
 		}
-
+	
+	/**
+	 * Un po di js per il template
+	 */
+	var height=$(document).height();
+	var cont_height=height-90-40;
+	$(".filemanager").height(cont_height);
+	$(".sidebar1").height(cont_height);
+	
+});
+$(window).resize(function() {
+	var height=$(this).height();
+	var cont_height=height-90-40;
+	$(".filemanager").height(cont_height);
+	$(".sidebar1").height(cont_height);
 });
