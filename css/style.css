@@ -95,7 +95,7 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus {/* this changes the background 
 
 .filemanager {
 	width: auto;
-	height: 600px;
+	min-height: 200px;
 	padding: 40px;
 }
 .filemanager ul {
@@ -127,6 +127,7 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus {/* this changes the background 
 #upload_folder {
 	width: 100%;
 }
+#up-list{ width:180px; height:370px; float:left; background-color:#efefef; overflow:auto;}
 .selected {
 	background-color: #efefef;
 	cursor: move;

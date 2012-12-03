@@ -28,10 +28,41 @@ _debug = function(value) {
 		}
 	}
 }
+elimina = function(file) {
+	$.ajax({
+		type : 'post',
+		url : '_aj_calls.php',
+		data : {
+			'file' : file,
+			'action' : 'delete'
+		},
+		complete : function(data) {
+			//$(o.result).html(data);
+			_debug('Eliminato: ' + file);
+		}
+	});
+}
+rinomina = function(file, new_file) {
+	$.ajax({
+		type : 'post',
+		url : '_aj_calls.php',
+		data : {
+			'file' : file,
+			'new_file' : new_file,
+			'action' : 'move'
+		},
+		complete : function(jqXHR) {
+			//$(o.result).html(data);
+			var result = $.parseJSON(jqXHR.responseText);
+			_debug('Spostato: ' + file);
+			return result;
+		}
+	});
+}
 /**
  * Funzione per le icone
  */
-function dropIconClass(filename) {
+dropIconClass = function(filename) {
 	var ico;
 	var ext = filename.substr((filename.lastIndexOf('.') + 1));
 	if (ext == 'wmv' || ext == 'mp4' || ext == 'avi' || ext == 'flv') {
@@ -57,7 +88,6 @@ function dropIconClass(filename) {
 	}
 	return ico;
 }
-
 /**
  * Funzione per le stringhe
  */
@@ -162,21 +192,26 @@ dragTree = function(selector) {
 			 * Se è una cartella
 			 */
 			var bool = $('.selected').parent('li').hasClass('dir');
-			if ( bool = true) {
-				var move_from = $('.selected').parent('li').attr('rel');
-				var file = $('.selected').html();
-				var li_to_move = $('.selected').parent("li");
+			var move_from = $('.selected').parent('li').attr('rel');
+			var file = $('.selected').html();
+			var li_to_move = $('.selected').parent("li");
+			if (bool == true) {
 				if (confirm("Vuoi eliminare definitivamente la cartella e tutti i files in essa contenuti?")) {
 					$('.selected').remove();
 					li_to_move.remove();
 					_debug("Elimina cartella:" + move_from + file);
+					elimina(move_from + file + "/");
 				} else
 					_debug("Eliminazione cartella annullata: " + move_from + file);
 			} else {
 				if (confirm("Vuoi eliminare definitivamente il file?")) {
 					$('.selected').remove();
 					li_to_move.remove();
+					/**
+					 * Imposto la chiamata aJax per la rimozione del file
+					 */
 					_debug("Elimina file:" + move_from + file);
+					elimina(move_from + file);
 				} else
 					_debug("Eliminazione file annullata: " + move_from + file);
 			}
@@ -223,6 +258,7 @@ dragTree = function(selector) {
 				/**
 				 * Controllo che non sto spostando una cartella dentro se stessa
 				 */
+				file = file + "/";
 				var error = beginsWith(move_from + file, move_in + folder);
 				if (error == true)
 					alert("Non puoi spostare una cartella in se stessa");
@@ -255,20 +291,40 @@ dragTree = function(selector) {
 			 * Faccio partire la funzione hide/show sulla classe univoca
 			 */
 			if (error == false) {
-				var li_to_move = $('.selected').parent("li");
-				$('.selected').remove();
-				li_to_move.remove();
-				$('.' + uniqid).click(function() {
-					var da_nascondere = $(this).parent().children('ul');
-					if (da_nascondere.is(':visible')) {
-						da_nascondere.hide();
-					} else {
-						da_nascondere.show();
+
+				$.ajax({
+					type : 'post',
+					url : '_aj_calls.php',
+					data : {
+						'file' : move_from + file,
+						'new_file' : move_in + folder + "/" + file,
+						'action' : 'move'
+					},
+					complete : function(jqXHR) {
+						//$(o.result).html(data);
+						var result = $.parseJSON(jqXHR.responseText);
+						if (result.status == "true") {
+							var li_to_move = $('.selected').parent("li");
+							$('.selected').remove();
+							li_to_move.remove();
+							$('.' + uniqid).click(function() {
+								var da_nascondere = $(this).parent().children('ul');
+								if (da_nascondere.is(':visible')) {
+									da_nascondere.hide();
+								} else {
+									da_nascondere.show();
+								}
+							});
+							_debug('Spostato: ' + file);
+						} else {
+							alert('Errore: ' + result.errore);
+						}
+
 					}
 				});
 
-				_debug("Sposto: " + move_from + file);
-				_debug("Nella cartella: " + move_in + folder);
+				//_debug("Sposto: " + move_from + file);
+				//_debug("Nella cartella: " + move_in + folder + "/" + file);
 			}
 			/**
 			 * Faccio ripartire la funzione di click per click su .filename
@@ -339,6 +395,11 @@ $(document).ready(function() {
 	}).on('complete', function(event, id, filename, responseJSON) {
 		if (responseJSON.exists == "true") {
 			//alert("ERRORE: Già esiste un file con questo nome in questa cartella");
+			/*
+			setTimeout(function(){
+				$('.qq-upload-fail').remove()
+			}, 1500);
+			*/
 			_debug("ERRORE: Già esiste un file con questo nome in questa cartella");
 		} else {
 			/**
@@ -364,6 +425,12 @@ $(document).ready(function() {
 				});
 			});
 			_debug("upload success!!");
+			/*
+			setTimeout(function(){
+				$('.qq-upload-success').remove()
+			}, 1500);
+			*/
+			
 		}
 		/**
 		 * On Submit faccio il push dei parametri
@@ -374,5 +441,8 @@ $(document).ready(function() {
 			'folder' : upload_folder
 		});
 	});
+	if($('#up-list').length > 0) {} else {
+			$('.qq-upload-list').wrap("<div id='up-list' />");
+		}
 
 });

@@ -189,6 +189,27 @@ class esyFileManager {
 		}
 
 	}
+	
+	/**
+	 * eliminafiles($dirname)
+	 *
+	 * @return Elimina files ricorsivamente in una cartella e poi elimina la cartella
+	 * @author AndreaG
+	 */
+	function eliminafiles($dirname) {
+		if (file_exists($dirname) && is_file($dirname)) {
+			unlink($dirname);
+		} elseif (is_dir($dirname)) {
+			$handle = opendir($dirname);
+			while (false !== ($file = readdir($handle))) {
+				if (is_file($dirname . $file)) {
+					unlink($dirname . $file);
+				}
+			}
+			$handle = closedir($handle);
+			rmdir($dirname);
+		}
+	}
 
 } // END
  ?>
