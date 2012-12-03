@@ -13,6 +13,28 @@
  * Inizializzo le variabili pubbliche
  */
 
+/*
+function selectValue(id)
+{
+    // open popup window and pass field id
+    window.open('sku.php?id=' + encodeURIComponent(id),'popuppage',
+      'width=400,toolbar=1,resizable=1,scrollbars=yes,height=400,top=100,left=100');
+}
+
+function updateValue(id, value)
+{
+    // this gets called from the popup window and updates the field with a new value
+    document.getElementById(id).value = value;
+}
+function sendValue(value)
+{
+    var parentId = <?php echo json_encode($_GET['id']); ?>;
+    window.opener.updateValue(parentId, value);
+    window.close();
+}
+ */
+
+
 var move_in, folder, upload_folder;
 var hold_timeout = 1000;
 var debug = true;
