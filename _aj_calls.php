@@ -63,5 +63,14 @@ switch ($getAction) {
 		}
 		echo htmlspecialchars(json_encode($result), ENT_NOQUOTES);
 		break;
+	case 'new':
+		$folder=$FM->take("folder");
+		$nuova_cartella=$FM->new_folder_name($folder, 0);
+		mkdir($folder.$nuova_cartella);
+		$result['status']="true";
+		$result['dirname']=$nuova_cartella; 
+		echo htmlspecialchars(json_encode($result), ENT_NOQUOTES);
+		break;
+		
 }
 ?>

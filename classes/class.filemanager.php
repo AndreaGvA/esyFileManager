@@ -209,11 +209,23 @@ class esyFileManager {
 			while (false !== ($file = readdir($handle))) {
 				if (is_file($dirname . $file)) {
 					unlink($dirname . $file);
+				} else if(is_dir($dirname . $file)) {
+					$this->eliminafiles($dirname . $file);
 				}
 			}
 			$handle = closedir($handle);
 			rmdir($dirname);
 		}
+	}
+	
+	
+	function new_folder_name($folder, $n){
+		$new_name="nuova_cartella_$n";
+		if (is_dir($folder.$new_name)) {
+			$n++;
+			$new_name=$this->new_folder_name($folder, $n);
+		} 
+		return $new_name;
 	}
 
 } // END
