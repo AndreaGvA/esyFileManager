@@ -1,0 +1,485 @@
+.dir {
+	background: url('../images/dir.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.3gp{
+	background: url('../images/file-extension-3gp-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.7z{
+	background: url('../images/file-extension-7z-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.ace{
+	background: url('../images/file-extension-ace-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.aiff{
+	background: url('../images/file-extension-aiff-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.aif{
+	background: url('../images/file-extension-aif-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.ai{
+	background: url('../images/file-extension-ai-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.amr{
+	background: url('../images/file-extension-amr-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.asf{
+	background: url('../images/file-extension-asf-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.asx{
+	background: url('../images/file-extension-asx-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.bat{
+	background: url('../images/file-extension-bat-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.bin{
+	background: url('../images/file-extension-bin-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.bmp{
+	background: url('../images/file-extension-bmp-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.bup{
+	background: url('../images/file-extension-bup-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.cab{
+	background: url('../images/file-extension-cab-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.cbr{
+	background: url('../images/file-extension-cbr-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.cda{
+	background: url('../images/file-extension-cda-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.cdl{
+	background: url('../images/file-extension-cdl-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.cdr{
+	background: url('../images/file-extension-cdr-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.chm{
+	background: url('../images/file-extension-chm-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.dat{
+	background: url('../images/file-extension-dat-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.divx{
+	background: url('../images/file-extension-divx-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.dll{
+	background: url('../images/file-extension-dll-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.dmg{
+	background: url('../images/file-extension-dmg-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.doc{
+	background: url('../images/file-extension-doc-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.dss{
+	background: url('../images/file-extension-dss-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.dvf{
+	background: url('../images/file-extension-dvf-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.dwg{
+	background: url('../images/file-extension-dwg-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.eml{
+	background: url('../images/file-extension-eml-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.eps{
+	background: url('../images/file-extension-eps-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.exe{
+	background: url('../images/file-extension-exe-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.fla{
+	background: url('../images/file-extension-fla-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.flv{
+	background: url('../images/file-extension-flv-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.gif{
+	background: url('../images/file-extension-gif-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.gz{
+	background: url('../images/file-extension-gz-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.hqx{
+	background: url('../images/file-extension-hqx-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.htm{
+	background: url('../images/file-extension-htm-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.html{
+	background: url('../images/file-extension-html-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.ifo{
+	background: url('../images/file-extension-ifo-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.indd{
+	background: url('../images/file-extension-indd-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.iso{
+	background: url('../images/file-extension-iso-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.jar{
+	background: url('../images/file-extension-jar-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.jpeg{
+	background: url('../images/file-extension-jpeg-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.jpg {
+	background: url('../images/file-extension-jpg-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.lnk{
+	background: url('../images/file-extension-lnk-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.log{
+	background: url('../images/file-extension-log-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.m4a{
+	background: url('../images/file-extension-m4a-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.m4b{
+	background: url('../images/file-extension-m4b-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.m4p{
+	background: url('../images/file-extension-m4p-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.m4v{
+	background: url('../images/file-extension-m4v-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.mcd{
+	background: url('../images/file-extension-mcd-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.mdb{
+	background: url('../images/file-extension-mdb-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.mid{
+	background: url('../images/file-extension-mid-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.mov{
+	background: url('../images/file-extension-mov-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.mp2{
+	background: url('../images/file-extension-mp-2-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.mp4{
+	background: url('../images/file-extension-mp-4-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.mpeg{
+	background: url('../images/file-extension-mpeg-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.mpg{
+	background: url('../images/file-extension-mpg-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.msi{
+	background: url('../images/file-extension-msi-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.ogg{
+	background: url('../images/file-extension-ogg-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.pdf {
+	background: url('../images/file-extension-pdf-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.png{
+	background: url('../images/file-extension-png-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.ppt {
+	background: url('../images/file-extension-pps-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.psd{
+	background: url('../images/file-extension-psd-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.ps{
+	background: url('../images/file-extension-ps-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.pst{
+	background: url('../images/file-extension-pst-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.ptb{
+	background: url('../images/file-extension-ptb-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.pub{
+	background: url('../images/file-extension-pub-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.qbb{
+	background: url('../images/file-extension-qbb-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.qbw{
+	background: url('../images/file-extension-qbw-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.qxd{
+	background: url('../images/file-extension-qxd-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.ram{
+	background: url('../images/file-extension-ram-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.rar{
+	background: url('../images/file-extension-rar-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.rm{
+	background: url('../images/file-extension-rm-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.rmvb{
+	background: url('../images/file-extension-rmvb-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.rtf{
+	background: url('../images/file-extension-rtf-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.sea{
+	background: url('../images/file-extension-sea-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.ses{
+	background: url('../images/file-extension-ses-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.sit{
+	background: url('../images/file-extension-sit-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.sitx{
+	background: url('../images/file-extension-sitx-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.swf{
+	background: url('../images/file-extension-swf-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.tgz{
+	background: url('../images/file-extension-tgz-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.thm{
+	background: url('../images/file-extension-thm-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.tif{
+	background: url('../images/file-extension-tif-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.tmp{
+	background: url('../images/file-extension-tmp-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.ttf{
+	background: url('../images/file-extension-ttf-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.txt{
+	background: url('../images/file-extension-txt-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.vcd{
+	background: url('../images/file-extension-vcd-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.vob{
+	background: url('../images/file-extension-vob-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.wav{
+	background: url('../images/file-extension-wav-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.wma{
+	background: url('../images/file-extension-wma-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.wmv{
+	background: url('../images/file-extension-wmv-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.wps{
+	background: url('../images/file-extension-wps-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.xls{
+	background: url('../images/file-extension-xls-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.xpi{
+	background: url('../images/file-extension-xpi-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.zip {
+	background: url('../images/file-extension-zip-icon.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.ico {
+	background: url('../images/ico.png') no-repeat;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}

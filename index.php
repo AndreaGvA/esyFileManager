@@ -22,7 +22,7 @@ $FM = new esyFileManager();
 		<meta charset="UTF-8">
 		<!-- TemplateBeginEditable name="doctitle" -->
 		<title>esyFileManager</title>
-		<link rel="stylesheet" type="text/css" href="css/jquery.selectBox.css" />
+		<link rel="stylesheet" type="text/css" href="css/icons.css" />
 		<link rel="stylesheet" type="text/css" href="css/fineuploader.css" />
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>

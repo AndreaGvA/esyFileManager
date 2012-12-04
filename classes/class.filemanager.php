@@ -46,27 +46,200 @@ class esyFileManager {
 	private function dropIconClass($filename) {
 		$fileInfo = pathinfo($filename);
 		$ext = $fileInfo['extension'];
-		if ($ext == 'wmv' || $ext == 'mp4' || $ext == 'avi' || $ext == 'flv') {
-			$ico = 'video';
-		} else if ($ext == 'pdf') {
-			$ico = 'pdf';
-		} else if ($ext == 'zip') {
-			$ico = 'zip';
+		if ($ext == '3gp') {
+			$ico = '3gp';
+		} else if ($ext == '7z') {
+			$ico = '7z';
+		} else if ($ext == 'ace') {
+			$ico = 'ace';
+		} else if ($ext == 'aiff') {
+			$ico = 'aiff';
+		} else if ($ext == 'aif') {
+			$ico = 'aif';
+		} else if ($ext == 'ai') {
+			$ico = 'ai';
+		} else if ($ext == 'amr') {
+			$ico = 'amr';
+		} else if ($ext == 'asf') {
+			$ico = 'asf';
+		} else if ($ext == 'asx') {
+			$ico = 'asx';
+		} else if ($ext == 'bat') {
+			$ico = 'bat';
+		} else if ($ext == 'bin') {
+			$ico = 'bin';
+		} else if ($ext == 'bmp') {
+			$ico = 'bmp';
+		} else if ($ext == 'bup') {
+			$ico = 'bup';
+		} else if ($ext == 'cab') {
+			$ico = 'cab';
+		} else if ($ext == 'cbr') {
+			$ico = 'cbr';
+		} else if ($ext == 'cda') {
+			$ico = 'cda';
+		} else if ($ext == 'cdl') {
+			$ico = 'cdl';
+		} else if ($ext == 'cdr') {
+			$ico = 'cdr';
+		} else if ($ext == 'chm') {
+			$ico = 'chm';
+		} else if ($ext == 'dat') {
+			$ico = 'dat';
+		} else if ($ext == 'divx') {
+			$ico = 'divx';
+		} else if ($ext == 'dll') {
+			$ico = 'dll';
+		} else if ($ext == 'dmg') {
+			$ico = 'dmg';
+		} else if ($ext == 'doc' || $ext == 'docx') {
+			$ico = 'doc';
+		} else if ($ext == 'dss') {
+			$ico = 'dss';
+		} else if ($ext == 'dvf') {
+			$ico = 'dvf';
+		} else if ($ext == 'dwg') {
+			$ico = 'dwg';
+		} else if ($ext == 'eml') {
+			$ico = 'eml';
+		} else if ($ext == 'eps') {
+			$ico = 'eps';
+		} else if ($ext == 'exe') {
+			$ico = 'exe';
+		} else if ($ext == 'fla') {
+			$ico = 'fla';
+		} else if ($ext == 'flv') {
+			$ico = 'flv';
 		} else if ($ext == 'gif') {
 			$ico = 'gif';
-		} else if ($ext == 'jpg') {
+		} else if ($ext == 'gz') {
+			$ico = 'gz';
+		} else if ($ext == 'hqx') {
+			$ico = 'hqx';
+		}else if ($ext == 'htm') {
+			$ico = 'htm';
+		}else if ($ext == 'html') {
+			$ico = 'html';
+		}else if ($ext == 'ifo') {
+			$ico = 'ifo';
+		}else if ($ext == 'indd') {
+			$ico = 'indd';
+		}else if ($ext == 'iso') {
+			$ico = 'iso';
+		}else if ($ext == 'jar') {
+			$ico = 'jar';
+		}else if ($ext == 'jpeg') {
+			$ico = 'jpeg';
+		}else if ($ext == 'jpg') {
 			$ico = 'jpg';
-		} else if ($ext == 'bmp' || $ext == 'png' || $ext == 'tif') {
-			$ico = 'jpg';
-		} else if ($ext == 'ppt' || $ext == 'pps') {
+		}else if ($ext == 'lnk') {
+			$ico = 'lnk';
+		}else if ($ext == 'log') {
+			$ico = 'log';
+		}else if ($ext == 'm4a') {
+			$ico = 'm4a';
+		}else if ($ext == 'm4b') {
+			$ico = 'm4b';
+		}else if ($ext == 'm4p') {
+			$ico = 'm4p';
+		}else if ($ext == 'm4v') {
+			$ico = 'm4v';
+		}else if ($ext == 'mcd') {
+			$ico = 'mcd';
+		}else if ($ext == 'mdb') {
+			$ico = 'mdb';
+		}else if ($ext == 'mid') {
+			$ico = 'mid';
+		}else if ($ext == 'mov') {
+			$ico = 'mov';
+		}else if ($ext == 'mp2') {
+			$ico = 'mp2';
+		}else if ($ext == 'mp4') {
+			$ico = 'mp4';
+		}else if ($ext == 'mpeg') {
+			$ico = 'mpeg';
+		}else if ($ext == 'mpg') {
+			$ico = 'mpg';
+		}else if ($ext == 'msi') {
+			$ico = 'msi';
+		}else if ($ext == 'ogg') {
+			$ico = 'ogg';
+		}else if ($ext == 'pdf') {
+			$ico = 'pdf';
+		}else if ($ext == 'png') {
+			$ico = 'png';
+		}else if ($ext == 'psd') {
+			$ico = 'psd';
+		}else if ($ext == 'ps') {
+			$ico = 'ps';
+		}else if ($ext == 'pst') {
+			$ico = 'pst';
+		}else if ($ext == 'ptb') {
+			$ico = 'ptb';
+		}else if ($ext == 'pub') {
+			$ico = 'pub';
+		}else if ($ext == 'qbb') {
+			$ico = 'qbb';
+		}else if ($ext == 'qbw') {
+			$ico = 'qbw';
+		}else if ($ext == 'qxd') {
+			$ico = 'qxd';
+		}else if ($ext == 'ram') {
+			$ico = 'ram';
+		}else if ($ext == 'rar') {
+			$ico = 'rar';
+		}else if ($ext == 'rm') {
+			$ico = 'rm';
+		}else if ($ext == 'rmvb') {
+			$ico = 'rmvb';
+		}else if ($ext == 'rtf') {
+			$ico = 'rtf';
+		}else if ($ext == 'sea') {
+			$ico = 'sea';
+		}else if ($ext == 'ses') {
+			$ico = 'ses';
+		}else if ($ext == 'sit') {
+			$ico = 'sit';
+		}else if ($ext == 'sitx') {
+			$ico = 'sitx';
+		}else if ($ext == 'swf') {
+			$ico = 'swf';
+		}else if ($ext == 'tgz') {
+			$ico = 'tgz';
+		}else if ($ext == 'thm') {
+			$ico = 'thm';
+		}else if ($ext == 'tif') {
+			$ico = 'tif';
+		}else if ($ext == 'tmp') {
+			$ico = 'tmp';
+		}else if ($ext == 'ttf') {
+			$ico = 'ttf';
+		} else if ($ext == 'txt') {
+			$ico = 'txt';
+		} else if ($ext == 'vcd') {
+			$ico = 'vcd';
+		} else if ($ext == 'vob') {
+			$ico = 'vob';
+		} else if ($ext == 'wav') {
+			$ico = 'wav';
+		} else if ($ext == 'wma') {
+			$ico = 'wma';
+		} else if ($ext == 'wmv') {
+			$ico = 'wmv';
+		} else if ($ext == 'wps') {
+			$ico = 'wps';
+		} else if ($ext == 'xsl' || $ext == 'xslx') {
+			$ico = 'xsl';
+		} else if ($ext == 'xpi') {
+			$ico = 'xpi';
+		} else if ($ext == 'zip') {
+			$ico = 'zip';
+		}  else if ($ext == 'ppt' || $ext == 'pps' || $ext == 'pptx' || $ext == 'ppsx') {
 			$ico = 'ppt';
-		} else if ($ext == 'xls') {
-			$ico = 'xls';
-		} else if ($ext == 'mp3' || $ext == 'wma' || $ext == 'aif' || $ext == 'wav') {
-			$ico = 'ico';
 		} else {
 			$ico = 'ico';
 		}
+		
 		return $ico;
 	}
 
