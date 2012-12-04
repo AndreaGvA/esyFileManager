@@ -198,54 +198,7 @@ header {
 .drop {
 	background-color: #f9e9f0;
 }
-.dir {
-	background: url('../images/dir.png') no-repeat;
-	padding-left: 30px;
-	padding-top: 5px;
-	padding-bottom: 5px;
-}
-.jpg {
-	background: url('../images/file-extension-jpg-icon.png') no-repeat;
-	padding-left: 30px;
-	padding-top: 5px;
-	padding-bottom: 5px;
-}
-.pdf {
-	background: url('../images/file-extension-pdf-icon.png') no-repeat;
-	padding-left: 30px;
-	padding-top: 5px;
-	padding-bottom: 5px;
-}
-.zip {
-	background: url('../images/file-extension-zip-icon.png') no-repeat;
-	padding-left: 30px;
-	padding-top: 5px;
-	padding-bottom: 5px;
-}
-.gif {
-	background: url('../images/file-extension-gif-icon.png') no-repeat;
-	padding-left: 30px;
-	padding-top: 5px;
-	padding-bottom: 5px;
-}
-.ppt {
-	background: url('../images/file-extension-pps-icon.png') no-repeat;
-	padding-left: 30px;
-	padding-top: 5px;
-	padding-bottom: 5px;
-}
-.xsl {
-	background: url('../images/file-extension-xls-icon.png') no-repeat;
-	padding-left: 30px;
-	padding-top: 5px;
-	padding-bottom: 5px;
-}
-.ico {
-	background: url('../images/ico.png') no-repeat;
-	padding-left: 30px;
-	padding-top: 5px;
-	padding-bottom: 5px;
-}
+
 .trash {
 	position: absolute;
 	background: url('../images/Recycle-Bin-empty-icon.png') no-repeat;
