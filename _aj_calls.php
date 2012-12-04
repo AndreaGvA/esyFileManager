@@ -79,6 +79,15 @@ switch ($getAction) {
 		echo "</li></ul>";
 		echo '</div>';
 		break;
+	case 'select':
+		$dirname=$FM->take("folder");
+		?>
+		<select id="upload_folder">
+		<option class="main" value="<?=FILES_FOLDER ?>"><?=FILES_FOLDER ?></option>
+		<? $FM -> listDirs(0, $dirname);?>
+		</select>
+		<?
+		break;
 		
 }
 ?>

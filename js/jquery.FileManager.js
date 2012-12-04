@@ -51,13 +51,9 @@ _debug = function(value) {
 }
 elimina = function(file) {
 	$.ajax({
-		type : 'post',
-		url : '_aj_calls.php',
-		data : {
-			'file' : file,
-			'action' : 'delete'
-		},
-		complete : function(data) {
+		type : 'post', url : '_aj_calls.php', data : {
+			'file' : file, 'action' : 'delete'
+		}, complete : function(data) {
 			//$(o.result).html(data);
 			_debug('Eliminato: ' + file);
 		}
@@ -65,14 +61,9 @@ elimina = function(file) {
 }
 sposta = function(file, new_file) {
 	$.ajax({
-		type : 'post',
-		url : '_aj_calls.php',
-		data : {
-			'file' : file,
-			'new_file' : new_file,
-			'action' : 'move'
-		},
-		complete : function(jqXHR) {
+		type : 'post', url : '_aj_calls.php', data : {
+			'file' : file, 'new_file' : new_file, 'action' : 'move'
+		}, complete : function(jqXHR) {
 			var result = $.parseJSON(jqXHR.responseText);
 			if (result.status == "true") {
 				_debug('Spostato: ' + file);
@@ -82,15 +73,18 @@ sposta = function(file, new_file) {
 		}
 	});
 }
+trova_soposta=function(){
+	upload_folder = $('.main').val();
+	$("#upload_folder").change(function() {
+		upload_folder = $(this).find("option:selected").val();
+		_debug("Change:" + upload_folder);
+	})
+}
 create_folder = function(folder) {
 	$.ajax({
-		type : 'post',
-		url : '_aj_calls.php',
-		data : {
-			'folder' : folder,
-			'action' : 'new'
-		},
-		complete : function(jqXHR) {
+		type : 'post', url : '_aj_calls.php', data : {
+			'folder' : folder, 'action' : 'new'
+		}, complete : function(jqXHR) {
 			var result = $.parseJSON(jqXHR.responseText);
 			var uniqid = new Date().getUTCMilliseconds();
 			if (result.status == "true") {
@@ -135,8 +129,7 @@ jump = function(dir) {
 					dirn = dir;
 				}
 				$(".filemanager").load('_aj_calls.php', {
-					'folder' : dirn,
-					'action' : 'jump'
+					'folder' : dirn, 'action' : 'jump'
 				}, function() {
 					$('.opendir').click(function() {
 						var da_nascondere = $(this).parent().children('ul');
@@ -146,7 +139,7 @@ jump = function(dir) {
 							da_nascondere.show();
 						}
 					});
-
+					load_select(dirn);
 					$(".edit").find(".filename").click(function(e) {
 						dragTree(this, e);
 					});
@@ -155,6 +148,13 @@ jump = function(dir) {
 				//alert(mfdr);
 			}
 		}
+	});
+}
+load_select = function(folder) {
+	$('.selectb').load('_aj_calls.php', {
+		'action' : "select", "folder" : folder
+	}, function() {
+		trova_soposta();
 	});
 }
 /**
@@ -450,18 +450,14 @@ dragTree = function(selector, event) {
 	 * Rendo l'elemento selezionato draggable
 	 */
 	$(".selected").draggable({
-		appendTo : "body",
-		helper : "clone"
+		appendTo : "body", helper : "clone"
 	});
 	/**
 	 * Funzione per il drag&drop nel cestino
 	 * Rendo il cetino droppable
 	 */
 	$('.trash').droppable({
-		activeClass : "ui-state-default",
-		hoverClass : "trashon",
-		accept : ":not(.maindir)",
-		drop : function(event, ui) {
+		activeClass : "ui-state-default", hoverClass : "trashon", accept : ":not(.maindir)", drop : function(event, ui) {
 			/**
 			 * Se è una cartella
 			 */
@@ -497,9 +493,7 @@ dragTree = function(selector, event) {
 	 * imposto le classi per il drag&drop
 	 */
 	$('.dir').children('.filename').droppable({
-		activeClass : "ui-state-default",
-		hoverClass : "drop",
-		accept : ":not(.maindir)",
+		activeClass : "ui-state-default", hoverClass : "drop", accept : ":not(.maindir)",
 		/**
 		 * Quando sto il draggable è sopra a un droppable ne recupero il path
 		 */
@@ -638,45 +632,39 @@ $(document).ready(function() {
 	});
 
 	jump();
-	$('.indsd').on("click", function(){
-		crt=$(this).attr("rel");
-		crt=crt.substring(0, crt.length - 1);
+	$('.indsd').on("click", function() {
+		crt = $(this).attr("rel");
+		crt = crt.substring(0, crt.length - 1);
 		$(".filemanager").load('_aj_calls.php', {
-					'folder' : crt,
-					'action' : 'jump'
-				}, function() {
-					$('.opendir').click(function() {
-						var da_nascondere = $(this).parent().children('ul');
-						if (da_nascondere.is(':visible')) {
-							da_nascondere.hide();
-						} else {
-							da_nascondere.show();
-						}
-					});
+			'folder' : crt, 'action' : 'jump'
+		}, function() {
+			$('.opendir').click(function() {
+				var da_nascondere = $(this).parent().children('ul');
+				if (da_nascondere.is(':visible')) {
+					da_nascondere.hide();
+				} else {
+					da_nascondere.show();
+				}
+			});
 
-					$(".edit").find(".filename").click(function(e) {
-						dragTree(this, e);
-					});
-					jump();
-				});
+			$(".edit").find(".filename").click(function(e) {
+				dragTree(this, e);
+			});
+			jump();
+		});
 	});
 
 	/**
 	 * Seleziono la cartella per l'upload
 	 */
-	upload_folder = $('.main').val();
-	$("#upload_folder").change(function() {
-		upload_folder = $(this).find("option:selected").val();
-		_debug("Change:" + upload_folder);
-	})
+	trova_soposta();
 	/**
 	 * Creo l'uploader per i files
 	 */
 	$('.uploader').fineUploader({
 		request : {
 			endpoint : '_aj_calls.php',
-		},
-		debug : true
+		}, debug : true
 		/**
 		 * In caso di errore mi fermo
 		 */
@@ -727,8 +715,7 @@ $(document).ready(function() {
 		 */
 	}).on("submit", function() {
 		$(this).fineUploader('setParams', {
-			'action' : 'upload',
-			'folder' : upload_folder
+			'action' : 'upload', 'folder' : upload_folder
 		});
 	});
 	if ($('#up-list').length > 0) {
