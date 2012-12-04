@@ -34,7 +34,7 @@
  }
  */
 
-var move_in, folder, upload_folder;
+var move_in, folder, upload_folder, mfdr;
 var hold_timeout = 1000;
 var debug = true;
 /**
@@ -51,9 +51,13 @@ _debug = function(value) {
 }
 elimina = function(file) {
 	$.ajax({
-		type : 'post', url : '_aj_calls.php', data : {
-			'file' : file, 'action' : 'delete'
-		}, complete : function(data) {
+		type : 'post',
+		url : '_aj_calls.php',
+		data : {
+			'file' : file,
+			'action' : 'delete'
+		},
+		complete : function(data) {
 			//$(o.result).html(data);
 			_debug('Eliminato: ' + file);
 		}
@@ -61,9 +65,14 @@ elimina = function(file) {
 }
 sposta = function(file, new_file) {
 	$.ajax({
-		type : 'post', url : '_aj_calls.php', data : {
-			'file' : file, 'new_file' : new_file, 'action' : 'move'
-		}, complete : function(jqXHR) {
+		type : 'post',
+		url : '_aj_calls.php',
+		data : {
+			'file' : file,
+			'new_file' : new_file,
+			'action' : 'move'
+		},
+		complete : function(jqXHR) {
 			var result = $.parseJSON(jqXHR.responseText);
 			if (result.status == "true") {
 				_debug('Spostato: ' + file);
@@ -73,19 +82,23 @@ sposta = function(file, new_file) {
 		}
 	});
 }
-create_folder = function(folder){
+create_folder = function(folder) {
 	$.ajax({
-		type : 'post', url : '_aj_calls.php', data : {
-			'folder' : folder, 'action' : 'new'
-		}, complete : function(jqXHR) {
+		type : 'post',
+		url : '_aj_calls.php',
+		data : {
+			'folder' : folder,
+			'action' : 'new'
+		},
+		complete : function(jqXHR) {
 			var result = $.parseJSON(jqXHR.responseText);
 			var uniqid = new Date().getUTCMilliseconds();
 			if (result.status == "true") {
-				new_folder_element='<li rel="'+folder+'" class="dir edit"><div class="filename ui-draggable ui-droppable">'+result.dirname+'</div><div class="opendir ' + uniqid + '"/><ul style="display: block; "/></li>';
-				$('.dir').each(function(){
-					var attr=$(this).attr('rel');
-					var nome=$(this).find('.filename').html();
-					if (attr+nome+"/" ==folder) {
+				new_folder_element = '<li rel="' + folder + '" class="dir edit"><div class="filename ui-draggable ui-droppable">' + result.dirname + '</div><div class="opendir ' + uniqid + '"/><ul style="display: block; "/></li>';
+				$('.dir').each(function() {
+					var attr = $(this).attr('rel');
+					var nome = $(this).find('.filename').html();
+					if (attr + nome + "/" == folder) {
 						$(".edit").find(".filename").unbind("click");
 						$(this).children("ul").append(new_folder_element);
 						$('.' + uniqid).click(function() {
@@ -99,13 +112,47 @@ create_folder = function(folder){
 						$(".edit").find(".filename").click(function(e) {
 							dragTree(this, e);
 						});
-						
+
 						_debug('Creata: ' + folder + result.dirname);
 					}
 				});
-				
+
 			} else {
 				alert('Errore: ' + result.errore);
+			}
+		}
+	});
+}
+jump = function(dir) {
+	$(".edit").find(".filename").on("dblclick", function(e) {
+		var check = $(this).hasClass('maindir');
+		if (check == false) {
+			var bool = $(this).parent("li").hasClass("dir");
+			if (bool == true) {
+				if (dir != "" || dir != undefined) {
+					dirn = mfdr;
+				} else {
+					dirn = dir;
+				}
+				$(".filemanager").load('_aj_calls.php', {
+					'folder' : dirn,
+					'action' : 'jump'
+				}, function() {
+					$('.opendir').click(function() {
+						var da_nascondere = $(this).parent().children('ul');
+						if (da_nascondere.is(':visible')) {
+							da_nascondere.hide();
+						} else {
+							da_nascondere.show();
+						}
+					});
+
+					$(".edit").find(".filename").click(function(e) {
+						dragTree(this, e);
+					});
+					jump();
+				});
+				//alert(mfdr);
 			}
 		}
 	});
@@ -117,198 +164,198 @@ dropIconClass = function(filename) {
 	var ico;
 	var ext = filename.substr((filename.lastIndexOf('.') + 1));
 	if (ext == '3gp') {
-			ico = '3gp';
-		} else if (ext == '7z') {
-			ico = '7z';
-		} else if (ext == 'ace') {
-			ico = 'ace';
-		} else if (ext == 'aiff') {
-			ico = 'aiff';
-		} else if (ext == 'aif') {
-			ico = 'aif';
-		} else if (ext == 'ai') {
-			ico = 'ai';
-		} else if (ext == 'amr') {
-			ico = 'amr';
-		} else if (ext == 'asf') {
-			ico = 'asf';
-		} else if (ext == 'asx') {
-			ico = 'asx';
-		} else if (ext == 'bat') {
-			ico = 'bat';
-		} else if (ext == 'bin') {
-			ico = 'bin';
-		} else if (ext == 'bmp') {
-			ico = 'bmp';
-		} else if (ext == 'bup') {
-			ico = 'bup';
-		} else if (ext == 'cab') {
-			ico = 'cab';
-		} else if (ext == 'cbr') {
-			ico = 'cbr';
-		} else if (ext == 'cda') {
-			ico = 'cda';
-		} else if (ext == 'cdl') {
-			ico = 'cdl';
-		} else if (ext == 'cdr') {
-			ico = 'cdr';
-		} else if (ext == 'chm') {
-			ico = 'chm';
-		} else if (ext == 'dat') {
-			ico = 'dat';
-		} else if (ext == 'divx') {
-			ico = 'divx';
-		} else if (ext == 'dll') {
-			ico = 'dll';
-		} else if (ext == 'dmg') {
-			ico = 'dmg';
-		} else if (ext == 'doc' || ext == 'docx') {
-			ico = 'doc';
-		} else if (ext == 'dss') {
-			ico = 'dss';
-		} else if (ext == 'dvf') {
-			ico = 'dvf';
-		} else if (ext == 'dwg') {
-			ico = 'dwg';
-		} else if (ext == 'eml') {
-			ico = 'eml';
-		} else if (ext == 'eps') {
-			ico = 'eps';
-		} else if (ext == 'exe') {
-			ico = 'exe';
-		} else if (ext == 'fla') {
-			ico = 'fla';
-		} else if (ext == 'flv') {
-			ico = 'flv';
-		} else if (ext == 'gif') {
-			ico = 'gif';
-		} else if (ext == 'gz') {
-			ico = 'gz';
-		} else if (ext == 'hqx') {
-			ico = 'hqx';
-		}else if (ext == 'htm') {
-			ico = 'htm';
-		}else if (ext == 'html') {
-			ico = 'html';
-		}else if (ext == 'ifo') {
-			ico = 'ifo';
-		}else if (ext == 'indd') {
-			ico = 'indd';
-		}else if (ext == 'iso') {
-			ico = 'iso';
-		}else if (ext == 'jar') {
-			ico = 'jar';
-		}else if (ext == 'jpeg') {
-			ico = 'jpeg';
-		}else if (ext == 'jpg') {
-			ico = 'jpg';
-		}else if (ext == 'lnk') {
-			ico = 'lnk';
-		}else if (ext == 'log') {
-			ico = 'log';
-		}else if (ext == 'm4a') {
-			ico = 'm4a';
-		}else if (ext == 'm4b') {
-			ico = 'm4b';
-		}else if (ext == 'm4p') {
-			ico = 'm4p';
-		}else if (ext == 'm4v') {
-			ico = 'm4v';
-		}else if (ext == 'mcd') {
-			ico = 'mcd';
-		}else if (ext == 'mdb') {
-			ico = 'mdb';
-		}else if (ext == 'mid') {
-			ico = 'mid';
-		}else if (ext == 'mov') {
-			ico = 'mov';
-		}else if (ext == 'mp2') {
-			ico = 'mp2';
-		}else if (ext == 'mp4') {
-			ico = 'mp4';
-		}else if (ext == 'mpeg') {
-			ico = 'mpeg';
-		}else if (ext == 'mpg') {
-			ico = 'mpg';
-		}else if (ext == 'msi') {
-			ico = 'msi';
-		}else if (ext == 'ogg') {
-			ico = 'ogg';
-		}else if (ext == 'pdf') {
-			ico = 'pdf';
-		}else if (ext == 'png') {
-			ico = 'png';
-		}else if (ext == 'psd') {
-			ico = 'psd';
-		}else if (ext == 'ps') {
-			ico = 'ps';
-		}else if (ext == 'pst') {
-			ico = 'pst';
-		}else if (ext == 'ptb') {
-			ico = 'ptb';
-		}else if (ext == 'pub') {
-			ico = 'pub';
-		}else if (ext == 'qbb') {
-			ico = 'qbb';
-		}else if (ext == 'qbw') {
-			ico = 'qbw';
-		}else if (ext == 'qxd') {
-			ico = 'qxd';
-		}else if (ext == 'ram') {
-			ico = 'ram';
-		}else if (ext == 'rar') {
-			ico = 'rar';
-		}else if (ext == 'rm') {
-			ico = 'rm';
-		}else if (ext == 'rmvb') {
-			ico = 'rmvb';
-		}else if (ext == 'rtf') {
-			ico = 'rtf';
-		}else if (ext == 'sea') {
-			ico = 'sea';
-		}else if (ext == 'ses') {
-			ico = 'ses';
-		}else if (ext == 'sit') {
-			ico = 'sit';
-		}else if (ext == 'sitx') {
-			ico = 'sitx';
-		}else if (ext == 'swf') {
-			ico = 'swf';
-		}else if (ext == 'tgz') {
-			ico = 'tgz';
-		}else if (ext == 'thm') {
-			ico = 'thm';
-		}else if (ext == 'tif') {
-			ico = 'tif';
-		}else if (ext == 'tmp') {
-			ico = 'tmp';
-		}else if (ext == 'ttf') {
-			ico = 'ttf';
-		} else if (ext == 'txt') {
-			ico = 'txt';
-		} else if (ext == 'vcd') {
-			ico = 'vcd';
-		} else if (ext == 'vob') {
-			ico = 'vob';
-		} else if (ext == 'wav') {
-			ico = 'wav';
-		} else if (ext == 'wma') {
-			ico = 'wma';
-		} else if (ext == 'wmv') {
-			ico = 'wmv';
-		} else if (ext == 'wps') {
-			ico = 'wps';
-		} else if (ext == 'xsl' || ext == 'xslx') {
-			ico = 'xsl';
-		} else if (ext == 'xpi') {
-			ico = 'xpi';
-		} else if (ext == 'zip') {
-			ico = 'zip';
-		}  else if (ext == 'ppt' || ext == 'pps' || ext == 'pptx' || ext == 'ppsx') {
-			ico = 'ppt';
-		} else {
-			ico = 'ico';
-		}
+		ico = '3gp';
+	} else if (ext == '7z') {
+		ico = '7z';
+	} else if (ext == 'ace') {
+		ico = 'ace';
+	} else if (ext == 'aiff') {
+		ico = 'aiff';
+	} else if (ext == 'aif') {
+		ico = 'aif';
+	} else if (ext == 'ai') {
+		ico = 'ai';
+	} else if (ext == 'amr') {
+		ico = 'amr';
+	} else if (ext == 'asf') {
+		ico = 'asf';
+	} else if (ext == 'asx') {
+		ico = 'asx';
+	} else if (ext == 'bat') {
+		ico = 'bat';
+	} else if (ext == 'bin') {
+		ico = 'bin';
+	} else if (ext == 'bmp') {
+		ico = 'bmp';
+	} else if (ext == 'bup') {
+		ico = 'bup';
+	} else if (ext == 'cab') {
+		ico = 'cab';
+	} else if (ext == 'cbr') {
+		ico = 'cbr';
+	} else if (ext == 'cda') {
+		ico = 'cda';
+	} else if (ext == 'cdl') {
+		ico = 'cdl';
+	} else if (ext == 'cdr') {
+		ico = 'cdr';
+	} else if (ext == 'chm') {
+		ico = 'chm';
+	} else if (ext == 'dat') {
+		ico = 'dat';
+	} else if (ext == 'divx') {
+		ico = 'divx';
+	} else if (ext == 'dll') {
+		ico = 'dll';
+	} else if (ext == 'dmg') {
+		ico = 'dmg';
+	} else if (ext == 'doc' || ext == 'docx') {
+		ico = 'doc';
+	} else if (ext == 'dss') {
+		ico = 'dss';
+	} else if (ext == 'dvf') {
+		ico = 'dvf';
+	} else if (ext == 'dwg') {
+		ico = 'dwg';
+	} else if (ext == 'eml') {
+		ico = 'eml';
+	} else if (ext == 'eps') {
+		ico = 'eps';
+	} else if (ext == 'exe') {
+		ico = 'exe';
+	} else if (ext == 'fla') {
+		ico = 'fla';
+	} else if (ext == 'flv') {
+		ico = 'flv';
+	} else if (ext == 'gif') {
+		ico = 'gif';
+	} else if (ext == 'gz') {
+		ico = 'gz';
+	} else if (ext == 'hqx') {
+		ico = 'hqx';
+	} else if (ext == 'htm') {
+		ico = 'htm';
+	} else if (ext == 'html') {
+		ico = 'html';
+	} else if (ext == 'ifo') {
+		ico = 'ifo';
+	} else if (ext == 'indd') {
+		ico = 'indd';
+	} else if (ext == 'iso') {
+		ico = 'iso';
+	} else if (ext == 'jar') {
+		ico = 'jar';
+	} else if (ext == 'jpeg') {
+		ico = 'jpeg';
+	} else if (ext == 'jpg') {
+		ico = 'jpg';
+	} else if (ext == 'lnk') {
+		ico = 'lnk';
+	} else if (ext == 'log') {
+		ico = 'log';
+	} else if (ext == 'm4a') {
+		ico = 'm4a';
+	} else if (ext == 'm4b') {
+		ico = 'm4b';
+	} else if (ext == 'm4p') {
+		ico = 'm4p';
+	} else if (ext == 'm4v') {
+		ico = 'm4v';
+	} else if (ext == 'mcd') {
+		ico = 'mcd';
+	} else if (ext == 'mdb') {
+		ico = 'mdb';
+	} else if (ext == 'mid') {
+		ico = 'mid';
+	} else if (ext == 'mov') {
+		ico = 'mov';
+	} else if (ext == 'mp2') {
+		ico = 'mp2';
+	} else if (ext == 'mp4') {
+		ico = 'mp4';
+	} else if (ext == 'mpeg') {
+		ico = 'mpeg';
+	} else if (ext == 'mpg') {
+		ico = 'mpg';
+	} else if (ext == 'msi') {
+		ico = 'msi';
+	} else if (ext == 'ogg') {
+		ico = 'ogg';
+	} else if (ext == 'pdf') {
+		ico = 'pdf';
+	} else if (ext == 'png') {
+		ico = 'png';
+	} else if (ext == 'psd') {
+		ico = 'psd';
+	} else if (ext == 'ps') {
+		ico = 'ps';
+	} else if (ext == 'pst') {
+		ico = 'pst';
+	} else if (ext == 'ptb') {
+		ico = 'ptb';
+	} else if (ext == 'pub') {
+		ico = 'pub';
+	} else if (ext == 'qbb') {
+		ico = 'qbb';
+	} else if (ext == 'qbw') {
+		ico = 'qbw';
+	} else if (ext == 'qxd') {
+		ico = 'qxd';
+	} else if (ext == 'ram') {
+		ico = 'ram';
+	} else if (ext == 'rar') {
+		ico = 'rar';
+	} else if (ext == 'rm') {
+		ico = 'rm';
+	} else if (ext == 'rmvb') {
+		ico = 'rmvb';
+	} else if (ext == 'rtf') {
+		ico = 'rtf';
+	} else if (ext == 'sea') {
+		ico = 'sea';
+	} else if (ext == 'ses') {
+		ico = 'ses';
+	} else if (ext == 'sit') {
+		ico = 'sit';
+	} else if (ext == 'sitx') {
+		ico = 'sitx';
+	} else if (ext == 'swf') {
+		ico = 'swf';
+	} else if (ext == 'tgz') {
+		ico = 'tgz';
+	} else if (ext == 'thm') {
+		ico = 'thm';
+	} else if (ext == 'tif') {
+		ico = 'tif';
+	} else if (ext == 'tmp') {
+		ico = 'tmp';
+	} else if (ext == 'ttf') {
+		ico = 'ttf';
+	} else if (ext == 'txt') {
+		ico = 'txt';
+	} else if (ext == 'vcd') {
+		ico = 'vcd';
+	} else if (ext == 'vob') {
+		ico = 'vob';
+	} else if (ext == 'wav') {
+		ico = 'wav';
+	} else if (ext == 'wma') {
+		ico = 'wma';
+	} else if (ext == 'wmv') {
+		ico = 'wmv';
+	} else if (ext == 'wps') {
+		ico = 'wps';
+	} else if (ext == 'xsl' || ext == 'xslx') {
+		ico = 'xsl';
+	} else if (ext == 'xpi') {
+		ico = 'xpi';
+	} else if (ext == 'zip') {
+		ico = 'zip';
+	} else if (ext == 'ppt' || ext == 'pps' || ext == 'pptx' || ext == 'ppsx') {
+		ico = 'ppt';
+	} else {
+		ico = 'ico';
+	}
 	return ico;
 }
 /**
@@ -324,7 +371,7 @@ dragTree = function(selector, event) {
 	/**
 	 * Rimuovo ovunque la classe selected
 	 */
-	if (!(event.ctrlKey || event.altKey)) {
+	if (!(event.ctrlKey || event.altKey || event.shiftKey || event.metaKey)) {
 		$('.selected').each(function() {
 			$(this).removeClass('selected');
 		});
@@ -347,7 +394,7 @@ dragTree = function(selector, event) {
 			 * Seleziono l'input in .selected e ne prendo il testo dividendo estensione e nome file
 			 */
 			var a = $('.selected');
-			var folder_w=a.parent("li").attr('rel');
+			var folder_w = a.parent("li").attr('rel');
 			var i = a.children("input");
 			var testo = a.html();
 			/**
@@ -381,7 +428,7 @@ dragTree = function(selector, event) {
 					var a = $(this).parent();
 					var testo = $(this).attr("value");
 					var new_filename = testo + ext;
-					sposta(folder_w+filename + ext, folder_w+new_filename);
+					sposta(folder_w + filename + ext, folder_w + new_filename);
 					a.html(new_filename);
 				});
 
@@ -403,14 +450,18 @@ dragTree = function(selector, event) {
 	 * Rendo l'elemento selezionato draggable
 	 */
 	$(".selected").draggable({
-		appendTo : "body", helper : "clone"
+		appendTo : "body",
+		helper : "clone"
 	});
 	/**
 	 * Funzione per il drag&drop nel cestino
 	 * Rendo il cetino droppable
 	 */
 	$('.trash').droppable({
-		activeClass : "ui-state-default", hoverClass : "trashon", accept : ":not(.maindir)", drop : function(event, ui) {
+		activeClass : "ui-state-default",
+		hoverClass : "trashon",
+		accept : ":not(.maindir)",
+		drop : function(event, ui) {
 			/**
 			 * Se è una cartella
 			 */
@@ -446,7 +497,9 @@ dragTree = function(selector, event) {
 	 * imposto le classi per il drag&drop
 	 */
 	$('.dir').children('.filename').droppable({
-		activeClass : "ui-state-default", hoverClass : "drop", accept : ":not(.maindir)",
+		activeClass : "ui-state-default",
+		hoverClass : "drop",
+		accept : ":not(.maindir)",
 		/**
 		 * Quando sto il draggable è sopra a un droppable ne recupero il path
 		 */
@@ -552,6 +605,7 @@ dragTree = function(selector, event) {
 	var selected_folder = $('.selected').parent().attr('rel');
 	var selected_file = $(selector).html();
 	if (!(selected_file.indexOf("<input class=") > -1)) {
+		mfdr = selected_folder + selected_file;
 		_debug("Selezionato: " + selected_folder + selected_file);
 	}
 
@@ -583,6 +637,30 @@ $(document).ready(function() {
 		dragTree(this, e);
 	});
 
+	jump();
+	$('.indsd').on("click", function(){
+		crt=$(this).attr("rel");
+		crt=crt.substring(0, crt.length - 1);
+		$(".filemanager").load('_aj_calls.php', {
+					'folder' : crt,
+					'action' : 'jump'
+				}, function() {
+					$('.opendir').click(function() {
+						var da_nascondere = $(this).parent().children('ul');
+						if (da_nascondere.is(':visible')) {
+							da_nascondere.hide();
+						} else {
+							da_nascondere.show();
+						}
+					});
+
+					$(".edit").find(".filename").click(function(e) {
+						dragTree(this, e);
+					});
+					jump();
+				});
+	});
+
 	/**
 	 * Seleziono la cartella per l'upload
 	 */
@@ -597,7 +675,8 @@ $(document).ready(function() {
 	$('.uploader').fineUploader({
 		request : {
 			endpoint : '_aj_calls.php',
-		}, debug : true
+		},
+		debug : true
 		/**
 		 * In caso di errore mi fermo
 		 */
@@ -648,35 +727,34 @@ $(document).ready(function() {
 		 */
 	}).on("submit", function() {
 		$(this).fineUploader('setParams', {
-			'action' : 'upload', 'folder' : upload_folder
+			'action' : 'upload',
+			'folder' : upload_folder
 		});
 	});
 	if ($('#up-list').length > 0) {
 	} else {
 		$('.qq-upload-list').wrap("<div id='up-list' />");
 	}
-	
+
 	/**
 	 * Script per la creazione delle cartelle
 	 */
-	$("#crea_cartella").click(function(){
+	$("#crea_cartella").click(function() {
 		create_folder(upload_folder);
-		_debug("Crea cartella in: "+upload_folder);
+		_debug("Crea cartella in: " + upload_folder);
 	})
-
 	/**
 	 * Un po di js per il template
 	 */
 	var height = $(document).height();
-	var cont_height = height - 80 - 40 -20;
-	$(".filemanager").height(cont_height-15);
+	var cont_height = height - 80 - 40 - 20;
+	$(".filemanager").height(cont_height - 15);
 	$(".inner-sidebar").height(cont_height);
-	
 
 });
 $(window).resize(function() {
 	var height = $(this).height();
-	var cont_height = height - 80 - 40 -20;
-	$(".filemanager").height(cont_height-15);
+	var cont_height = height - 80 - 40 - 20;
+	$(".filemanager").height(cont_height - 15);
 	$(".inner-sidebar").height(cont_height);
 });

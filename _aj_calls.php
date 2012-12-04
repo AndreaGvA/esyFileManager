@@ -71,6 +71,14 @@ switch ($getAction) {
 		$result['dirname']=$nuova_cartella; 
 		echo htmlspecialchars(json_encode($result), ENT_NOQUOTES);
 		break;
+	case 'jump':
+		$dirname=$FM->take("folder");
+		echo '<div class="bg">';
+		echo "<ul><li rel='' class='dir edit'><div class='filename maindir'>$dirname</div><div class='opendir'></div>";
+		$FM -> listFiles(0, $dirname."/");
+		echo "</li></ul>";
+		echo '</div>';
+		break;
 		
 }
 ?>

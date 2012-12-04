@@ -40,7 +40,7 @@ $FM = new esyFileManager();
 	<body>
 		<div class="container">
 			<header>
-				&nbsp;
+				<img src="images/logo.png">
 			</header>
 			<div class="sidebar1">
 				<div class="inner-sidebar">
@@ -59,6 +59,9 @@ $FM = new esyFileManager();
 			</div>
 			<article class="content">
 				<div class="trash">
+					&nbsp;
+				</div>
+				<div class="indsd" rel="<?=FILES_FOLDER ?>">
 					&nbsp;
 				</div>
 				<div class="order">

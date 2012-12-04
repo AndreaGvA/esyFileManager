@@ -310,7 +310,7 @@ class esyFileManager {
 	 * @return Elenca i files e le directory
 	 * @author AndreaG
 	 */
-	private function listFiles($livello = 0, $dirname = "") {
+	function listFiles($livello = 0, $dirname = "") {
 		if ($dirname == "")
 			$dirname = $this -> files_folder;
 		//echo $dirname;
