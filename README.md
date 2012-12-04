@@ -23,7 +23,6 @@ ToDo:
 3.Box dettagli file
 4.Rinomina file e cartelle (debug)
 5.Navigazione profonda
-6.Aggiungere tipi di file
 7.Funzionamento popup da input text o da ckeditor
 
 ```
