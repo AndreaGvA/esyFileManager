@@ -164,9 +164,9 @@ dropIconClass = function(filename) {
 	var ico;
 	var ext = filename.substr((filename.lastIndexOf('.') + 1));
 	if (ext == '3gp') {
-		ico = '3gp';
+		ico = 'a3gp';
 	} else if (ext == '7z') {
-		ico = '7z';
+		ico = 'a7z';
 	} else if (ext == 'ace') {
 		ico = 'ace';
 	} else if (ext == 'aiff') {

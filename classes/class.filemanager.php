@@ -47,9 +47,9 @@ class esyFileManager {
 		$fileInfo = pathinfo($filename);
 		$ext = $fileInfo['extension'];
 		if ($ext == '3gp') {
-			$ico = '3gp';
+			$ico = 'a3gp';
 		} else if ($ext == '7z') {
-			$ico = '7z';
+			$ico = 'a7z';
 		} else if ($ext == 'ace') {
 			$ico = 'ace';
 		} else if ($ext == 'aiff') {
