@@ -83,11 +83,36 @@ switch ($getAction) {
 		$dirname=$FM->take("folder");
 		?>
 		<select id="upload_folder">
-		<option class="main" value="<?=FILES_FOLDER ?>"><?=FILES_FOLDER ?></option>
-		<? $FM -> listDirs(0, $dirname);?>
+		<option class="main" value="<?=$dirname?>/"><?=$dirname?></option>
+		<? $FM -> listDirs(0, $dirname."/");?>
 		</select>
 		<?
 		break;
+	case 'fileinfo':
+		$path= pathinfo($_GET['path']);
+
+		echo "<div>";
+		if (is_dir($_GET['path'])) {
+			$size=$FM->dirSize($_GET['path']);
+			echo "Cartella: ";
+			echo $path['basename'];
+		} else {
+			$size=filesize($_GET['path']);
+			echo "File: ";
+			echo "<a href='$_GET[path]' target='_blank'>".$path['basename']."</a>";
+			echo "<br>";
+			echo "Tipo: ";
+			echo $path['extension'];
+		} 
+		
+		echo "<br>";
+		echo "Dimesioni: ";
+		echo $FM->bytesToSize($size);
+		if($path['extension']=="jpeg" || $path['extension']=="jpg" || $path['extension']=="gif" || $path['extension']=="png" || $path['extension']=="JPG" ){
+			echo "<img src='thumb.php?path=$_GET[path]' width='100%' />";
+		}
+		echo "</div>";
+		break; 
 		
 }
 ?>

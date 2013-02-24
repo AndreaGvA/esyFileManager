@@ -116,103 +116,103 @@ class esyFileManager {
 			$ico = 'gz';
 		} else if ($ext == 'hqx') {
 			$ico = 'hqx';
-		}else if ($ext == 'htm') {
+		} else if ($ext == 'htm') {
 			$ico = 'htm';
-		}else if ($ext == 'html') {
+		} else if ($ext == 'html') {
 			$ico = 'html';
-		}else if ($ext == 'ifo') {
+		} else if ($ext == 'ifo') {
 			$ico = 'ifo';
-		}else if ($ext == 'indd') {
+		} else if ($ext == 'indd') {
 			$ico = 'indd';
-		}else if ($ext == 'iso') {
+		} else if ($ext == 'iso') {
 			$ico = 'iso';
-		}else if ($ext == 'jar') {
+		} else if ($ext == 'jar') {
 			$ico = 'jar';
-		}else if ($ext == 'jpeg') {
+		} else if ($ext == 'jpeg') {
 			$ico = 'jpeg';
-		}else if ($ext == 'jpg') {
+		} else if ($ext == 'jpg') {
 			$ico = 'jpg';
-		}else if ($ext == 'lnk') {
+		} else if ($ext == 'lnk') {
 			$ico = 'lnk';
-		}else if ($ext == 'log') {
+		} else if ($ext == 'log') {
 			$ico = 'log';
-		}else if ($ext == 'm4a') {
+		} else if ($ext == 'm4a') {
 			$ico = 'm4a';
-		}else if ($ext == 'm4b') {
+		} else if ($ext == 'm4b') {
 			$ico = 'm4b';
-		}else if ($ext == 'm4p') {
+		} else if ($ext == 'm4p') {
 			$ico = 'm4p';
-		}else if ($ext == 'm4v') {
+		} else if ($ext == 'm4v') {
 			$ico = 'm4v';
-		}else if ($ext == 'mcd') {
+		} else if ($ext == 'mcd') {
 			$ico = 'mcd';
-		}else if ($ext == 'mdb') {
+		} else if ($ext == 'mdb') {
 			$ico = 'mdb';
-		}else if ($ext == 'mid') {
+		} else if ($ext == 'mid') {
 			$ico = 'mid';
-		}else if ($ext == 'mov') {
+		} else if ($ext == 'mov') {
 			$ico = 'mov';
-		}else if ($ext == 'mp2') {
+		} else if ($ext == 'mp2') {
 			$ico = 'mp2';
-		}else if ($ext == 'mp4') {
+		} else if ($ext == 'mp4') {
 			$ico = 'mp4';
-		}else if ($ext == 'mpeg') {
+		} else if ($ext == 'mpeg') {
 			$ico = 'mpeg';
-		}else if ($ext == 'mpg') {
+		} else if ($ext == 'mpg') {
 			$ico = 'mpg';
-		}else if ($ext == 'msi') {
+		} else if ($ext == 'msi') {
 			$ico = 'msi';
-		}else if ($ext == 'ogg') {
+		} else if ($ext == 'ogg') {
 			$ico = 'ogg';
-		}else if ($ext == 'pdf') {
+		} else if ($ext == 'pdf') {
 			$ico = 'pdf';
-		}else if ($ext == 'png') {
+		} else if ($ext == 'png') {
 			$ico = 'png';
-		}else if ($ext == 'psd') {
+		} else if ($ext == 'psd') {
 			$ico = 'psd';
-		}else if ($ext == 'ps') {
+		} else if ($ext == 'ps') {
 			$ico = 'ps';
-		}else if ($ext == 'pst') {
+		} else if ($ext == 'pst') {
 			$ico = 'pst';
-		}else if ($ext == 'ptb') {
+		} else if ($ext == 'ptb') {
 			$ico = 'ptb';
-		}else if ($ext == 'pub') {
+		} else if ($ext == 'pub') {
 			$ico = 'pub';
-		}else if ($ext == 'qbb') {
+		} else if ($ext == 'qbb') {
 			$ico = 'qbb';
-		}else if ($ext == 'qbw') {
+		} else if ($ext == 'qbw') {
 			$ico = 'qbw';
-		}else if ($ext == 'qxd') {
+		} else if ($ext == 'qxd') {
 			$ico = 'qxd';
-		}else if ($ext == 'ram') {
+		} else if ($ext == 'ram') {
 			$ico = 'ram';
-		}else if ($ext == 'rar') {
+		} else if ($ext == 'rar') {
 			$ico = 'rar';
-		}else if ($ext == 'rm') {
+		} else if ($ext == 'rm') {
 			$ico = 'rm';
-		}else if ($ext == 'rmvb') {
+		} else if ($ext == 'rmvb') {
 			$ico = 'rmvb';
-		}else if ($ext == 'rtf') {
+		} else if ($ext == 'rtf') {
 			$ico = 'rtf';
-		}else if ($ext == 'sea') {
+		} else if ($ext == 'sea') {
 			$ico = 'sea';
-		}else if ($ext == 'ses') {
+		} else if ($ext == 'ses') {
 			$ico = 'ses';
-		}else if ($ext == 'sit') {
+		} else if ($ext == 'sit') {
 			$ico = 'sit';
-		}else if ($ext == 'sitx') {
+		} else if ($ext == 'sitx') {
 			$ico = 'sitx';
-		}else if ($ext == 'swf') {
+		} else if ($ext == 'swf') {
 			$ico = 'swf';
-		}else if ($ext == 'tgz') {
+		} else if ($ext == 'tgz') {
 			$ico = 'tgz';
-		}else if ($ext == 'thm') {
+		} else if ($ext == 'thm') {
 			$ico = 'thm';
-		}else if ($ext == 'tif') {
+		} else if ($ext == 'tif') {
 			$ico = 'tif';
-		}else if ($ext == 'tmp') {
+		} else if ($ext == 'tmp') {
 			$ico = 'tmp';
-		}else if ($ext == 'ttf') {
+		} else if ($ext == 'ttf') {
 			$ico = 'ttf';
 		} else if ($ext == 'txt') {
 			$ico = 'txt';
@@ -234,12 +234,12 @@ class esyFileManager {
 			$ico = 'xpi';
 		} else if ($ext == 'zip') {
 			$ico = 'zip';
-		}  else if ($ext == 'ppt' || $ext == 'pps' || $ext == 'pptx' || $ext == 'ppsx') {
+		} else if ($ext == 'ppt' || $ext == 'pps' || $ext == 'pptx' || $ext == 'ppsx') {
 			$ico = 'ppt';
 		} else {
 			$ico = 'ico';
 		}
-		
+
 		return $ico;
 	}
 
@@ -397,7 +397,7 @@ class esyFileManager {
 	function eliminafiles($dirname) {
 		if (is_dir($dirname)) {
 			$dir_handle = opendir($dirname);
-		} else if(is_file($dirname)){
+		} else if (is_file($dirname)) {
 			unlink($dirname);
 		}
 		if (!$dir_handle)
@@ -407,7 +407,7 @@ class esyFileManager {
 				if (!is_dir($dirname . "/" . $file))
 					unlink($dirname . "/" . $file);
 				else
-					$this->eliminafiles($dirname . '/' . $file);
+					$this -> eliminafiles($dirname . '/' . $file);
 			}
 		}
 		closedir($dir_handle);
@@ -422,6 +422,39 @@ class esyFileManager {
 			$new_name = $this -> new_folder_name($folder, $n);
 		}
 		return $new_name;
+	}
+
+	function bytesToSize($bytes, $precision = 2) {
+		$kilobyte = 1024;
+		$megabyte = $kilobyte * 1024;
+		$gigabyte = $megabyte * 1024;
+		$terabyte = $gigabyte * 1024;
+
+		if (($bytes >= 0) && ($bytes < $kilobyte)) {
+			return $bytes . ' B';
+
+		} elseif (($bytes >= $kilobyte) && ($bytes < $megabyte)) {
+			return round($bytes / $kilobyte, $precision) . ' KB';
+
+		} elseif (($bytes >= $megabyte) && ($bytes < $gigabyte)) {
+			return round($bytes / $megabyte, $precision) . ' MB';
+
+		} elseif (($bytes >= $gigabyte) && ($bytes < $terabyte)) {
+			return round($bytes / $gigabyte, $precision) . ' GB';
+
+		} elseif ($bytes >= $terabyte) {
+			return round($bytes / $terabyte, $precision) . ' TB';
+		} else {
+			return $bytes . ' B';
+		}
+	}
+
+	function dirSize($directory) {
+		$size = 0;
+		foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator($directory)) as $file) {
+			$size += $file -> getSize();
+		}
+		return $size;
 	}
 
 } // END

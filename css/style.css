@@ -96,6 +96,8 @@ header img{margin-top:35px; margin-left:30px; }
 }
 
 .filename {
+	position:relative;
+	z-index:99999;
 	padding-left: 5px;
 }
 .filemanager {
@@ -267,3 +269,14 @@ footer {
 header, section, footer, aside, article, figure {
 	display: block;
 }
+.dettagli_file{
+	position:absolute;
+	bottom:20px;
+	right:10px;
+	left:10px;
+	border:1px solid #ccc;
+	background:#efefef;
+	height:250px;
+	overflow:auto;
+}
+.dettagli_file div{padding:10px;}
