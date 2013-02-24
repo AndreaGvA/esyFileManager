@@ -28,8 +28,7 @@
  }
  function sendValue(value)
  {
- var parentId = <?php echo json_encode($_GET['id']); ?>;
- window.opener.updateValue(parentId, value);
+ window.opener.urlimg(value);
  window.close();
  }
  */
@@ -37,6 +36,66 @@
 var move_in, folder, upload_folder, mfdr;
 var hold_timeout = 1000;
 var debug = true;
+var ckeditor=0;
+var replacement="";
+var replace_with="";
+
+
+$.fn.watch = function(props, callback, timeout) {
+	if (!timeout)
+		timeout = 10;
+	return this.each(function() {
+		var el = $(this), func = function() {
+			__check.call(this, el)
+		}, data = {
+			props : props.split(","), func : callback, vals : []
+		};
+		$.each(data.props, function(i) {
+			data.vals[i] = el.css(data.props[i]);
+		});
+		el.data(data);
+		if ( typeof (this.onpropertychange) == "object") {
+			el.bind("propertychange", callback);
+		} else if ($.browser.mozilla) {
+			el.bind("DOMAttrModified", callback);
+		} else {
+			setInterval(func, timeout);
+		}
+	});
+	function __check(el) {
+		var data = el.data(), changed = false, temp = "";
+		for (var i = 0; i < data.props.length; i++) {
+			temp = el.css(data.props[i]);
+			if (data.vals[i] != temp) {
+				data.vals[i] = temp;
+				changed = true;
+				break;
+			}
+		}
+		if (changed && data.func) {
+			data.func.call(el, data);
+		}
+	}
+
+}
+
+jQuery.fn.selectText = function() {
+	var doc = document;
+	var element = this[0];
+	console.log(this, element);
+	if (doc.body.createTextRange) {
+		var range = document.body.createTextRange();
+		range.moveToElementText(element);
+		range.select();
+	} else if (window.getSelection) {
+		var selection = window.getSelection();
+		var range = document.createRange();
+		range.selectNodeContents(element);
+		selection.removeAllRanges();
+		selection.addRange(range);
+	}
+};
+
 /**
  * Funzione debug
  */
@@ -73,7 +132,15 @@ sposta = function(file, new_file) {
 		}
 	});
 }
-trova_soposta=function(){
+getUrlParam = function(paramName)
+{
+  var reParam = new RegExp('(?:[\?&]|&amp;)' + paramName + '=([^&]+)', 'i') ;
+  var match = window.location.search.match(reParam) ;
+ 
+  return (match && match.length > 1) ? match[1] : '' ;
+}
+
+trova_soposta = function() {
 	upload_folder = $('.main').val();
 	$("#upload_folder").change(function() {
 		upload_folder = $(this).find("option:selected").val();
@@ -117,7 +184,26 @@ create_folder = function(folder) {
 		}
 	});
 }
+select_file=function(){
+	$(".file").find(".filename").on("dblclick", function(e) {
+		var path1=$(this).parent(".edit").attr("rel");
+		var path2=$(this).html();
+		if(ckeditor==0){
+			window.opener.urlimg(path1+path2);
+ 		 	window.close();
+		} else if(ckeditor==1){
+			// Helper function to get parameters from the query string.
+			var funcNum = getUrlParam('CKEditorFuncNum');
+			var fileUrl = path1+path2;
+			fileUrl = fileUrl.replace(replacement, replace_with); 
+			window.opener.CKEDITOR.tools.callFunction(funcNum, fileUrl);
+			window.close();
+		}
+		 
+	});
+}
 jump = function(dir) {
+	select_file();
 	$(".edit").find(".filename").on("dblclick", function(e) {
 		var check = $(this).hasClass('maindir');
 		if (check == false) {
@@ -396,43 +482,50 @@ dragTree = function(selector, event) {
 			var a = $('.selected');
 			var folder_w = a.parent("li").attr('rel');
 			var i = a.children("input");
-			var testo = a.html();
+			var filename = a.html();
 			/**
-			 * Controllo se è una directory e sistemo l'estensione
+			 * Altrimenti imposto un id univoco per l'input e lo inserisco attivando il focus
 			 */
-			var bool = $('.selected').parent('li').hasClass('dir');
-			if (bool == true) {
-				var ext = "";
-				var filename = testo;
-			} else if (bool == false) {
-				var ext = "." + testo.substr((testo.lastIndexOf('.') + 1));
-				var filename = testo.substr(0, testo.lastIndexOf('.')) || testo;
+			var uniqid = new Date().getUTCMilliseconds();
+			a.html(filename);
+			a.attr("contenteditable", true);
+			if ( typeof salva_rinomina !== 'undefined') {
+				salva_rinomina.unbind();
 			}
-			/**
-			 * Se è già un input ripristino il testo
-			 */
-			if (testo.indexOf("<input class=") > -1) {
-				var testo = i.attr("value");
-				a.html(testo);
-			} else {
-				/**
-				 * Altrimenti imposto un id univoco per l'input e lo inserisco attivando il focus
-				 */
-				var uniqid = new Date().getUTCMilliseconds();
-				a.html("<input class='rename' name='" + uniqid + "' id='" + uniqid + "' value='" + filename + "' />");
-				$('#' + uniqid).focus();
-				/**
-				 * Quando esco dall'input inserisco il nuovo testo con l'estensione se è un file, senza se è una cartella
-				 */
-				$('#' + uniqid).blur(function() {
-					var a = $(this).parent();
-					var testo = $(this).attr("value");
-					var new_filename = testo + ext;
-					sposta(folder_w + filename + ext, folder_w + new_filename);
-					a.html(new_filename);
+			a.selectText();
+			a.focus();
+			setTimeout(function() {
+				salva_rinomina = $('body').one("click", function(e) {
+
+					if (filename == a.html() || a.html() == "") {
+						a.html(filename);
+						_debug("non è cambiato");
+						return;
+					} else {
+
+						var testob = a.html();
+						var new_filename = testob;
+						sposta(folder_w + filename, folder_w + new_filename);
+						a.html(new_filename);
+						a.removeAttr('contenteditable').blur();
+						_debug("salvo il nuovo nome");
+					}
+
 				});
 
-			}
+			}, 1000);
+
+			/* BUGGY CODE
+			a.blur(function(){
+			a.html(filename+ext);
+			a.removeAttr('contenteditable').blur();
+			_debug("fuori senza salvare");
+			});
+			*/
+			/**
+			 * Quando esco dall'input inserisco il nuovo testo con l'estensione se è un file, senza se è una cartella
+			 */
+
 		}, hold_timeout);
 		/**
 		 * Blocco il timeout quando il mouse interrompe il click
@@ -549,6 +642,7 @@ dragTree = function(selector, event) {
 							$('.' + uniqid).parent().find('.opendir').each(function() {
 								$(this).attr('class', 'opendir ' + uniqid);
 							});
+							select_file();
 						}
 					} else {
 						var error = false;
@@ -557,6 +651,7 @@ dragTree = function(selector, event) {
 						 * Inserisco l'elemento nella nuova cartella
 						 */
 						dropfolder.parent().children('ul').append("<li class='" + new_class + "' rel='" + new_dir + "'><div class='filename'>" + file + "</div></li>");
+						select_file();
 					}
 					/**
 					 * Seleziono l'elemento da rimuovere
@@ -601,6 +696,7 @@ dragTree = function(selector, event) {
 	if (!(selected_file.indexOf("<input class=") > -1)) {
 		mfdr = selected_folder + selected_file;
 		_debug("Selezionato: " + selected_folder + selected_file);
+		$('.dettagli_file').load("_aj_calls.php?action=fileinfo&path="+selected_folder + selected_file);
 	}
 
 }
@@ -615,6 +711,7 @@ dragTree = function(selector, event) {
  * Attivo la funzione dragTree su .filename
  */
 $(document).ready(function() {
+	
 
 	$('.dir').children("ul").hide();
 
@@ -626,6 +723,7 @@ $(document).ready(function() {
 			da_nascondere.show();
 		}
 	});
+	
 
 	$(".edit").find(".filename").click(function(e) {
 		dragTree(this, e);
@@ -646,7 +744,7 @@ $(document).ready(function() {
 					da_nascondere.show();
 				}
 			});
-
+			load_select(crt);
 			$(".edit").find(".filename").click(function(e) {
 				dragTree(this, e);
 			});
@@ -693,6 +791,7 @@ $(document).ready(function() {
 				if ((rel_content + rel_file + "/") == (upload_folder)) {
 					var ico = dropIconClass(filename);
 					$(this).children('ul').append('<li rel="' + upload_folder + '" class="file edit ' + ico + '"><div class="filename">' + filename + '</div></li>');
+					select_file();
 					_debug(rel_content + rel_file + "/");
 				}
 				/**

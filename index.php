@@ -55,7 +55,12 @@ $FM = new esyFileManager();
 				<input type="button" class="button" id="crea_cartella" value="Crea una cartella" />
 				<div class="uploader"></div>
 				<!-- end .sidebar1 -->
+				<div class="dettagli_file">
+					
 				</div>
+				</div>
+				
+				
 			</div>
 			<article class="content">
 				<div class="trash">
