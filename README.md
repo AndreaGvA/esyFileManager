@@ -5,6 +5,7 @@ Ajax Php jQuery File Manager
 
 Changelog:
 ```
+25-02-2013 - Spazio libero su disco
 25-02-2013 - File di configurazioni unificato
 25-02-2013 - Dimensione file
 24-02-2013 - Popup da input o ckeditor
