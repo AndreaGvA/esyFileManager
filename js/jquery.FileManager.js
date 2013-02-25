@@ -786,6 +786,7 @@ $(document).ready(function() {
 				 */
 				$(".edit").find(".filename").unbind("click");
 				if ((rel_content + rel_file + "/") == (upload_folder)) {
+					filename=filename.replace(/ /g,"_");
 					var ico = dropIconClass(filename);
 					$(this).children('ul').append('<li rel="' + upload_folder + '" class="file edit ' + ico + '"><div class="filename">' + filename + '</div></li>');
 					select_file();
