@@ -5,6 +5,8 @@ Ajax Php jQuery File Manager
 
 Changelog:
 ```
+25-02-2013 - File di configurazioni unificato
+25-02-2013 - Dimensione file
 24-02-2013 - Popup da input o ckeditor
 24-02-2013 - Box dettagli file
 01-01-2012 - Navigazione profonda
