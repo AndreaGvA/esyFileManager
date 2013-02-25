@@ -1,10 +1,19 @@
 esyFileManager
 ========================
+Version: beta 0.9b
 
-Ajax Php jQuery File Manager
+Ajax Php jQuery File Manager 
 
 Changelog:
 ```
+25-02-2013 - Sostituire spazi con underscore in fase di rename
+25-02-2013 - Sostituire spazi con underscore in fase di upload
+25-02-2013 - Shell script per quota
+25-02-2013 - Quota config
+25-02-2013 - Disk free space & quota support (crontab)
+25-02-2013 - Spazio libero su disco
+25-02-2013 - File di configurazioni unificato
+25-02-2013 - Dimensione file
 24-02-2013 - Popup da input o ckeditor
 24-02-2013 - Box dettagli file
 01-01-2012 - Navigazione profonda
@@ -22,9 +31,7 @@ Changelog:
 ToDo:
 ```
 1.Filtri per ordinamento per nome, dimensione e data
-2.Disk quota
-3.Rinomina file e cartelle (debug)
-
+2.Rinomina file e cartelle (debug)
 ```
 
 Questo progetto usa i seguenti plugin:

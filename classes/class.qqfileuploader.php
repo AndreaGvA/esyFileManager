@@ -228,7 +228,7 @@ class qqFileUploader {
 				$filename .= rand(10, 99);
 			}
 		}
-
+		$filename=str_replace(" ", "_", $filename);
 		$this -> uploadName = $filename . $ext;
 
 		if ($this -> file -> save($uploadDirectory . DIRECTORY_SEPARATOR . $filename . $ext)) {

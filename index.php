@@ -15,6 +15,22 @@
 require_once "config.php";
 require_once "classes/class.filemanager.php";
 $FM = new esyFileManager();
+$user=get_current_user();
+//sleep(5);
+$used = exec("cat /tmp/quotas | grep $user | awk '{print $3}'");
+$quota = exec("cat /tmp/quotas | grep $user | awk '{print $2}'");
+if ($quota=="user") {
+	$quota_n=disk_total_space($_SERVER[DOCUMENT_ROOT]);
+	$disp_n=disk_free_space($_SERVER[DOCUMENT_ROOT]);
+	$used_n=$quota_n-$disp_n;
+	$quota_to_print=$FM->bytesToSize($quota_n);
+	$used_to_print=$FM->bytesToSize($used_n);
+	$disp_to_print=$FM->bytesToSize($disp_n);
+} else {
+	$quota_to_print=$FM->bytesToSize($quota."000");
+	$used_to_print=$FM->bytesToSize($used."000");
+	$disp_to_print=$FM->bytesToSize($quota-$used."000");
+}
 ?>
 <!doctype html>
 <html>
@@ -29,6 +45,12 @@ $FM = new esyFileManager();
 		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
 		<script src="js/jquery.fineuploader-3.0.min.js"></script>
 		<script src="js/jquery.FileManager.js"></script>
+		<script>
+			var debug = <?=DEBUG?>;
+			var ckeditor=<?=CKEDITOR?>;
+			var replacement="<?=REPLACE_PATH?>";
+			var replace_with="<?=REPLACE_WITH?>";
+		</script>
 		<!-- TemplateEndEditable -->
 		<!-- TemplateBeginEditable name="head" -->
 		<!-- TemplateEndEditable -->
@@ -54,6 +76,7 @@ $FM = new esyFileManager();
 				</div>
 				<input type="button" class="button" id="crea_cartella" value="Crea una cartella" />
 				<div class="uploader"></div>
+				
 				<!-- end .sidebar1 -->
 				<div class="dettagli_file">
 					
@@ -86,7 +109,7 @@ $FM = new esyFileManager();
 			</article>
 			<footer>
 				<p>
-					&nbsp;
+					Spazio Disponibile: <?=$disp_to_print?> - Spazio Utilizzato: <?=$used_to_print?> - Spazio Totale: <?=$quota_to_print?>
 				</p>
 			</footer>
 			<!-- end .container -->
