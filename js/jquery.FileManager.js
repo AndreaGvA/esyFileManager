@@ -169,7 +169,9 @@ create_folder = function(folder) {
 						$(".edit").find(".filename").click(function(e) {
 							dragTree(this, e);
 						});
-
+						var dire=$(".main").val();
+						_debug("dir:" +dire);
+						load_select(dire);
 						_debug('Creata: ' + folder + result.dirname);
 					}
 				});
@@ -239,6 +241,7 @@ load_select = function(folder) {
 	}, function() {
 		trova_soposta();
 	});
+	_debug("upload della select");
 }
 /**
  * Funzione per le icone
