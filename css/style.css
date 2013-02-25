@@ -280,3 +280,4 @@ header, section, footer, aside, article, figure {
 	overflow:auto;
 }
 .dettagli_file div{padding:10px;}
+.dett_file{float:right; margin-top:-35px; padding-right:10px; text-align:right; font-size:10px; z-index:9999999;}
