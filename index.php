@@ -60,6 +60,7 @@ $FM = new esyFileManager();
 				</div>
 				<input type="button" class="button" id="crea_cartella" value="Crea una cartella" />
 				<div class="uploader"></div>
+				
 				<!-- end .sidebar1 -->
 				<div class="dettagli_file">
 					
@@ -92,7 +93,7 @@ $FM = new esyFileManager();
 			</article>
 			<footer>
 				<p>
-					&nbsp;
+					Spazio disponibile: <?=$FM->bytesToSize(disk_free_space(FILES_FOLDER))?>
 				</p>
 			</footer>
 			<!-- end .container -->
