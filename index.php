@@ -16,14 +16,16 @@ require_once "config.php";
 require_once "classes/class.filemanager.php";
 $FM = new esyFileManager();
 $user=get_current_user();
-exec("du -s $_SERVER[DOCUMENT_ROOT] | awk '{print $1}' > /tmp/used_space");
 //sleep(5);
-$used = exec("cat /tmp/used_space");
+$used = exec("cat /tmp/quotas | grep $user | awk '{print $3}'");
 $quota = exec("cat /tmp/quotas | grep $user | awk '{print $2}'");
 if ($quota=="user") {
-	$quota_to_print=$FM->bytesToSize(disk_total_space($_SERVER[DOCUMENT_ROOT]));
-	$used_to_print=$FM->bytesToSize(disk_free_space($_SERVER[DOCUMENT_ROOT]));
-	$disp_to_print=$FM->bytesToSize(disk_total_space($_SERVER[DOCUMENT_ROOT])-disk_free_space($_SERVER[DOCUMENT_ROOT]));
+	$quota_n=disk_total_space($_SERVER[DOCUMENT_ROOT]);
+	$disp_n=disk_free_space($_SERVER[DOCUMENT_ROOT]);
+	$used_n=$quota_n-$disp_n;
+	$quota_to_print=$FM->bytesToSize($quota_n);
+	$used_to_print=$FM->bytesToSize($used_n);
+	$disp_to_print=$FM->bytesToSize($disp_n);
 } else {
 	$quota_to_print=$FM->bytesToSize($quota."000");
 	$used_to_print=$FM->bytesToSize($used."000");
@@ -107,7 +109,7 @@ if ($quota=="user") {
 			</article>
 			<footer>
 				<p>
-					Spazio Disponibile: <?=$disp_to_print?> - Spazio Utilizzato: <?=$FM->bytesToSize($used."000")?> - Spazio Totale: <?=$quota_to_print?>
+					Spazio Disponibile: <?=$disp_to_print?> - Spazio Utilizzato: <?=$used_to_print?> - Spazio Totale: <?=$quota_to_print?>
 				</p>
 			</footer>
 			<!-- end .container -->
