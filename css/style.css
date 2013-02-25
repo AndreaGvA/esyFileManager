@@ -261,6 +261,8 @@ footer {
 	float: left;
 	width: 100%;
 	height: 39px;
+	line-height:39px;
+	color:#999;
 	position: relative;/* this gives IE6 hasLayout to properly clear */
 	clear: both; /* this clear property forces the .container to understand where the columns end and contain them */
 }

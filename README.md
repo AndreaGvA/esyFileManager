@@ -5,6 +5,8 @@ Ajax Php jQuery File Manager
 
 Changelog:
 ```
+25-02-2013 - Shell script per quota
+25-02-2013 - Quota config
 25-02-2013 - Disk free space & quota support (crontab)
 25-02-2013 - Spazio libero su disco
 25-02-2013 - File di configurazioni unificato
@@ -26,13 +28,10 @@ Changelog:
 ToDo:
 ```
 1.Filtri per ordinamento per nome, dimensione e data
-2.Disk quota
-3.Rinomina file e cartelle (debug)
-4.Aggiungere sh script per quota
-5.Aggiungere quota in config
-6.Sostituire spazi con underscore in fase di rename
-7.Sostituire spazi con underscore in fase di upload
-
+2.Rinomina file e cartelle (debug)
+3.Sostituire spazi con underscore in fase di rename
+4.Sostituire spazi con underscore in fase di upload
+5.In fase di rename inserire anteprima non disponibile e refresh
 ```
 
 Questo progetto usa i seguenti plugin:
