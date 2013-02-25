@@ -9,7 +9,7 @@
 
 //Funzione per caricare l'immagine
 function LoadJpeg($imgname) {
-	$pt = pathinfo($_GET['path']);
+	$pt = pathinfo($imgname);
 	$ext = $pt['extension'];
 	if ($ext == "jpg" || $ext == "jpeg") {
 		$im = @imagecreatefromjpeg($imgname);
@@ -39,9 +39,6 @@ function LoadJpeg($imgname) {
 
 ##########################################################
 
-// imposto gli header
-header("Content-Type: image/jpeg");
-
 // carico l'immagine jpg
 $img = LoadJpeg($_GET['path']);
 
@@ -49,21 +46,34 @@ $img = LoadJpeg($_GET['path']);
 $fullsize_width = imagesx($img);
 $fullsize_height = imagesy($img);
 
-// Assegno la nuova larghezza
-$thumb_width = 240;
+// Assegno la dimensione massima per il resize
+$max_dim = 240;
+// Assegno il colore di sfondo
+$bg = '#ffffff';
 
-// Ricavo l'altezza
-$thumb_height = floor($fullsize_height / ($fullsize_width / $thumb_width));
+//Trovo la dimensione per il thumb
+if ($fullsize_width >= $fullsize_height) {
+	$small_width = $max_dim;
+	//dimensione della larghezza l'altezza viene fatta in proporzione
+	$small_height = floor($fullsize_height / ($fullsize_width / $small_width));
+	$dist_height = ($max_dim - $small_height) / 2;
+	$dist_width = 0;
+} else {
+	$small_height = $max_dim;
+	$small_width = floor($fullsize_width / ($fullsize_height / $small_height));
+	$dist_width = ($max_dim - $small_width) / 2;
+	$dist_height = 0;
+}
+$small = imagecreatetruecolor($max_dim, $max_dim);
+$col = (sscanf($bg, '#%2x%2x%2x'));
+$bianco = imageColorAllocate($small, $col[0], $col[1], $col[2]);
 
-// creo l'immagine di base con le nuove dimensioni
-$thumb = imagecreatetruecolor($thumb_width, $thumb_height);
-
-// creo copia  dell'immagine ridimensionata
-imagecopyresized($thumb, $img, 0, 0, 0, 0, $thumb_width, $thumb_height, $fullsize_width, $fullsize_height);
+imagefilledrectangle($small, 0, 0, $max_dim, $max_dim, $bianco);
+imagecopyresampled($small, $img, $dist_width, $dist_height, 0, 0, $small_width, $small_height, $fullsize_width, $fullsize_height);
 
 // invio l'output come immagine Jpg
-imagejpeg($thumb);
+imagejpeg($small);
 
 // libero la memoria
-imagedestroy($thumb);
+imagedestroy($small);
 ?>
