@@ -30,6 +30,8 @@ ToDo:
 3.Rinomina file e cartelle (debug)
 4.Aggiungere sh script per quota
 5.Aggiungere quota in config
+6.Sostituire spazi con underscore in fase di rename
+7.Sostituire spazi con underscore in fase di upload
 
 ```
 
