@@ -5,6 +5,7 @@ Ajax Php jQuery File Manager
 
 Changelog:
 ```
+25-02-2013 - Disk free space & quota support (crontab)
 25-02-2013 - Spazio libero su disco
 25-02-2013 - File di configurazioni unificato
 25-02-2013 - Dimensione file
@@ -27,6 +28,8 @@ ToDo:
 1.Filtri per ordinamento per nome, dimensione e data
 2.Disk quota
 3.Rinomina file e cartelle (debug)
+4.Aggiungere sh script per quota
+5.Aggiungere quota in config
 
 ```
 
