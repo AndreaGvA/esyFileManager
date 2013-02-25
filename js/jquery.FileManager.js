@@ -31,14 +31,10 @@
  window.opener.urlimg(value);
  window.close();
  }
- */
+ */ 
 
 var move_in, folder, upload_folder, mfdr;
 var hold_timeout = 1000;
-var debug = true;
-var ckeditor=0;
-var replacement="";
-var replace_with="";
 
 
 $.fn.watch = function(props, callback, timeout) {
@@ -188,13 +184,14 @@ select_file=function(){
 	$(".file").find(".filename").on("dblclick", function(e) {
 		var path1=$(this).parent(".edit").attr("rel");
 		var path2=$(this).html();
-		if(ckeditor==0){
-			window.opener.urlimg(path1+path2);
+		var fileUrl = path1+path2;
+		fileUrl = fileUrl.replace(replacement, replace_with); 
+		if(ckeditor==0){ 
+			window.opener.urlimg(fileUrl);
  		 	window.close();
 		} else if(ckeditor==1){
 			// Helper function to get parameters from the query string.
 			var funcNum = getUrlParam('CKEditorFuncNum');
-			var fileUrl = path1+path2;
 			fileUrl = fileUrl.replace(replacement, replace_with); 
 			window.opener.CKEDITOR.tools.callFunction(funcNum, fileUrl);
 			window.close();
