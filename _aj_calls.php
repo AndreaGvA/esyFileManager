@@ -97,20 +97,25 @@ switch ($getAction) {
 			echo "Cartella: ";
 			echo $path['basename'];
 		} else {
-			$size=filesize($_GET['path']);
 			echo "File: ";
 			echo "<a href='$_GET[path]' target='_blank'>".$path['basename']."</a>";
 			echo "<br>";
 			echo "Tipo: ";
 			echo $path['extension'];
+			
 		} 
-		
 		echo "<br>";
-		echo "Dimesioni: ";
-		echo $FM->bytesToSize($size);
-		if($path['extension']=="jpeg" || $path['extension']=="jpg" || $path['extension']=="gif" || $path['extension']=="png" || $path['extension']=="JPG" ){
-			echo "<img src='thumb.php?path=$_GET[path]' width='100%' />";
+		if(file_exists($_GET['path'])) {
+			$size=filesize($_GET['path']);	
+			echo "Dimesioni: ";
+			echo $FM->bytesToSize($size);
+			if($path['extension']=="jpeg" || $path['extension']=="jpg" || $path['extension']=="gif" || $path['extension']=="png" || $path['extension']=="JPG" ){
+				echo "<img src='thumb.php?path=$_GET[path]' width='100%' />";
+			}
+		} else {
+			echo "<br><br><center><a id='reload' rel='".FILES_FOLDER."'><img src='images/refresh_48.png' /></a></center>";
 		}
+		
 		echo "</div>";
 		break; 
 		
