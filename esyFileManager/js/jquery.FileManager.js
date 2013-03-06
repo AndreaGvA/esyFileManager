@@ -33,6 +33,7 @@
  }
  */
 
+var utilizzo=$.url().param("u");
 var move_in, folder, upload_folder, mfdr;
 var hold_timeout = 1000;
 
@@ -200,16 +201,17 @@ select_file = function() {
 		var path2 = $(this).html();
 		var fileUrl = path1 + path2;
 		fileUrl = fileUrl.replace(replacement, replace_with);
-		if (ckeditor == 0) {
-			window.opener.urlimg(fileUrl);
+		if (utilizzo == 1) {
+			var textarea=$.url().param("cl");
+			window.opener.urlimg(fileUrl, textarea);
 			window.close();
-		} else if (ckeditor == 1) {
+		} else if (utilizzo == 2) {
 			// Helper function to get parameters from the query string.
 			var funcNum = getUrlParam('CKEditorFuncNum');
-			fileUrl = fileUrl.replace(replacement, replace_with);
+			//fileUrl = fileUrl.replace(replacement, replace_with);
 			window.opener.CKEDITOR.tools.callFunction(funcNum, fileUrl);
 			window.close();
-		}
+		} else {};
 
 	});
 }
