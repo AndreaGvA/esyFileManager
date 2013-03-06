@@ -22,3 +22,59 @@ ______________
 * jQuery URL Parser | <https://github.com/allmarkedup/jQuery-URL-Parser>
 * jQuery | <http://jquery.com/>
 * jQuery ui | <http://jqueryui.com/>
+
+_______________
+
+#### Istruzioni
+
+Includere la cartella esyFileManager ed il file js/popup.functions.js nel proprio progetto
+
+**Include**
+
+Includere jQuery ed il file popup.functions.js nel proprio progetto
+
+```
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="js/popup.functions.js"></script>
+```
+
+**Installazione standalone**
+
+Creare un bottone
+
+```
+<button class="standalone">Apri filemanger</button>
+```
+
+Inserire il codice per lanciare il filemanager
+
+```
+$(".standalone").click(function(){
+	popStandalone();
+});
+```
+**Installazione su input field**
+
+Creare un campo input per un file
+
+```
+<input type="text" id="file" name="file" >
+```
+
+Aggiungere il codice per lanciare il filemanager specificando l'id del campo di testo
+
+```
+$("#file").click(function(){
+	popFile("file");
+});
+```
+
+**Installazione in cKeditor**
+
+Installare cKeditor seguendo le istruzioni del produttore <http://ckeditor.com>
+
+editare il file config.js in cKeditor ed aggiungere la seguente stringa
+
+```
+config.filebrowserBrowseUrl = 'path/to/esyFileManager/index.php?u=2';
+```
