@@ -1,5 +1,6 @@
+##### [![SmartGaP](http://tst.smartgap.it/admin/templates/SmartGaP_new/images/logo.png)](http://www.smartgap.it)
+
 # esyFileManager 
-##### by [SmartGaP](http://www.smartgap.it)
 ______________
 
 **Versione 0.9b**
