@@ -14,9 +14,8 @@
  
  define("FILES_FOLDER", "public/"); //il path della cartella dei files a partire dalla root del sito
  define("DEBUG", "true"); //abilita il debug JS
- define("CKEDITOR", "0"); //abilita il funzionamento in ckeditor
- define("REPLACE_PATH", "");
- define("REPLACE_WITH", ""); 
+ define("REPLACE_PATH", "public/");
+ define("REPLACE_WITH", "esyFileManager/public/"); 
  define("QUOTA", "1"); 
  
  /**

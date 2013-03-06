@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+	<!--<![endif]-->
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>EsyFileManager - Un file manager in jQuery e PHP - demo</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width">
+
+		<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+		<link rel="stylesheet" href="css/normalize.css">
+		<link rel="stylesheet" href="font/stylesheet.css">
+		<link rel="stylesheet" href="css/main.css">
+		<script src="js/vendor/modernizr-2.6.2.min.js"></script>
+		<script src="ckeditor/ckeditor.js"></script>
+	</head>
+	<body>
+		<!-- Add your site or application content here -->
+		<div class="header yellow">
+			<header>
+				<div class="wrapper nobtpadding">
+					<h1>EsyFileManager - Un file manager in jQuery e PHP</h1>
+					<div class="ver">Demo ver 0.9b - by SmartGaP</div>
+				</div>
+			</header>
+		</div>
+		<div class="container blat">
+			<div class="wrapper pt20 grey">
+				<div class="box1">
+					<h3>EsyFileManager</h3>
+					<p>
+						&Egrave; un filemanager openSource scritto in PHP e jQuery che lavora direttamente sul filesystem senza l'ausilio di un database.
+					</p>
+					<p>
+						EsyFileManager non necessita di installazioni particolari sul server ed è semplicissimo da installare
+					</p>
+				</div>
+				<div class="box2 ex lf mt40">
+					<h3 align="center">Esempio 1 - Standalone</h3>
+					<center><button class="standalone">Apri filemanger</button></center>
+				</div>
+				<br><br>
+			</div>
+			<div class="wrapper pt20 grey bt">
+				<div class="box2 ex">
+					<center>
+						<h3>Esempio 2 - Input field</h3>
+						<h5>Esempio con link</h5>
+						<input type="text" id="file" name="file" >&nbsp;&nbsp;<a href="#" class="pickAfile"><img src="img/link_32.png"></a>
+						<h5>Esempio senza link</h5>
+						<input type="text" id="file2" name="file2" class="pickNo">
+					</center>
+				</div>
+				<div class="box1 lf">
+					<p>&Egrave; possibile utilizzare esyfilemanager per selezionare file all'interno di un campo di input.</p>
+					<p>EsyFileManager può essere usato come plugin per editor di testi WysWyg come cKeditor</p>
+					<p>Il software è rilasciato con le licenze open source <a href="http://www.gnu.org/licenses/gpl-2.0.txt" target="_blank">GPL</a> e <a href="http://www.gnu.org/licenses/lgpl-3.0.txt" target="_blank">LGPL</a></p>
+					<button style="float:left;">Scarica il sorgente</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button>Vedi su gitHub</button>
+				</div>
+			</div>
+			<div class="wrapper pt20 grey bt">
+				<h3>Esempio 3 - filemanager in cKeditor</h3>
+				<textarea class="ckeditor" id="editor1" name="editor1"><img src="img/accordion3.jpg"></textarea>
+				<br><br>
+			</div>
+			<div class="wrapper pt20 grey bt">
+				<h3>EsyFileManager - dettagli tecnici</h3>
+				<p>
+					EsyFileManager utilizza le seguenti librerie OpenSource:
+				</p>
+				<ul>
+					<li>file uploader | <a href="https://github.com/valums/file-uploader" target="_blank">https://github.com/valums/file-uploader</a></li>
+					<li>jQuery URL Parser | <a href="https://github.com/allmarkedup/jQuery-URL-Parser" target="_blank">https://github.com/allmarkedup/jQuery-URL-Parser</a></li>
+					<li>jQuery | <a href="http://jquery.com/" target="_blank">http://jquery.com</a></li>
+					<li>jQuery ui | <a href="http://jqueryui.com" target="_blank">http://jqueryui.com</a></li>
+				</ul>
+			</div>
+		</div>
+		
+		<div class="footer greyfoot">
+			<footer>
+				<div class="container">
+					<div class="wrapper">
+						qui il footer
+						<br>
+						<br>
+						<br>
+						<br>
+						<br><br>
+						<br>
+					</div>
+				</div>
+			</footer>
+		</div>
+
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script>
+			window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')
+		</script>
+		<script src="js/popup.functions.js"></script>
+		<script src="js/main.js"></script>
+
+	</body>
+</html>

@@ -44,13 +44,13 @@ if ($quota=="user") {
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
 		<script src="js/jquery.fineuploader-3.0.min.js"></script>
-		<script src="js/jquery.FileManager.js"></script>
+		<script src="js/purl.js"></script>
 		<script>
 			var debug = <?=DEBUG?>;
-			var ckeditor=<?=CKEDITOR?>;
 			var replacement="<?=REPLACE_PATH?>";
 			var replace_with="<?=REPLACE_WITH?>";
 		</script>
+		<script src="js/jquery.FileManager.js"></script>
 		<!-- TemplateEndEditable -->
 		<!-- TemplateBeginEditable name="head" -->
 		<!-- TemplateEndEditable -->
