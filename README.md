@@ -81,3 +81,23 @@ editare il file config.js in cKeditor ed aggiungere la seguente stringa
 ```
 config.filebrowserBrowseUrl = 'path/to/esyFileManager/index.php?u=2';
 ```
+
+**Installazione in tinyMCE**
+Installare tinyMCE seguendo le istruzioni del produttore <http://www.tinymce.com>
+aggiungere la seguente stringa nella funzione tinyMCE.init
+
+```
+file_browser_callback : "esyFileManage"
+```
+
+ed includere il file tinyMCE_connect.js
+
+```
+<script src="js/tinyMCE_connect.js"></script>
+```
+
+Nel caso in cui la cartella esyFileManager sia in una posizione diversa dalla root del sito modificare il path nel file tinyMCE_connect.js con quello corretto
+
+```
+var cmsURL = "/esyFileManager/index.php?u=3"
+```

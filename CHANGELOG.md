@@ -7,6 +7,7 @@ Ajax Php jQuery File Manager
 Changelog:
 
 ```
+07-03-2013 - Aggiunto supporto tinyMCE
 25-02-2013 - Sostituire spazi con underscore in fase di rename
 25-02-2013 - Sostituire spazi con underscore in fase di upload
 25-02-2013 - Shell script per quota
