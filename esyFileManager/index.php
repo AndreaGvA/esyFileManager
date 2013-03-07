@@ -75,7 +75,7 @@ if ($quota=="user") {
 					?>
 				</select>
 				</div>
-				<input type="button" class="button" id="crea_cartella" value="Crea una cartella" />
+				<input type="button" class="buttonz" id="crea_cartella" value="Crea una cartella" />
 				<div class="uploader"></div>
 				
 				<!-- end .sidebar1 -->
