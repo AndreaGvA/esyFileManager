@@ -182,10 +182,12 @@ button{
 	background: linear-gradient(to bottom,  #feccb1 0%,#f17432 50%,#ea5507 51%,#fb955e 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feccb1', endColorstr='#fb955e',GradientType=0 ); /* IE6-9 */
 }
+.ml50{
+	margin-left:50px; 
+}
 .button{ 
 	text-decoration:none;
 	font-weight:bold;
-	margin-left:50px;
 	float:left; line-height:50px; text-align:center;
 	width:200px; height: 50px; border: 1px solid #999; 
 	-webkit-border-radius: 10px;
