@@ -1,4 +1,4 @@
-function myFileBrowser(field_name, url, type, win) {
+function esyFileManage(field_name, url, type, win) {
 
 	alert("Field_Name: " + field_name + "nURL: " + url + "nType: " + type + "nWin: " + win); // debug/testing
 
@@ -6,7 +6,7 @@ function myFileBrowser(field_name, url, type, win) {
 	 the session name and session ID in the request string (can look like this: "?PHPSESSID=88p0n70s9dsknra96qhuk6etm5").
 	 These lines of code extract the necessary parameters and add them back to the filebrowser URL again. */
 
-	var cmsURL = window.location.toString();
+	var cmsURL = "/esyFileManager/index.php?u=3"
 	// script URL - use an absolute path!
 	if (cmsURL.indexOf("?") < 0) {
 		//add the type as the only query parameter

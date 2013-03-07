@@ -14,9 +14,13 @@
  * Inizializzo le variabili pubbliche
  */
 
-var utilizzo=$.url().param("u");
+var utilizzo = $.url().param("u");
 var move_in, folder, upload_folder, mfdr;
 var hold_timeout = 1000;
+
+if(utilizzo==3) {
+	$.getScript("js/tiny_mce_popup.js");
+}
 
 $.fn.watch = function(props, callback, timeout) {
 	if (!timeout)
@@ -25,9 +29,7 @@ $.fn.watch = function(props, callback, timeout) {
 		var el = $(this), func = function() {
 			__check.call(this, el)
 		}, data = {
-			props : props.split(","),
-			func : callback,
-			vals : []
+			props : props.split(","), func : callback, vals : []
 		};
 		$.each(data.props, function(i) {
 			data.vals[i] = el.css(data.props[i]);
@@ -89,13 +91,9 @@ _debug = function(value) {
 }
 elimina = function(file) {
 	$.ajax({
-		type : 'post',
-		url : '_aj_calls.php',
-		data : {
-			'file' : file,
-			'action' : 'delete'
-		},
-		complete : function(data) {
+		type : 'post', url : '_aj_calls.php', data : {
+			'file' : file, 'action' : 'delete'
+		}, complete : function(data) {
 			//$(o.result).html(data);
 			_debug('Eliminato: ' + file);
 		}
@@ -103,14 +101,9 @@ elimina = function(file) {
 }
 sposta = function(file, new_file) {
 	$.ajax({
-		type : 'post',
-		url : '_aj_calls.php',
-		data : {
-			'file' : file,
-			'new_file' : new_file,
-			'action' : 'move'
-		},
-		complete : function(jqXHR) {
+		type : 'post', url : '_aj_calls.php', data : {
+			'file' : file, 'new_file' : new_file, 'action' : 'move'
+		}, complete : function(jqXHR) {
 			var result = $.parseJSON(jqXHR.responseText);
 			if (result.status == "true") {
 				_debug('Spostato: ' + file);
@@ -135,13 +128,9 @@ trova_soposta = function() {
 }
 create_folder = function(folder) {
 	$.ajax({
-		type : 'post',
-		url : '_aj_calls.php',
-		data : {
-			'folder' : folder,
-			'action' : 'new'
-		},
-		complete : function(jqXHR) {
+		type : 'post', url : '_aj_calls.php', data : {
+			'folder' : folder, 'action' : 'new'
+		}, complete : function(jqXHR) {
 			var result = $.parseJSON(jqXHR.responseText);
 			var uniqid = new Date().getUTCMilliseconds();
 			if (result.status == "true") {
@@ -183,7 +172,7 @@ select_file = function() {
 		var fileUrl = path1 + path2;
 		fileUrl = fileUrl.replace(replacement, replace_with);
 		if (utilizzo == 1) {
-			var textarea=$.url().param("cl");
+			var textarea = $.url().param("cl");
 			window.opener.urlimg(fileUrl, textarea);
 			window.close();
 		} else if (utilizzo == 2) {
@@ -192,7 +181,28 @@ select_file = function() {
 			//fileUrl = fileUrl.replace(replacement, replace_with);
 			window.opener.CKEDITOR.tools.callFunction(funcNum, fileUrl);
 			window.close();
-		} else {};
+		} else if (utilizzo == 3) {
+			var URL = fileUrl
+			var win = tinyMCEPopup.getWindowArg("window");
+
+			// insert information now
+			win.document.getElementById(tinyMCEPopup.getWindowArg("input")).value = URL;
+
+			// are we an image browser
+			if ( typeof (win.ImageDialog) != "undefined") {
+				// we are, so update image dimensions...
+				if (win.ImageDialog.getImageData)
+					win.ImageDialog.getImageData();
+
+				// ... and preview if necessary
+				if (win.ImageDialog.showPreviewImage)
+					win.ImageDialog.showPreviewImage(URL);
+			}
+			_debug("prova");
+			// close popup window
+			tinyMCEPopup.close();
+		} else {
+		}
 
 	});
 }
@@ -209,8 +219,7 @@ jump = function(dir) {
 					dirn = dir;
 				}
 				$(".filemanager").load('_aj_calls.php', {
-					'folder' : dirn,
-					'action' : 'jump'
+					'folder' : dirn, 'action' : 'jump'
 				}, function() {
 					$('.opendir').click(function() {
 						var da_nascondere = $(this).parent().children('ul');
@@ -233,8 +242,7 @@ jump = function(dir) {
 }
 load_select = function(folder) {
 	$('.selectb').load('_aj_calls.php', {
-		'action' : "select",
-		"folder" : folder
+		'action' : "select", "folder" : folder
 	}, function() {
 		trova_soposta();
 	});
@@ -540,18 +548,14 @@ dragTree = function(selector, event) {
 	 * Rendo l'elemento selezionato draggable
 	 */
 	$(".selected").draggable({
-		appendTo : "body",
-		helper : "clone"
+		appendTo : "body", helper : "clone"
 	});
 	/**
 	 * Funzione per il drag&drop nel cestino
 	 * Rendo il cetino droppable
 	 */
 	$('.trash').droppable({
-		activeClass : "ui-state-default",
-		hoverClass : "trashon",
-		accept : ":not(.maindir)",
-		drop : function(event, ui) {
+		activeClass : "ui-state-default", hoverClass : "trashon", accept : ":not(.maindir)", drop : function(event, ui) {
 			/**
 			 * Se è una cartella
 			 */
@@ -590,9 +594,7 @@ dragTree = function(selector, event) {
 	 * imposto le classi per il drag&drop
 	 */
 	$('.dir').children('.filename').droppable({
-		activeClass : "ui-state-default",
-		hoverClass : "drop",
-		accept : ":not(.maindir)",
+		activeClass : "ui-state-default", hoverClass : "drop", accept : ":not(.maindir)",
 		/**
 		 * Quando sto il draggable è sopra a un droppable ne recupero il path
 		 */
@@ -710,8 +712,7 @@ dragTree = function(selector, event) {
 				crt = $(this).attr("rel");
 				crt = crt.substring(0, crt.length - 1);
 				$(".filemanager").load('_aj_calls.php', {
-					'folder' : crt,
-					'action' : 'jump'
+					'folder' : crt, 'action' : 'jump'
 				}, function() {
 					$('.opendir').click(function() {
 						var da_nascondere = $(this).parent().children('ul');
@@ -764,8 +765,7 @@ $(document).ready(function() {
 		crt = $(this).attr("rel");
 		crt = crt.substring(0, crt.length - 1);
 		$(".filemanager").load('_aj_calls.php', {
-			'folder' : crt,
-			'action' : 'jump'
+			'folder' : crt, 'action' : 'jump'
 		}, function() {
 			$('.opendir').click(function() {
 				var da_nascondere = $(this).parent().children('ul');
@@ -793,8 +793,7 @@ $(document).ready(function() {
 	$('.uploader').fineUploader({
 		request : {
 			endpoint : '_aj_calls.php',
-		},
-		debug : true
+		}, debug : true
 		/**
 		 * In caso di errore mi fermo
 		 */
@@ -847,8 +846,7 @@ $(document).ready(function() {
 		 */
 	}).on("submit", function() {
 		$(this).fineUploader('setParams', {
-			'action' : 'upload',
-			'folder' : upload_folder
+			'action' : 'upload', 'folder' : upload_folder
 		});
 	});
 	if ($('#up-list').length > 0) {
