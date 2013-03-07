@@ -68,6 +68,80 @@
 				</div>
 			</div>
 			<div class="wrapper pt20 grey bt">
+				<h1 id="esyfilemanager">esyFileManager</h1>
+				<hr>
+				<p>
+					<strong>Versione 0.9b</strong>
+				</p>
+				<hr>
+				
+				<h4 id="istruzioni">Istruzioni</h4>
+				<p>
+					Includere la cartella esyFileManager ed il file js/popup.functions.js nel proprio progetto
+				</p>
+				<p>
+					<strong>Include</strong>
+				</p>
+				<p>
+					Includere jQuery ed il file popup.functions.js nel proprio progetto
+				</p>
+<pre>
+&lt;script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">&lt;/script> 
+&lt;script src="js/popup.functions.js">&lt;/script></pre>
+				<p>
+					<strong>Installazione standalone</strong>
+				</p>
+				<p>
+					Creare un bottone
+				</p>
+<pre>&lt;button class="standalone">Apri filemanger&lt;/button></pre>
+				<p>
+					Inserire il codice per lanciare il filemanager
+				</p>
+<pre>$(".standalone").click(function(){ popStandalone(); });</pre>
+				<p>
+					<strong>Installazione su input field</strong>
+				</p>
+				<p>
+					Creare un campo input per un file
+				</p>
+<pre>&lt;input type="text" id="file" name="file" &gt;</pre>
+				<p>
+					Aggiungere il codice per lanciare il filemanager specificando l'id del campo di testo
+				</p>
+<pre>$("#file").click(function(){ popFile("file"); });</pre>
+				<p>
+					<strong>Installazione in cKeditor</strong>
+				</p>
+				<p>
+					Installare cKeditor seguendo le istruzioni del produttore
+					<a href="http://ckeditor.com" target="_blank">http://ckeditor.com</a>
+				</p>
+				<p>
+					editare il file config.js in cKeditor ed aggiungere la seguente stringa
+				</p>
+<pre>config.filebrowserBrowseUrl = 'path/to/esyFileManager/index.php?u=2';</pre>
+				<p>
+					<strong>Installazione in tinyMCE</strong>
+				</p>
+				<p>
+					Installare tinyMCE seguendo le istruzioni del produttore
+					<a href="http://www.tinymce.com" target="_blank">http://www.tinymce.com</a>
+				</p>
+				<p>
+					aggiungere la seguente stringa nella funzione tinyMCE.init
+				</p>
+<pre>file_browser_callback : "esyFileManage"</pre>
+				<p>
+					ed includere il file tinyMCE_connect.js
+				</p>
+<pre>&lt;script src="js/tinyMCE_connect.js">&lt;/script></pre>
+				<p>
+					Nel caso in cui la cartella esyFileManager sia in una posizione diversa dalla root del sito modificare il path nel file tinyMCE_connect.js con quello corretto
+				</p>
+<pre>var cmsURL = "/esyFileManager/index.php?u=3"</pre><br><br>
+			</div>
+			<div class="wrapper pt20 grey bt">
 				<h3>Esempio 3 - filemanager in cKeditor</h3>
 				<textarea class="ckeditor" id="editor1" name="editor1"><img src="img/accordion3.jpg"></textarea>
 				<br><br>
@@ -75,7 +149,6 @@
 			<div class="wrapper pt20 grey bt">
 				<h3>Altri Esempi</h3>
 				<p><b>Aggiunto il supporto per tinyMCE</b> <a href="tinyMCE.html" target="_blank">Guarda l'esempio</a></p>
-				<p><b>Aggiunte le</b> <a href="istruzioni.html">istruzioni</a></p>
 			</div>
 			<div class="wrapper pt20 grey bt">
 				<h3>EsyFileManager - dettagli tecnici</h3>
