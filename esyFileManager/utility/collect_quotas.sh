@@ -1,4 +1,6 @@
 #!/bin/bash
+
+# SmartGaP s.r.l | andrea@smartgap.it | www.smartgap.it
 rm /tmp/quotas
 cat /etc/passwd | grep "/clients" | cut -d: -f1 | while read user
 do

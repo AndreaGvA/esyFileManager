@@ -1,3 +1,12 @@
+/**
+ *
+ *
+ * @author AndreaG
+ * @version 0.0.1
+ * @copyright SmartGaP s.r.l.
+ * @package esyFileManager
+ */
+
 function popStandalone(){
     window.open('esyFileManager/index.php','_blank','width=800, height=600, scrollbars=no, resizable=yes')
 }

@@ -13,6 +13,8 @@ EsyFileManager non necessita di installazioni particolari sul server ed è sempl
 
 EsyFileManager può essere usato come plugin per editor di testi WysWyg come cKeditor
 
+**[GUARDA LA DEMO](http://esyfilemanager.smartgap.it)**
+
 Il software è rilasciato con le licenze open source [GPL](http://www.gnu.org/licenses/gpl-2.0.txt) e [LGPL](http://www.gnu.org/licenses/lgpl-3.0.txt)
 
 ______________
