@@ -164,6 +164,9 @@ header h1{ padding:0; margin:0px; margin-top:20px; margin-bottom:30px; text-inde
 .bt{ border-top:4px solid #969696;}
 .blat{border-left:15px solid #efefef; border-right:15px solid #efefef;}
 button{ 
+	font-family: 'ExistenceLight', Arial, sans-serif;
+	text-decoration:none;
+	font-weight:bold;
 	width:200px; height: 50px; border: 1px solid #999; 
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
@@ -180,6 +183,10 @@ button{
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feccb1', endColorstr='#fb955e',GradientType=0 ); /* IE6-9 */
 }
 .button{ 
+	text-decoration:none;
+	font-weight:bold;
+	margin-left:50px;
+	float:left; line-height:50px; text-align:center;
 	width:200px; height: 50px; border: 1px solid #999; 
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
