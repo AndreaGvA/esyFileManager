@@ -85,6 +85,7 @@ config.filebrowserBrowseUrl = 'path/to/esyFileManager/index.php?u=2';
 **Installazione in tinyMCE**
 
 Installare tinyMCE seguendo le istruzioni del produttore <http://www.tinymce.com>
+
 aggiungere la seguente stringa nella funzione tinyMCE.init
 
 ```
