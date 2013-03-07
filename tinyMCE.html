@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+	<!--<![endif]-->
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>EsyFileManager - Un file manager in jQuery e PHP - demo</title>
+		<meta name="description" content="">
+		<meta name="keywords" content="web file manager, web file manager open source, file manager web, file manager ajax, ajax file manager, jquery file manager, 	
+file manager browser">
+		<meta name="viewport" content="width=device-width">
+
+		<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+		<link rel="stylesheet" href="css/normalize.css">
+		<link rel="stylesheet" href="font/stylesheet.css">
+		<link rel="stylesheet" href="css/main.css">
+		<script src="js/vendor/modernizr-2.6.2.min.js"></script>
+		
+	</head>
+	<body>
+		<!-- Add your site or application content here -->
+		<div class="header yellow">
+			<header>
+				<div class="wrapper nobtpadding">
+					<h1>EsyFileManager - Un file manager in jQuery e PHP</h1>
+					<div class="ver">Demo ver 0.9b - by SmartGaP</div>
+				</div>
+			</header>
+		</div>
+		<div class="container blat">
+			<div class="wrapper pt20 grey bt">
+				<h3>Esempio 3 - filemanager in tinyMCE</h3>
+				<textarea id="elm1" name="elm1" rows="15" cols="80" style="width: 100%"><img src="img/accordion3.jpg"></textarea>
+				<br><br>
+			</div>
+			<div class="wrapper pt20 grey bt">
+				<h3>EsyFileManager - dettagli tecnici</h3>
+				<p>
+					EsyFileManager utilizza le seguenti librerie OpenSource:
+				</p>
+				<ul>
+					<li>file uploader | <a href="https://github.com/valums/file-uploader" target="_blank">https://github.com/valums/file-uploader</a></li>
+					<li>jQuery URL Parser | <a href="https://github.com/allmarkedup/jQuery-URL-Parser" target="_blank">https://github.com/allmarkedup/jQuery-URL-Parser</a></li>
+					<li>jQuery | <a href="http://jquery.com/" target="_blank">http://jquery.com</a></li>
+					<li>jQuery ui | <a href="http://jqueryui.com" target="_blank">http://jqueryui.com</a></li>
+				</ul>
+			</div>
+		</div>
+		
+		<div class="footer greyfoot">
+			<footer>
+				<div class="container fblat">
+					<div class="wrapper">
+						<div class="colA">
+							<h4>Altri Progetti</h4>
+							<p>EsyMail<p>
+							<p>EsyProject<p>
+							<p>EsyDocs<p>
+						</div>
+						<div class="colA">
+							<h4>Licenze Commerciali</h4>
+							<p>Per l'acquisto di licenze commerciali rivolgersi a:</p>
+							<p><a href="mailto:info@smartgap.it">info@smartgap.it</a><p>
+						</div>
+						<div class="colA">
+							<h4>Contatti</h4>
+							<p>Cell: +39 348 52 20 087<p>
+							<p>Email: <a href="mailto:info@smartgap.it">info@smartgap.it</a><p>
+							<p>Skype: <a href="skype:andreagava20?call">andreagava20</a><p>
+						</div>
+						<div class="colB">
+							<h4>Made by</h4>
+							<a href="http://www.smartgap.it" target="_blank"><img src="http://tst.smartgap.it/admin/templates/SmartGaP_new/images/logo.png"></a>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>
+
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script>
+			window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')
+		</script>
+		<!-- TinyMCE -->
+		<script type="text/javascript" src="tiny_mce/tiny_mce.js"></script>
+		<script type="text/javascript">
+			tinyMCE.init({
+				// General options
+				mode : "textareas",
+				theme : "advanced",
+				plugins : "autolink,lists,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,wordcount,advlist,autosave",
+		
+				// Theme options
+				theme_advanced_buttons1 : "link,image",
+				theme_advanced_toolbar_location : "top",
+				theme_advanced_toolbar_align : "left",
+				theme_advanced_statusbar_location : "bottom",
+				theme_advanced_resizing : true,
+		
+				file_browser_callback : 'EsyFileManager'
+			});
+		</script>
+		<script src="js/popup.functions.js"></script>
+		<script src="js/main.js"></script>
+		<!-- /TinyMCE -->
+		<script type="text/javascript">
+		
+		  var _gaq = _gaq || [];
+		  
+		  var pluginUrl = '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+		  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+		  _gaq.push(['_setAccount', 'UA-17584659-1']);
+		  _gaq.push(['_trackPageview']);
+		
+		  (function() {
+		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+		
+		</script>
+	</body>
+</html>
