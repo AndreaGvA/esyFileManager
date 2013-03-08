@@ -87,6 +87,14 @@ if ($quota=="user") {
 				
 			</div>
 			<article class="content">
+				<div class="select_folder">
+					<select id="sel_fol">
+						<option class="main" value="<?=FILES_FOLDER ?>"><?=FILES_FOLDER ?></option>
+						<?
+						$FM -> listDirs();
+						?>
+					</select>
+				</div>
 				<div class="trash">
 					&nbsp;
 				</div>
@@ -95,6 +103,7 @@ if ($quota=="user") {
 				</div>
 				<div class="order">
 					&nbsp;&nbsp;&nbsp;Nome
+					<span style="float: right; margin-right:10px;">Dimensioni</span>
 				</div>
 				<div class="filemanager">
 					<div class="bg">

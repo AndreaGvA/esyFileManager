@@ -89,6 +89,15 @@ switch ($getAction) {
 		</select>
 		<?
 		break;
+	case 'select_folder':
+		$dirname=substr(FILES_FOLDER, 0, -1);
+		?>
+		<select id="sel_fol">
+		<option class="main" value="<?=$dirname?>/"><?=$dirname?></option>
+		<? $FM -> listDirs(0, $dirname."/");?>
+		</select>
+		<?
+		break;
 	case 'fileinfo':
 		$path= pathinfo($_GET['path']);
 

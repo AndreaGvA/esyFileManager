@@ -88,6 +88,7 @@ reload = function(crt){
 				}
 			});
 			load_select(crt);
+			load_select_folder();
 			$(".edit").find(".filename").click(function(e) {
 				dragTree(this, e);
 			});
@@ -100,13 +101,22 @@ getUrlParam = function(paramName) {
 
 	return (match && match.length > 1) ? match[1] : '';
 }
-trova_soposta = function() {
+trova_sposta = function() {
 	upload_folder = $('.main').val();
 	$("#upload_folder").change(function() {
 		upload_folder = $(this).find("option:selected").val();
 		_debug("Change:" + upload_folder);
 	})
 }
+
+folder_select_tree = function(){
+	$("#sel_fol").change(function(){
+		var crt=$(this).val();
+		crt.substr(0, crt.length-1);
+		reload(crt);
+	});
+}
+
 create_folder = function(folder) {
 	$.ajax({
 		type : 'post', url : '_aj_calls.php', data : {
@@ -225,7 +235,16 @@ load_select = function(folder) {
 	$('.selectb').load('_aj_calls.php', {
 		'action' : "select", "folder" : folder
 	}, function() {
-		trova_soposta();
+		trova_sposta();
+	});
+	_debug("upload della select");
+}
+
+load_select_folder = function() {
+	$('.select_folder').load('_aj_calls.php', {
+		'action' : "select_folder"
+	}, function() {
+		folder_select_tree();
 	});
 	_debug("upload della select");
 }
@@ -721,6 +740,7 @@ dragTree = function(selector, event) {
  * Attivo la funzione hide/show su .opendir
  * Attivo la funzione dragTree su .filename
  */
+
 $(document).ready(function() {
 
 	//$('.dir').children("ul").hide();
@@ -733,6 +753,8 @@ $(document).ready(function() {
 			da_nascondere.show();
 		}
 	});
+	
+	
 
 	$(".edit").find(".filename").click(function(e) {
 		dragTree(this, e);
@@ -744,11 +766,12 @@ $(document).ready(function() {
 		crt = crt.substring(0, crt.length - 1);
 		reload(crt);
 	});
-
+	
+	folder_select_tree();
 	/**
 	 * Seleziono la cartella per l'upload
 	 */
-	trova_soposta();
+	trova_sposta();
 	/**
 	 * Creo l'uploader per i files
 	 */
@@ -825,6 +848,7 @@ $(document).ready(function() {
 		reload(crt);
 		_debug("Crea cartella in: " + upload_folder);
 	})
+	
 	/**
 	 * Un po di js per il template
 	 */
