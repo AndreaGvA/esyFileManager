@@ -56,7 +56,7 @@ switch ($getAction) {
 		$file = $FM -> take('file');
 		$new_file = $FM -> take('new_file');
 		if (file_exists($new_file)) {
-			$result['errore'] = "Impossibile spostare il file \"$filename\". Nella nella cartella di destinazione esiste già un file con lo stesso nome";
+			$result['errore'] = "Impossibile spostare il file \"$file\" Nella nella cartella di destinazione esiste già un file con lo stesso nome";
 			$result['status'] = "false";
 		} else {
 			rename($file, $new_file);
