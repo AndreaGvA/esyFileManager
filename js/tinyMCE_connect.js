@@ -1,6 +1,6 @@
 function esyFileManage(field_name, url, type, win) {
 
-	alert("Field_Name: " + field_name + "nURL: " + url + "nType: " + type + "nWin: " + win); // debug/testing
+	//alert("Field_Name: " + field_name + "nURL: " + url + "nType: " + type + "nWin: " + win); // debug/testing
 
 	/* If you work with sessions in PHP and your client doesn't accept cookies you might need to carry
 	 the session name and session ID in the request string (can look like this: "?PHPSESSID=88p0n70s9dsknra96qhuk6etm5").
