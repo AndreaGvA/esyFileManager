@@ -75,6 +75,25 @@ sposta = function(file, new_file) {
 		}
 	});
 }
+reload = function(crt){
+		$(".filemanager").load('_aj_calls.php', {
+			'folder' : crt, 'action' : 'jump'
+		}, function() {
+			$('.opendir').click(function() {
+				var da_nascondere = $(this).parent().children('ul');
+				if (da_nascondere.is(':visible')) {
+					da_nascondere.hide();
+				} else {
+					da_nascondere.show();
+				}
+			});
+			load_select(crt);
+			$(".edit").find(".filename").click(function(e) {
+				dragTree(this, e);
+			});
+			jump();
+		});
+}
 getUrlParam = function(paramName) {
 	var reParam = new RegExp('(?:[\?&]|&amp;)' + paramName + '=([^&]+)', 'i');
 	var match = window.location.search.match(reParam);
@@ -456,6 +475,7 @@ dragTree = function(selector, event) {
 			var uniqid = new Date().getUTCMilliseconds();
 			a.html(filename);
 			a.attr("contenteditable", true);
+			a.keypress(function(e){ return e.which != 13; });
 			if ( typeof salva_rinomina !== 'undefined') {
 				salva_rinomina.unbind();
 			}
@@ -472,23 +492,17 @@ dragTree = function(selector, event) {
 
 						var testob = a.html();
 						var new_filename = testob.replace(/ /g, "_");
+						// Qui aggiungere la funzione per mantenere l'estensione del file
 						sposta(folder_w + filename, folder_w + new_filename);
-						a.html(new_filename);
-						a.removeAttr('contenteditable').blur();
 						_debug("salvo il nuovo nome");
+						crt=$(".maindir").html();
+						reload(crt);
 					}
 
 				});
 
 			}, 1000);
 
-			/* BUGGY CODE
-			a.blur(function(){
-			a.html(filename+ext);
-			a.removeAttr('contenteditable').blur();
-			_debug("fuori senza salvare");
-			});
-			*/
 			/**
 			 * Quando esco dall'input inserisco il nuovo testo con l'estensione se è un file, senza se è una cartella
 			 */
@@ -646,6 +660,8 @@ dragTree = function(selector, event) {
 						var dire = $(".main").val();
 						dire = dire.substring(0, dire.length - 1);
 						load_select(dire);
+						crt=$(".maindir").html();
+						reload(crt);
 						_debug("Sposto: " + move_from + file);
 						_debug("Nella cartella: " + move_in + folder + "/" + file);
 					}
@@ -707,7 +723,7 @@ dragTree = function(selector, event) {
  */
 $(document).ready(function() {
 
-	$('.dir').children("ul").hide();
+	//$('.dir').children("ul").hide();
 
 	$('.opendir').click(function() {
 		var da_nascondere = $(this).parent().children('ul');
@@ -726,23 +742,7 @@ $(document).ready(function() {
 	$('.indsd').on("click", function() {
 		crt = $(this).attr("rel");
 		crt = crt.substring(0, crt.length - 1);
-		$(".filemanager").load('_aj_calls.php', {
-			'folder' : crt, 'action' : 'jump'
-		}, function() {
-			$('.opendir').click(function() {
-				var da_nascondere = $(this).parent().children('ul');
-				if (da_nascondere.is(':visible')) {
-					da_nascondere.hide();
-				} else {
-					da_nascondere.show();
-				}
-			});
-			load_select(crt);
-			$(".edit").find(".filename").click(function(e) {
-				dragTree(this, e);
-			});
-			jump();
-		});
+		reload(crt);
 	});
 
 	/**
@@ -821,6 +821,8 @@ $(document).ready(function() {
 	 */
 	$("#crea_cartella").click(function() {
 		create_folder(upload_folder);
+		crt=$(".maindir").html();
+		reload(crt);
 		_debug("Crea cartella in: " + upload_folder);
 	})
 	/**
