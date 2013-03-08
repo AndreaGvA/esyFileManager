@@ -7,6 +7,8 @@ Ajax Php jQuery File Manager
 Changelog:
 
 ```
+08-03-2013 - Navigation tree with select 
+08-03-2013 - Debug rename files and dirs
 07-03-2013 - Aggiunto supporto tinyMCE
 25-02-2013 - Sostituire spazi con underscore in fase di rename
 25-02-2013 - Sostituire spazi con underscore in fase di upload
@@ -33,9 +35,6 @@ Changelog:
 ToDo:
 
 ```
-1.Filtri per ordinamento per nome, dimensione e data
-2.Rinomina file e cartelle (debug)
-3.Add phpThumb support
-4.aggiungere tendina parent folder
-5.aggiungere visualizzazione icone e switch icone/elenco
+1.Add phpThumb support
+2.aggiungere visualizzazione icone e switch icone/elenco
 ```

@@ -26,6 +26,10 @@ ______________
 * jQuery | <http://jquery.com/>
 * jQuery ui | <http://jqueryui.com/>
 
+#### File Icons
+
+* <http://www.fatcow.com/free-icons>
+
 _______________
 
 #### Istruzioni
