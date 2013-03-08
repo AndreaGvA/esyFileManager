@@ -8,6 +8,7 @@ Changelog:
 
 ```
 08-03-2013 - RELASE VERSION 1.0
+08-03-2013 - test on IE8 - IE9 - Chrome - Firefox, Safari
 08-03-2013 - Navigation tree with select 
 08-03-2013 - Debug rename files and dirs
 07-03-2013 - Aggiunto supporto tinyMCE

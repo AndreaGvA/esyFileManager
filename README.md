@@ -3,7 +3,7 @@
 # esyFileManager 
 ______________
 
-**Versione 0.9b**
+**Versione 1.0**
 
 È un filemanager openSource scritto in PHP e jQuery che lavora direttamente sul filesystem senza l'ausilio di un database.
 
@@ -29,6 +29,14 @@ ______________
 #### File Icons
 
 * <http://www.fatcow.com/free-icons>
+
+#### Testato su
+
+* IE8
+* IE9
+* Chrome
+* Safari
+* Firefox
 
 _______________
 
