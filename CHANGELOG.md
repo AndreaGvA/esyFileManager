@@ -35,4 +35,7 @@ ToDo:
 ```
 1.Filtri per ordinamento per nome, dimensione e data
 2.Rinomina file e cartelle (debug)
+3.Add phpThumb support
+4.aggiungere tendina parent folder
+5.aggiungere visualizzazione icone e switch icone/elenco
 ```
