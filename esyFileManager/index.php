@@ -33,8 +33,11 @@ if ($quota=="user") {
 	$disp_to_print=$FM->bytesToSize($quota-$used."000");
 }
 ?>
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 	<head>
 		<meta charset="UTF-8">
 		<!-- TemplateBeginEditable name="doctitle" -->
@@ -42,6 +45,7 @@ if ($quota=="user") {
 		<link rel="stylesheet" type="text/css" href="css/icons.css" />
 		<link rel="stylesheet" type="text/css" href="css/fineuploader.css" />
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<script src="js/modernizr.js"></script>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
 		<script src="js/jquery.fineuploader-3.0.min.js"></script>
