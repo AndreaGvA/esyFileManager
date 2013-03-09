@@ -39,4 +39,6 @@ ToDo:
 ```
 1.Add phpThumb support
 2.aggiungere visualizzazione icone e switch icone/elenco
+3.aggiungere modulo login per protezione
+4.docs per integrazione in login proprietario
 ```
