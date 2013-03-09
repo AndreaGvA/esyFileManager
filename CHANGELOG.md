@@ -9,6 +9,7 @@ Changelog:
 ```
 08-03-2013 - RELASE VERSION 1.0
 08-03-2013 - test on IE8 - IE9 - Chrome - Firefox, Safari
+08-03-2013 - add modernizr.js
 08-03-2013 - Navigation tree with select 
 08-03-2013 - Debug rename files and dirs
 07-03-2013 - Aggiunto supporto tinyMCE
@@ -41,4 +42,6 @@ ToDo:
 2.aggiungere visualizzazione icone e switch icone/elenco
 3.aggiungere modulo login per protezione
 4.docs per integrazione in login proprietario
+5.multilanguage
+6.documentazione in inglese
 ```
