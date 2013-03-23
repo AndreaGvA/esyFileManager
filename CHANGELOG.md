@@ -7,6 +7,7 @@ Ajax Php jQuery File Manager
 Changelog:
 
 ```
+23-03-2013 - force files to download from left box
 08-03-2013 - RELASE VERSION 1.0
 08-03-2013 - test on IE8 - IE9 - Chrome - Firefox, Safari
 08-03-2013 - add modernizr.js

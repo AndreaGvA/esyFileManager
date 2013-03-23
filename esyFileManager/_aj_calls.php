@@ -108,7 +108,7 @@ switch ($getAction) {
 			echo $path['basename'];
 		} else {
 			echo "File: ";
-			echo "<a href='$_GET[path]' target='_blank'>".$path['basename']."</a>";
+			echo "<a href='download.php?file=$_GET[path]'>".$path['basename']."</a>";
 			echo "<br>";
 			echo "Tipo: ";
 			echo $path['extension'];
