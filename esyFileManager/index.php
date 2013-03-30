@@ -48,6 +48,7 @@ if ($quota=="user") {
 		<script src="js/modernizr.js"></script>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+		<script src="js/jquery.ui.touch-punch.min.js"></script>
 		<script src="js/jquery.fineuploader-3.0.min.js"></script>
 		<script src="js/purl.js"></script>
 		<script>
