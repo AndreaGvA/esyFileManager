@@ -203,7 +203,6 @@ header img{margin-top:25px; margin-bottom:10px; margin-left:30px; }
 }
 .select_folder{
 	position: absolute;
-	background: url('../images/Recycle-Bin-empty-icon.png') no-repeat;
 	top: -40px;
 	right: 250px;
 }
