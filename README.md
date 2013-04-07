@@ -3,7 +3,7 @@
 # esyFileManager 
 ______________
 
-**Versione 1.1 Touch**
+**Versione 1.2 Touch**
 
 È un filemanager openSource scritto in PHP e jQuery che lavora direttamente sul filesystem senza l'ausilio di un database.
 
