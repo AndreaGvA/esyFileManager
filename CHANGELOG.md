@@ -1,12 +1,15 @@
 esyFileManager
 ========================
-Version: 1.0
+Version: 1.2
 
 Ajax Php jQuery File Manager 
 
 Changelog:
 
 ```
+07-04-2013 - Language file(need some fixes)
+07-04-2013 - Select folder name before to create folder
+07-04-2013 - Rename Bugfix
 30-03-2013 - Add touch-punch Ipad(safari only) support
 23-03-2013 - force files to download from left box
 08-03-2013 - RELASE VERSION 1.0
@@ -44,6 +47,5 @@ ToDo:
 2.aggiungere visualizzazione icone e switch icone/elenco
 3.aggiungere modulo login per protezione
 4.docs per integrazione in login proprietario
-5.multilanguage
-6.documentazione in inglese
+5.documentazione in inglese
 ```

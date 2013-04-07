@@ -38,7 +38,7 @@ switch ($getAction) {
 		$uploader = new qqFileUploader($allowedExtensions, $sizeLimit);
 		$filename = $uploader -> getName();
 		if (file_exists($folder . $filename)) {
-			$result['error'] = "Il file \"$filename\" esiste già nella cartella di destinazione";
+			$result['error'] = $text["err_esiste"];
 			$result['exists'] = "true";
 		} else {
 			// Call handleUpload() with the name of the folder, relative to PHP's getcwd()
@@ -56,7 +56,7 @@ switch ($getAction) {
 		$file = $FM -> take('file');
 		$new_file = $FM -> take('new_file');
 		if (file_exists($new_file)) {
-			$result['errore'] = "Impossibile spostare il file \"$file\" Nella nella cartella di destinazione esiste già un file con lo stesso nome";
+			$result['errore'] = $text["err_sposta"];
 			$result['status'] = "false";
 		} else {
 			rename($file, $new_file);
@@ -66,7 +66,8 @@ switch ($getAction) {
 		break;
 	case 'new':
 		$folder=$FM->take("folder");
-		$nuova_cartella=$FM->new_folder_name($folder, 0);
+		$name=$FM->take("name");
+		$nuova_cartella=$FM->new_folder_name($folder, $name, 0);
 		mkdir($folder.$nuova_cartella);
 		$result['status']="true";
 		$result['dirname']=$nuova_cartella; 
@@ -104,20 +105,20 @@ switch ($getAction) {
 		echo "<div>";
 		if (is_dir($_GET['path'])) {
 			$size=$FM->dirSize($_GET['path']);
-			echo "Cartella: ";
+			echo "$text[cartella]: ";
 			echo $path['basename'];
 		} else {
 			echo "File: ";
 			echo "<a href='download.php?file=$_GET[path]'>".$path['basename']."</a>";
 			echo "<br>";
-			echo "Tipo: ";
+			echo "$text[tipo]: ";
 			echo $path['extension'];
 			
 		} 
 		echo "<br>";
 		if(file_exists($_GET['path'])) {
 			$size=filesize($_GET['path']);	
-			echo "Dimesioni: ";
+			echo "$text[dimensioni]: ";
 			echo $FM->bytesToSize($size);
 			if($path['extension']=="jpeg" || $path['extension']=="jpg" || $path['extension']=="gif" || $path['extension']=="png" || $path['extension']=="JPG" ){
 				echo "<img src='thumb.php?path=$_GET[path]' width='100%' />";

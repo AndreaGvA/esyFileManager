@@ -416,11 +416,12 @@ class esyFileManager {
 		return true;
 	}
 
-	function new_folder_name($folder, $n) {
-		$new_name = "nuova_cartella_$n";
+	function new_folder_name($folder, $name, $n) {
+		if($n==0) {$new_name = "$name";} else {$new_name = "{$name} {$n}";}
+		
 		if (is_dir($folder . $new_name)) {
 			$n++;
-			$new_name = $this -> new_folder_name($folder, $n);
+			$new_name = $this -> new_folder_name($folder, $new_name, $n);
 		}
 		return $new_name;
 	}

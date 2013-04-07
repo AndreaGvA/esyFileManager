@@ -80,7 +80,8 @@ if ($quota=="user") {
 					?>
 				</select>
 				</div>
-				<input type="button" class="buttonz" id="crea_cartella" value="Crea una cartella" />
+				<input type="button" class="buttonz" id="crea_cartella" value="<?=$text["crea_cartella"]?>" />
+				<div class="folderF"></div>
 				<div class="uploader"></div>
 				
 				<!-- end .sidebar1 -->
@@ -107,8 +108,8 @@ if ($quota=="user") {
 					&nbsp;
 				</div>
 				<div class="order">
-					&nbsp;&nbsp;&nbsp;Nome
-					<span style="float: right; margin-right:10px;">Dimensioni</span>
+					&nbsp;&nbsp;&nbsp;<?=$text["nome"]?>
+					<span style="float: right; margin-right:10px;"><?=$text["dimensioni"]?></span>
 				</div>
 				<div class="filemanager">
 					<div class="bg">
@@ -124,10 +125,20 @@ if ($quota=="user") {
 			</article>
 			<footer>
 				<p>
-					Spazio Disponibile: <?=$disp_to_print?> - Spazio Utilizzato: <?=$used_to_print?> - Spazio Totale: <?=$quota_to_print?>
+					<?=$text["spazio_disponibile"]?>: <?=$disp_to_print?> - <?=$text["spazio_utilizzato"]?>: <?=$used_to_print?> - <?=$text["spazio_totale"]?>: <?=$quota_to_print?>
 				</p>
 			</footer>
 			<!-- end .container -->
 		</div>
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		
+		  ga('create', 'UA-17584659-8', 'smartgap.it');
+		  ga('send', 'pageview');
+		
+		</script>
 	</body>
 </html>

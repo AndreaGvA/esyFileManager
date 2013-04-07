@@ -68,9 +68,21 @@ sposta = function(file, new_file) {
 		}, complete : function(jqXHR) {
 			var result = $.parseJSON(jqXHR.responseText);
 			if (result.status == "true") {
+				var dire = $(".main").val();
+				dire = dire.substring(0, dire.length - 1);
+				load_select(dire);
+				crt=$(".maindir").html();
+				reload(crt);
+				_debug("Sposto: " + file);
+				_debug("Nella cartella: " + new_file);
 				_debug('Spostato: ' + file);
 			} else {
-				alert('Errore: ' + result.errore);
+				alert(result.errore);
+				var dire = $(".main").val();
+				dire = dire.substring(0, dire.length - 1);
+				load_select(dire);
+				crt=$(".maindir").html();
+				reload(crt);
 			}
 		}
 	});
@@ -117,10 +129,10 @@ folder_select_tree = function(){
 	});
 }
 
-create_folder = function(folder) {
+create_folder = function(folder, name) {
 	$.ajax({
 		type : 'post', url : '_aj_calls.php', data : {
-			'folder' : folder, 'action' : 'new'
+			'folder' : folder, 'name':name, 'action' : 'new'
 		}, complete : function(jqXHR) {
 			var result = $.parseJSON(jqXHR.responseText);
 			var uniqid = new Date().getUTCMilliseconds();
@@ -149,9 +161,11 @@ create_folder = function(folder) {
 						_debug('Creata: ' + folder + result.dirname);
 					}
 				});
+				crt=$(".maindir").html();
+				reload(crt);
 
 			} else {
-				alert('Errore: ' + result.errore);
+				alert(result.errore);
 			}
 		}
 	});
@@ -510,12 +524,11 @@ dragTree = function(selector, event) {
 					} else {
 
 						var testob = a.html();
-						var new_filename = testob.replace(/ /g, "_");
+						//var new_filename = testob.replace(/ /g, "_");
+						new_filename = testob;
 						// Qui aggiungere la funzione per mantenere l'estensione del file
 						sposta(folder_w + filename, folder_w + new_filename);
 						_debug("salvo il nuovo nome");
-						crt=$(".maindir").html();
-						reload(crt);
 					}
 
 				});
@@ -554,7 +567,7 @@ dragTree = function(selector, event) {
 			/**
 			 * Se è una cartella
 			 */
-			if (confirm("Vuoi eliminare definitivamente tutti i file selezionati?")) {
+			if (confirm("Do you want to delete selected files?")) {
 				$('.selected').each(function() {
 					var bool = $(this).parent('li').hasClass('dir');
 					var move_from = $(this).parent('li').attr('rel');
@@ -630,7 +643,7 @@ dragTree = function(selector, event) {
 						file = file + "/";
 						var error = beginsWith(move_from + file, move_in + folder);
 						if (error == true) {
-							alert("Non puoi spostare una cartella in se stessa");
+							//alert("Non puoi spostare una cartella in se stessa");
 							_debug("Non puoi spostare una cartella in se stessa");
 						}
 						if (error == false) {
@@ -676,13 +689,7 @@ dragTree = function(selector, event) {
 								da_nascondere.show();
 							}
 						});
-						var dire = $(".main").val();
-						dire = dire.substring(0, dire.length - 1);
-						load_select(dire);
-						crt=$(".maindir").html();
-						reload(crt);
-						_debug("Sposto: " + move_from + file);
-						_debug("Nella cartella: " + move_in + folder + "/" + file);
+						
 					}
 				}
 
@@ -843,10 +850,22 @@ $(document).ready(function() {
 	 * Script per la creazione delle cartelle
 	 */
 	$("#crea_cartella").click(function() {
-		create_folder(upload_folder);
+		/*
+		 * create_folder(upload_folder);
 		crt=$(".maindir").html();
 		reload(crt);
 		_debug("Crea cartella in: " + upload_folder);
+		 */
+		if($("#new_folder_name").length == 0) {
+		  	$(".folderF").append("<form><input type=\"text\" name=\"folder_name\" id=\"new_folder_name\"><br><input type=\"button\" class=\"buttonz\" id=\"save_folder\" value=\" Save\"></form>");
+		}
+		$("#save_folder").click(function(){
+			var folder_name=$("#new_folder_name").val();
+			create_folder(upload_folder, folder_name);
+			_debug("Crea cartella in: " + upload_folder);
+			$(".folderF form").remove();
+		});
+		_debug("Crea cartella");
 	})
 	
 	/**

@@ -285,6 +285,9 @@ header, section, footer, aside, article, figure {
 	height:250px;
 	overflow:auto;
 }
+#new_folder_name{width:98%;border: 1px solid #ccc;
+	-webkit-border-radius: 5px;
+	border-radius: 5px; height:25px; line-height:24px; } 
 .dettagli_file div{padding:10px;}
 .dett_file{float:right; margin-top:-35px; padding-right:10px; text-align:right; font-size:10px; z-index:9999999;}
 #reload{cursor:pointer;}
