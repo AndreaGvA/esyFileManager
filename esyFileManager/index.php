@@ -18,8 +18,10 @@ require_once "classes/class.filemanager.php";
 $FM = new esyFileManager();
 $user=get_current_user();
 //sleep(5);
-$used = exec("cat /tmp/quotas | grep $user | awk '{print $3}'");
+//$used = exec("cat /tmp/quotas | grep $user | awk '{print $3}'");
+$used=$FM->dirSize("public");
 $quota = exec("cat /tmp/quotas | grep $user | awk '{print $2}'");
+$quota = $quota * 1024;
 if ($quota=="user") {
 	$quota_n=disk_total_space($_SERVER[DOCUMENT_ROOT]);
 	$disp_n=disk_free_space($_SERVER[DOCUMENT_ROOT]);
@@ -28,9 +30,9 @@ if ($quota=="user") {
 	$used_to_print=$FM->bytesToSize($used_n);
 	$disp_to_print=$FM->bytesToSize($disp_n);
 } else {
-	$quota_to_print=$FM->bytesToSize($quota."000");
-	$used_to_print=$FM->bytesToSize($used."000");
-	$disp_to_print=$FM->bytesToSize($quota-$used."000");
+	$quota_to_print=$FM->bytesToSize($quota);
+	$used_to_print=$FM->bytesToSize($used);
+	$disp_to_print=$FM->bytesToSize($quota-$used);
 }
 ?>
 <!DOCTYPE html>
