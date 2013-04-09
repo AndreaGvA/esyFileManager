@@ -22,6 +22,7 @@ ______________
 #### EsyFileManager utilizza le seguenti librerie OpenSource:
 
 * file-uploader | <https://github.com/valums/file-uploader>
+* jquery-selectBox | <https://github.com/claviska/jquery-selectBox>
 * jQuery URL Parser | <https://github.com/allmarkedup/jQuery-URL-Parser>
 * jQuery | <http://jquery.com/>
 * jQuery ui | <http://jqueryui.com/>
