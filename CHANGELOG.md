@@ -7,6 +7,7 @@ Ajax Php jQuery File Manager
 Changelog:
 
 ```
+09-04-2013 - Solved some usability issues
 07-04-2013 - RELASE VERSION 1.2
 07-04-2013 - Language file(need some fixes)
 07-04-2013 - Select folder name before to create folder
