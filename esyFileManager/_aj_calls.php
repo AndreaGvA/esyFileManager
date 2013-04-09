@@ -120,19 +120,19 @@ switch ($getAction) {
 			echo $path['basename'];
 		} else {
 			echo "File: ";
-			echo "<a href='download.php?file=$_GET[path]'>".$path['basename']."</a>";
+			echo "<a href='download.php?file=$_POST[path]'>".$path['basename']."</a>";
 			echo "<br>";
 			echo "$text[tipo]: ";
 			echo $path['extension'];
 			
 		} 
 		echo "<br>";
-		if(file_exists($_GET['path'])) {
-			$size=filesize($_GET['path']);	
+		if(file_exists($_POST['path'])) {
+			$size=filesize($_POST['path']);	
 			echo "$text[dimensioni]: ";
 			echo $FM->bytesToSize($size);
 			if($path['extension']=="jpeg" || $path['extension']=="jpg" || $path['extension']=="gif" || $path['extension']=="png" || $path['extension']=="JPG" ){
-				echo "<img src='thumb.php?path=$_GET[path]' width='100%' />";
+				echo "<img src='thumb.php?path=$_POST[path]' width='100%' />";
 			}
 		} else {
 			echo "<br><br><center><a id='reload' rel='".FILES_FOLDER."'><img src='images/refresh_48.png' /></a></center>";
