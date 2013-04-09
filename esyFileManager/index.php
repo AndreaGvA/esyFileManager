@@ -42,6 +42,7 @@ if ($quota=="user") {
 		<meta charset="UTF-8">
 		<!-- TemplateBeginEditable name="doctitle" -->
 		<title>esyFileManager</title>
+		<link rel="stylesheet" type="text/css" href="css/jquery.selectBox.css" />
 		<link rel="stylesheet" type="text/css" href="css/icons.css" />
 		<link rel="stylesheet" type="text/css" href="css/fineuploader.css" />
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
@@ -50,6 +51,7 @@ if ($quota=="user") {
 		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
 		<script src="js/jquery.ui.touch-punch.min.js"></script>
 		<script src="js/jquery.fineuploader-3.0.min.js"></script>
+		<script src="js/jquery.selectBox.min.js"></script>
 		<script src="js/purl.js"></script>
 		<script>
 			var debug = <?=DEBUG?>;
@@ -68,13 +70,14 @@ if ($quota=="user") {
 	<body>
 		<div class="container">
 			<header>
-				<img src="images/logo.png">
+				<img src="images/logo.png" width="15%">
 			</header>
 			<div class="sidebar1">
 				<div class="inner-sidebar">
+					<span class="small"><?=$text["upload_path"]?></span>
 				<div class="selectb">
 				<select id="upload_folder">
-					<option class="main" value="<?=FILES_FOLDER ?>"><?=FILES_FOLDER ?></option>
+					<option class="main" value="<?=FILES_FOLDER ?>"><?=substr(FILES_FOLDER, 0, -1); ?></option>
 					<?
 					$FM -> listDirs();
 					?>
@@ -86,7 +89,9 @@ if ($quota=="user") {
 				
 				<!-- end .sidebar1 -->
 				<div class="dettagli_file">
-					
+					<div class="modal"><?=$text["file_details"]?></div> 
+					<div class="minimize"><b>_</b></div>
+					<div class="det_file"></div>
 				</div>
 				</div>
 				
@@ -95,7 +100,8 @@ if ($quota=="user") {
 			<article class="content">
 				<div class="select_folder">
 					<select id="sel_fol">
-						<option class="main" value="<?=FILES_FOLDER ?>"><?=FILES_FOLDER ?></option>
+						<option><?=$text["nav_dir"]?></option>
+						<option class="main" value="<?=FILES_FOLDER ?>"><?=substr(FILES_FOLDER, 0, -1); ?></option>
 						<?
 						$FM -> listDirs();
 						?>

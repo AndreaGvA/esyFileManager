@@ -10,6 +10,9 @@ $text["spazio_utilizzato"]="Used";
 $text["spazio_disponibile"]="Free";
 $text["spazio_totale"]="Total";
 
+$text["upload_path"]="Upload/New folder path:";
+$text["nav_dir"]="Navigate folders";
+$text["file_details"]="File Details";
 /**
  * MESSAGGI DI ERRORE
  **/

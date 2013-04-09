@@ -71,8 +71,9 @@ sposta = function(file, new_file) {
 				var dire = $(".main").val();
 				dire = dire.substring(0, dire.length - 1);
 				load_select(dire);
+				crt_path=$(".maindir").parent(".edit").attr("rel");
 				crt=$(".maindir").html();
-				reload(crt);
+				reload(crt_path+crt);
 				_debug("Sposto: " + file);
 				_debug("Nella cartella: " + new_file);
 				_debug('Spostato: ' + file);
@@ -81,6 +82,7 @@ sposta = function(file, new_file) {
 				var dire = $(".main").val();
 				dire = dire.substring(0, dire.length - 1);
 				load_select(dire);
+				crt_path=$(".maindir").parent(".edit").attr("rel");
 				crt=$(".maindir").html();
 				reload(crt);
 			}
@@ -124,7 +126,8 @@ trova_sposta = function() {
 folder_select_tree = function(){
 	$("#sel_fol").change(function(){
 		var crt=$(this).val();
-		crt.substr(0, crt.length-1);
+		crt=crt.substr(0, crt.length-1);
+		_debug(crt);
 		reload(crt);
 	});
 }
@@ -249,6 +252,7 @@ load_select = function(folder) {
 	$('.selectb').load('_aj_calls.php', {
 		'action' : "select", "folder" : folder
 	}, function() {
+		$("select").selectBox();
 		trova_sposta();
 	});
 	_debug("upload della select");
@@ -258,6 +262,7 @@ load_select_folder = function() {
 	$('.select_folder').load('_aj_calls.php', {
 		'action' : "select_folder"
 	}, function() {
+		$("select").selectBox();
 		folder_select_tree();
 	});
 	_debug("upload della select");
@@ -711,7 +716,7 @@ dragTree = function(selector, event) {
 	if (!(selected_file.indexOf("<input class=") > -1)) {
 		mfdr = selected_folder + selected_file;
 		_debug("Selezionato: " + selected_folder + selected_file);
-		$('.dettagli_file').load("_aj_calls.php?action=fileinfo&path=" + selected_folder + selected_file, function() {
+		$('.det_file').load("_aj_calls.php?action=fileinfo&path=" + selected_folder + selected_file, function() {
 			$('#reload').on("click", function() {
 				crt = $(this).attr("rel");
 				crt = crt.substring(0, crt.length - 1);
@@ -857,7 +862,7 @@ $(document).ready(function() {
 		_debug("Crea cartella in: " + upload_folder);
 		 */
 		if($("#new_folder_name").length == 0) {
-		  	$(".folderF").append("<form><input type=\"text\" name=\"folder_name\" id=\"new_folder_name\"><br><input type=\"button\" class=\"buttonz\" id=\"save_folder\" value=\" Save\"></form>");
+		  	$(".folderF").append("<form><input type=\"text\" name=\"folder_name\" id=\"new_folder_name\"><br><input type=\"button\" class=\"buttonz\" id=\"save_folder\" value=\" Save folder\"></form>");
 		}
 		$("#save_folder").click(function(){
 			var folder_name=$("#new_folder_name").val();
@@ -871,10 +876,25 @@ $(document).ready(function() {
 	/**
 	 * Un po di js per il template
 	 */
-	var height = $(document).height();
+	var height = $(window).height();
 	var cont_height = height - 80 - 40 - 20;
 	$(".filemanager").height(cont_height - 15);
 	$(".inner-sidebar").height(cont_height);
+	
+	$("select").selectBox();
+	
+	$(".minimize").click(function() {
+		$(".det_file").toggle('slow', function() {
+			// Animation complete.
+			if( $('.det_file').is(':visible') ) {
+			    $(".minimize").html("<b>_</b>");
+			}
+			else {
+			    $(".minimize").html("<b>^</b>");
+			}
+			
+  		});
+	});
 
 });
 $(window).resize(function() {
@@ -882,4 +902,6 @@ $(window).resize(function() {
 	var cont_height = height - 80 - 40 - 20;
 	$(".filemanager").height(cont_height - 15);
 	$(".inner-sidebar").height(cont_height);
+	
+	$(".selectBox-dropdown").width("100%");
 });

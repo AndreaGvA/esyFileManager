@@ -75,14 +75,24 @@ switch ($getAction) {
 		break;
 	case 'jump':
 		$dirname=$FM->take("folder");
+		$path_arr=explode("/", $dirname);
+		$dir_to_print=end($path_arr);
+		$rel_to_print="";
+		for($n=0; $n<count($path_arr)-1; $n++)
+		{
+			$rel_to_print.="$path_arr[$n]/";
+		}
+		
 		echo '<div class="bg">';
-		echo "<ul><li rel='' class='dir edit'><div class='filename maindir'>$dirname</div><div class='opendir'></div>";
+		echo "<ul>
+				<li class='path_li'><div class='path_dir'>Path: $dirname</div></li>
+				<li rel='$rel_to_print' class='dir edit'><div class='filename maindir'>$dir_to_print</div><div class='opendir'></div>";
 		$FM -> listFiles(0, $dirname."/");
 		echo "</li></ul>";
 		echo '</div>';
 		break;
 	case 'select':
-		$dirname=$FM->take("folder");
+		$dirname=substr(FILES_FOLDER, 0, -1);
 		?>
 		<select id="upload_folder">
 		<option class="main" value="<?=$dirname?>/"><?=$dirname?></option>
@@ -94,6 +104,7 @@ switch ($getAction) {
 		$dirname=substr(FILES_FOLDER, 0, -1);
 		?>
 		<select id="sel_fol">
+		<option><?=$text["nav_dir"]?></option>
 		<option class="main" value="<?=$dirname?>/"><?=$dirname?></option>
 		<? $FM -> listDirs(0, $dirname."/");?>
 		</select>
