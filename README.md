@@ -3,7 +3,7 @@
 # esyFileManager 
 ______________
 
-**Versione 1.0**
+**Versione 1.2 Touch**
 
 È un filemanager openSource scritto in PHP e jQuery che lavora direttamente sul filesystem senza l'ausilio di un database.
 
@@ -22,9 +22,11 @@ ______________
 #### EsyFileManager utilizza le seguenti librerie OpenSource:
 
 * file-uploader | <https://github.com/valums/file-uploader>
+* jquery-selectBox | <https://github.com/claviska/jquery-selectBox>
 * jQuery URL Parser | <https://github.com/allmarkedup/jQuery-URL-Parser>
 * jQuery | <http://jquery.com/>
 * jQuery ui | <http://jqueryui.com/>
+* jQuery UI Touch Punch | <http://touchpunch.furf.com/>
 
 #### File Icons
 

@@ -68,9 +68,23 @@ sposta = function(file, new_file) {
 		}, complete : function(jqXHR) {
 			var result = $.parseJSON(jqXHR.responseText);
 			if (result.status == "true") {
+				var dire = $(".main").val();
+				dire = dire.substring(0, dire.length - 1);
+				load_select(dire);
+				crt_path=$(".maindir").parent(".edit").attr("rel");
+				crt=$(".maindir").html();
+				reload(crt_path+crt);
+				_debug("Sposto: " + file);
+				_debug("Nella cartella: " + new_file);
 				_debug('Spostato: ' + file);
 			} else {
-				alert('Errore: ' + result.errore);
+				alert(result.errore);
+				var dire = $(".main").val();
+				dire = dire.substring(0, dire.length - 1);
+				load_select(dire);
+				crt_path=$(".maindir").parent(".edit").attr("rel");
+				crt=$(".maindir").html();
+				reload(crt);
 			}
 		}
 	});
@@ -112,15 +126,16 @@ trova_sposta = function() {
 folder_select_tree = function(){
 	$("#sel_fol").change(function(){
 		var crt=$(this).val();
-		crt.substr(0, crt.length-1);
+		crt=crt.substr(0, crt.length-1);
+		_debug(crt);
 		reload(crt);
 	});
 }
 
-create_folder = function(folder) {
+create_folder = function(folder, name) {
 	$.ajax({
 		type : 'post', url : '_aj_calls.php', data : {
-			'folder' : folder, 'action' : 'new'
+			'folder' : folder, 'name':name, 'action' : 'new'
 		}, complete : function(jqXHR) {
 			var result = $.parseJSON(jqXHR.responseText);
 			var uniqid = new Date().getUTCMilliseconds();
@@ -149,9 +164,11 @@ create_folder = function(folder) {
 						_debug('Creata: ' + folder + result.dirname);
 					}
 				});
+				crt=$(".maindir").html();
+				reload(crt);
 
 			} else {
-				alert('Errore: ' + result.errore);
+				alert(result.errore);
 			}
 		}
 	});
@@ -235,6 +252,9 @@ load_select = function(folder) {
 	$('.selectb').load('_aj_calls.php', {
 		'action' : "select", "folder" : folder
 	}, function() {
+		$("select").selectBox();
+		$(".selectBox-dropdown").width("100%");
+		$(".selectBox-label").width("100%");
 		trova_sposta();
 	});
 	_debug("upload della select");
@@ -244,6 +264,9 @@ load_select_folder = function() {
 	$('.select_folder').load('_aj_calls.php', {
 		'action' : "select_folder"
 	}, function() {
+		$("select").selectBox();
+		$(".selectBox-dropdown").width("100%");
+		$(".selectBox-label").width("100%");
 		folder_select_tree();
 	});
 	_debug("upload della select");
@@ -510,12 +533,11 @@ dragTree = function(selector, event) {
 					} else {
 
 						var testob = a.html();
-						var new_filename = testob.replace(/ /g, "_");
+						//var new_filename = testob.replace(/ /g, "_");
+						new_filename = testob;
 						// Qui aggiungere la funzione per mantenere l'estensione del file
 						sposta(folder_w + filename, folder_w + new_filename);
 						_debug("salvo il nuovo nome");
-						crt=$(".maindir").html();
-						reload(crt);
 					}
 
 				});
@@ -554,7 +576,7 @@ dragTree = function(selector, event) {
 			/**
 			 * Se è una cartella
 			 */
-			if (confirm("Vuoi eliminare definitivamente tutti i file selezionati?")) {
+			if (confirm("Do you want to delete selected files?")) {
 				$('.selected').each(function() {
 					var bool = $(this).parent('li').hasClass('dir');
 					var move_from = $(this).parent('li').attr('rel');
@@ -630,7 +652,7 @@ dragTree = function(selector, event) {
 						file = file + "/";
 						var error = beginsWith(move_from + file, move_in + folder);
 						if (error == true) {
-							alert("Non puoi spostare una cartella in se stessa");
+							//alert("Non puoi spostare una cartella in se stessa");
 							_debug("Non puoi spostare una cartella in se stessa");
 						}
 						if (error == false) {
@@ -676,13 +698,7 @@ dragTree = function(selector, event) {
 								da_nascondere.show();
 							}
 						});
-						var dire = $(".main").val();
-						dire = dire.substring(0, dire.length - 1);
-						load_select(dire);
-						crt=$(".maindir").html();
-						reload(crt);
-						_debug("Sposto: " + move_from + file);
-						_debug("Nella cartella: " + move_in + folder + "/" + file);
+						
 					}
 				}
 
@@ -704,7 +720,10 @@ dragTree = function(selector, event) {
 	if (!(selected_file.indexOf("<input class=") > -1)) {
 		mfdr = selected_folder + selected_file;
 		_debug("Selezionato: " + selected_folder + selected_file);
-		$('.dettagli_file').load("_aj_calls.php?action=fileinfo&path=" + selected_folder + selected_file, function() {
+		$('.det_file').load("_aj_calls.php", {
+			action: "fileinfo", 
+			path: selected_folder + selected_file
+		}, function() {
 			$('#reload').on("click", function() {
 				crt = $(this).attr("rel");
 				crt = crt.substring(0, crt.length - 1);
@@ -843,24 +862,57 @@ $(document).ready(function() {
 	 * Script per la creazione delle cartelle
 	 */
 	$("#crea_cartella").click(function() {
-		create_folder(upload_folder);
+		/*
+		 * create_folder(upload_folder);
 		crt=$(".maindir").html();
 		reload(crt);
 		_debug("Crea cartella in: " + upload_folder);
+		 */
+		if($("#new_folder_name").length == 0) {
+		  	$(".folderF").append("<form><input type=\"text\" name=\"folder_name\" id=\"new_folder_name\"><br><input type=\"button\" class=\"buttonz\" id=\"save_folder\" value=\" Save folder\"></form>");
+		}
+		$("#save_folder").click(function(){
+			var folder_name=$("#new_folder_name").val();
+			create_folder(upload_folder, folder_name);
+			_debug("Crea cartella in: " + upload_folder);
+			$(".folderF form").remove();
+		});
+		_debug("Crea cartella");
 	})
 	
 	/**
 	 * Un po di js per il template
 	 */
-	var height = $(document).height();
+	var height = $(window).height();
 	var cont_height = height - 80 - 40 - 20;
 	$(".filemanager").height(cont_height - 15);
 	$(".inner-sidebar").height(cont_height);
-
+	
+	$("select").selectBox();
+	
+	$(".minimize").click(function() {
+		$(".det_file").toggle('slow', function() {
+			// Animation complete.
+			if( $('.det_file').is(':visible') ) {
+			    $(".minimize").html("<b>_</b>");
+			}
+			else {
+			    $(".minimize").html("<b>^</b>");
+			}
+			
+  		});
+	});
+	
+	$(".selectBox-dropdown").width("100%");
+	$(".selectBox-label").width("100%");
+	
 });
 $(window).resize(function() {
 	var height = $(this).height();
 	var cont_height = height - 80 - 40 - 20;
 	$(".filemanager").height(cont_height - 15);
 	$(".inner-sidebar").height(cont_height);
+	
+	$(".selectBox-dropdown").width("100%");
+	$(".selectBox-label").width("100%");
 });

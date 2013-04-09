@@ -19,6 +19,7 @@
  define("REPLACE_WITH", "esyFileManager/public/"); 
  define("QUOTA", "1"); 
  
+ require 'lang/eng.php';
  /**
   * FINE FILE DI CONFIGURAZIONE
   */

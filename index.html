@@ -29,7 +29,7 @@
 			<header>
 				<div class="wrapper nobtpadding">
 					<a href="index.html"><h1>EsyFileManager - Un file manager in jQuery e PHP</h1></a>
-					<div class="ver">Demo ver 1.0 - by SmartGaP</div>
+					<div class="ver">Demo ver 1.2 Touch - by SmartGaP</div>
 				</div>
 			</header>
 		</div>
@@ -71,10 +71,15 @@
 				<h1 id="esyfilemanager">esyFileManager</h1>
 				<hr>
 				<p>
-					<strong>Versione 1.0</strong>
+					<strong>Versione 1.2 Touch</strong>
 				</p>
 				<hr>
-				
+				<h4 id="funzionalità">Funzionalità</h4>
+					1. Rename inline (mantenendo il click sull'elemento selezionato)<br>
+					2. Upload Asincrono in Ajax<br>
+					3. Spostamento ed eliminazione con drag&drop<br>
+					4. Hard disk space o Quota
+				<hr>
 				<h4 id="istruzioni">Istruzioni</h4>
 				<p>
 					Includere la cartella esyFileManager ed il file js/popup.functions.js nel proprio progetto
@@ -157,9 +162,11 @@
 				</p>
 				<ul>
 					<li>file uploader | <a href="https://github.com/valums/file-uploader" target="_blank">https://github.com/valums/file-uploader</a></li>
+					<li>jquery-selectBox | <a href="https://github.com/claviska/jquery-selectBox" target="_blank">https://github.com/claviska/jquery-selectBox</a></li>
 					<li>jQuery URL Parser | <a href="https://github.com/allmarkedup/jQuery-URL-Parser" target="_blank">https://github.com/allmarkedup/jQuery-URL-Parser</a></li>
 					<li>jQuery | <a href="http://jquery.com/" target="_blank">http://jquery.com</a></li>
 					<li>jQuery ui | <a href="http://jqueryui.com" target="_blank">http://jqueryui.com</a></li>
+					<li>jQuery UI Touch Punch | <a href="http://touchpunch.furf.com" target="_blank">http://touchpunch.furf.com</a></li>
 				</ul>
 				<h3>Icons</h3>
 				<ul>
@@ -212,20 +219,14 @@
 		</script>
 		<script src="js/popup.functions.js"></script>
 		<script src="js/main.js"></script>
-		<script type="text/javascript">
+		<script> 
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 		
-		  var _gaq = _gaq || [];
-		  
-		  var pluginUrl = '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
-		  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
-		  _gaq.push(['_setAccount', 'UA-17584659-1']);
-		  _gaq.push(['_trackPageview']);
-		
-		  (function() {
-		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		  })();
+		  ga('create', 'UA-17584659-8', 'smartgap.it');
+		  ga('send', 'pageview');
 		
 		</script>
 	</body>

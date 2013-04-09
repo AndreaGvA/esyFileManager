@@ -28,7 +28,9 @@ class esyFileManager {
 	}
 
 	function init() {
-		echo "<ul><li rel='$dirname' class='dir edit'><div class='filename maindir'>public</div><div class='opendir'></div>";
+		echo "<ul>
+				<li class='path_li'><div class='path_dir'>Path: public</div></li>
+				<li rel='$dirname' class='dir edit'><div class='filename maindir'>public</div><div class='opendir'></div>";
 		$this -> listFiles();
 		echo "</li></ul>";
 	}
@@ -416,11 +418,12 @@ class esyFileManager {
 		return true;
 	}
 
-	function new_folder_name($folder, $n) {
-		$new_name = "nuova_cartella_$n";
+	function new_folder_name($folder, $name, $n) {
+		if($n==0) {$new_name = "$name";} else {$new_name = "{$name} {$n}";}
+		
 		if (is_dir($folder . $new_name)) {
 			$n++;
-			$new_name = $this -> new_folder_name($folder, $n);
+			$new_name = $this -> new_folder_name($folder, $new_name, $n);
 		}
 		return $new_name;
 	}

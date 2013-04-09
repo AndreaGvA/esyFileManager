@@ -38,7 +38,7 @@ switch ($getAction) {
 		$uploader = new qqFileUploader($allowedExtensions, $sizeLimit);
 		$filename = $uploader -> getName();
 		if (file_exists($folder . $filename)) {
-			$result['error'] = "Il file \"$filename\" esiste già nella cartella di destinazione";
+			$result['error'] = $text["err_esiste"];
 			$result['exists'] = "true";
 		} else {
 			// Call handleUpload() with the name of the folder, relative to PHP's getcwd()
@@ -56,7 +56,7 @@ switch ($getAction) {
 		$file = $FM -> take('file');
 		$new_file = $FM -> take('new_file');
 		if (file_exists($new_file)) {
-			$result['errore'] = "Impossibile spostare il file \"$file\" Nella nella cartella di destinazione esiste già un file con lo stesso nome";
+			$result['errore'] = $text["err_sposta"];
 			$result['status'] = "false";
 		} else {
 			rename($file, $new_file);
@@ -66,7 +66,8 @@ switch ($getAction) {
 		break;
 	case 'new':
 		$folder=$FM->take("folder");
-		$nuova_cartella=$FM->new_folder_name($folder, 0);
+		$name=$FM->take("name");
+		$nuova_cartella=$FM->new_folder_name($folder, $name, 0);
 		mkdir($folder.$nuova_cartella);
 		$result['status']="true";
 		$result['dirname']=$nuova_cartella; 
@@ -74,14 +75,24 @@ switch ($getAction) {
 		break;
 	case 'jump':
 		$dirname=$FM->take("folder");
+		$path_arr=explode("/", $dirname);
+		$dir_to_print=end($path_arr);
+		$rel_to_print="";
+		for($n=0; $n<count($path_arr)-1; $n++)
+		{
+			$rel_to_print.="$path_arr[$n]/";
+		}
+		
 		echo '<div class="bg">';
-		echo "<ul><li rel='' class='dir edit'><div class='filename maindir'>$dirname</div><div class='opendir'></div>";
+		echo "<ul>
+				<li class='path_li'><div class='path_dir'>Path: $dirname</div></li>
+				<li rel='$rel_to_print' class='dir edit'><div class='filename maindir'>$dir_to_print</div><div class='opendir'></div>";
 		$FM -> listFiles(0, $dirname."/");
 		echo "</li></ul>";
 		echo '</div>';
 		break;
 	case 'select':
-		$dirname=$FM->take("folder");
+		$dirname=substr(FILES_FOLDER, 0, -1);
 		?>
 		<select id="upload_folder">
 		<option class="main" value="<?=$dirname?>/"><?=$dirname?></option>
@@ -93,34 +104,35 @@ switch ($getAction) {
 		$dirname=substr(FILES_FOLDER, 0, -1);
 		?>
 		<select id="sel_fol">
+		<option><?=$text["nav_dir"]?></option>
 		<option class="main" value="<?=$dirname?>/"><?=$dirname?></option>
 		<? $FM -> listDirs(0, $dirname."/");?>
 		</select>
 		<?
 		break;
 	case 'fileinfo':
-		$path= pathinfo($_GET['path']);
+		$path= pathinfo($_POST['path']);
 
 		echo "<div>";
-		if (is_dir($_GET['path'])) {
-			$size=$FM->dirSize($_GET['path']);
-			echo "Cartella: ";
+		if (is_dir($_POST['path'])) {
+			$size=$FM->dirSize($_POST['path']);
+			echo "$text[cartella]: ";
 			echo $path['basename'];
 		} else {
 			echo "File: ";
-			echo "<a href='$_GET[path]' target='_blank'>".$path['basename']."</a>";
+			echo "<a href='download.php?file=$_POST[path]'>".$path['basename']."</a>";
 			echo "<br>";
-			echo "Tipo: ";
+			echo "$text[tipo]: ";
 			echo $path['extension'];
 			
 		} 
 		echo "<br>";
-		if(file_exists($_GET['path'])) {
-			$size=filesize($_GET['path']);	
-			echo "Dimesioni: ";
+		if(file_exists($_POST['path'])) {
+			$size=filesize($_POST['path']);	
+			echo "$text[dimensioni]: ";
 			echo $FM->bytesToSize($size);
 			if($path['extension']=="jpeg" || $path['extension']=="jpg" || $path['extension']=="gif" || $path['extension']=="png" || $path['extension']=="JPG" ){
-				echo "<img src='thumb.php?path=$_GET[path]' width='100%' />";
+				echo "<img src='thumb.php?path=$_POST[path]' width='100%' />";
 			}
 		} else {
 			echo "<br><br><center><a id='reload' rel='".FILES_FOLDER."'><img src='images/refresh_48.png' /></a></center>";
