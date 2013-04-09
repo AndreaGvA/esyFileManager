@@ -720,7 +720,10 @@ dragTree = function(selector, event) {
 	if (!(selected_file.indexOf("<input class=") > -1)) {
 		mfdr = selected_folder + selected_file;
 		_debug("Selezionato: " + selected_folder + selected_file);
-		$('.det_file').load("_aj_calls.php?action=fileinfo&path=" + selected_folder + selected_file, function() {
+		$('.det_file').load("_aj_calls.php", {
+			action: "fileinfo", 
+			path: selected_folder + selected_file
+		}, function() {
 			$('#reload').on("click", function() {
 				crt = $(this).attr("rel");
 				crt = crt.substring(0, crt.length - 1);

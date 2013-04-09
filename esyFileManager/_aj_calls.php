@@ -111,11 +111,11 @@ switch ($getAction) {
 		<?
 		break;
 	case 'fileinfo':
-		$path= pathinfo($_GET['path']);
+		$path= pathinfo($_POST['path']);
 
 		echo "<div>";
-		if (is_dir($_GET['path'])) {
-			$size=$FM->dirSize($_GET['path']);
+		if (is_dir($_POST['path'])) {
+			$size=$FM->dirSize($_POST['path']);
 			echo "$text[cartella]: ";
 			echo $path['basename'];
 		} else {
