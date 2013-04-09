@@ -253,6 +253,8 @@ load_select = function(folder) {
 		'action' : "select", "folder" : folder
 	}, function() {
 		$("select").selectBox();
+		$(".selectBox-dropdown").width("100%");
+		$(".selectBox-label").width("100%");
 		trova_sposta();
 	});
 	_debug("upload della select");
@@ -263,6 +265,8 @@ load_select_folder = function() {
 		'action' : "select_folder"
 	}, function() {
 		$("select").selectBox();
+		$(".selectBox-dropdown").width("100%");
+		$(".selectBox-label").width("100%");
 		folder_select_tree();
 	});
 	_debug("upload della select");
@@ -895,7 +899,10 @@ $(document).ready(function() {
 			
   		});
 	});
-
+	
+	$(".selectBox-dropdown").width("100%");
+	$(".selectBox-label").width("100%");
+	
 });
 $(window).resize(function() {
 	var height = $(this).height();
@@ -904,4 +911,5 @@ $(window).resize(function() {
 	$(".inner-sidebar").height(cont_height);
 	
 	$(".selectBox-dropdown").width("100%");
+	$(".selectBox-label").width("100%");
 });

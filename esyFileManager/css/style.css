@@ -205,6 +205,7 @@ header img{margin-top:25px; margin-bottom:10px; margin-left:30px; }
 .select_folder{
 	position: absolute;
 	top: -55px;
+	width:230px;
 	left: 0px;
 }
 .trash {
@@ -288,7 +289,7 @@ header, section, footer, aside, article, figure {
 .det_file{
 	position:relative;
 	float:left;
-	height:210px;
+	height:160px;
 	overflow:auto;
 	padding:5px;
 	display: block;
