@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  *
  *
@@ -22,8 +22,8 @@ $used=$FM->dirSize(FILES_FOLDER);
 $quota = exec("cat /tmp/quotas | grep $user | awk '{print $2}'");
 $quota = $quota * 1024;
 if ($quota=="user") {
-	$quota_n=disk_total_space($_SERVER[DOCUMENT_ROOT]);
-	$disp_n=disk_free_space($_SERVER[DOCUMENT_ROOT]);
+	$quota_n=disk_total_space($_SERVER['DOCUMENT_ROOT']);
+	$disp_n=disk_free_space($_SERVER['DOCUMENT_ROOT']);
 	$used_n=$quota_n-$disp_n;
 	$quota_to_print=$FM->bytesToSize($quota_n);
 	$used_to_print=$FM->bytesToSize($used_n);
@@ -55,9 +55,9 @@ if ($quota=="user") {
 		<script src="js/jquery.selectBox.min.js"></script>
 		<script src="js/purl.js"></script>
 		<script>
-			var debug = <?=DEBUG?>;
-			var replacement="<?=REPLACE_PATH?>";
-			var replace_with="<?=REPLACE_WITH?>";
+			var debug = <?php echo DEBUG?>;
+			var replacement="<?php echo REPLACE_PATH?>";
+			var replace_with="<?php echo REPLACE_WITH?>";
 		</script>
 		<script src="js/jquery.FileManager.js"></script>
 		<!-- TemplateEndEditable -->
@@ -75,22 +75,22 @@ if ($quota=="user") {
 			</header>
 			<div class="sidebar1">
 				<div class="inner-sidebar">
-					<span class="small"><?=$text["upload_path"]?></span>
+					<span class="small"><?php echo $text["upload_path"]?></span>
 				<div class="selectb">
 				<select id="upload_folder">
-					<option class="main" value="<?=FILES_FOLDER ?>"><?=substr(FILES_FOLDER, 0, -1); ?></option>
-					<?
+					<option class="main" value="<?php echo FILES_FOLDER ?>"><?php echo substr(FILES_FOLDER, 0, -1); ?></option>
+					<?php
 					$FM -> listDirs();
 					?>
 				</select>
 				</div>
-				<input type="button" class="buttonz" id="crea_cartella" value="<?=$text["crea_cartella"]?>" />
+				<input type="button" class="buttonz" id="crea_cartella" value="<?php echo $text["crea_cartella"]?>" />
 				<div class="folderF"></div>
 				<div class="uploader"></div>
 				
 				<!-- end .sidebar1 -->
 				<div class="dettagli_file">
-					<div class="modal"><?=$text["file_details"]?></div> 
+					<div class="modal"><?php echo $text["file_details"]?></div> 
 					<div class="minimize"><b>_</b></div>
 					<div class="det_file"></div>
 				</div>
@@ -101,9 +101,9 @@ if ($quota=="user") {
 			<article class="content">
 				<div class="select_folder">
 					<select id="sel_fol">
-						<option><?=$text["nav_dir"]?></option>
-						<option class="main" value="<?=FILES_FOLDER ?>"><?=substr(FILES_FOLDER, 0, -1); ?></option>
-						<?
+						<option><?php echo $text["nav_dir"]?></option>
+						<option class="main" value="<?php echo FILES_FOLDER ?>"><?php echo substr(FILES_FOLDER, 0, -1); ?></option>
+						<?php
 						$FM -> listDirs();
 						?>
 					</select>
@@ -111,16 +111,16 @@ if ($quota=="user") {
 				<div class="trash">
 					&nbsp;
 				</div>
-				<div class="indsd" rel="<?=FILES_FOLDER ?>">
+				<div class="indsd" rel="<?php echo FILES_FOLDER ?>">
 					&nbsp;
 				</div>
 				<div class="order">
-					&nbsp;&nbsp;&nbsp;<?=$text["nome"]?>
-					<span style="float: right; margin-right:10px;"><?=$text["dimensioni"]?></span>
+					&nbsp;&nbsp;&nbsp;<?php echo $text["nome"]?>
+					<span style="float: right; margin-right:10px;"><?php echo $text["dimensioni"]?></span>
 				</div>
 				<div class="filemanager">
 					<div class="bg">
-					<?
+					<?php
 					/**
 					 * INDEX APP
 					 */
@@ -132,7 +132,7 @@ if ($quota=="user") {
 			</article>
 			<footer>
 				<p>
-					<?=$text["spazio_disponibile"]?>: <?=$disp_to_print?> - <?=$text["spazio_utilizzato"]?>: <?=$used_to_print?> - <?=$text["spazio_totale"]?>: <?=$quota_to_print?>
+					<?php echo $text["spazio_disponibile"]?>: <?php echo $disp_to_print?> - <?php echo $text["spazio_utilizzato"]?>: <?php echo $used_to_print?> - <?php echo $text["spazio_totale"]?>: <?php echo $quota_to_print?>
 				</p>
 			</footer>
 			<!-- end .container -->

@@ -1,4 +1,4 @@
-<?PHP
+<?php
      //BUILD THE FILE INFORMATION
      $file = $_GET['file'];
  

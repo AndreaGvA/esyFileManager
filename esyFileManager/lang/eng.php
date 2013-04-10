@@ -1,4 +1,4 @@
-<?
+<?php
 $text["nome"]="Name";
 $text["dimensioni"]="File Size";
 $text["cartella"]="Folder";

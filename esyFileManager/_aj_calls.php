@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  *
  *
@@ -95,20 +95,20 @@ switch ($getAction) {
 		$dirname=substr(FILES_FOLDER, 0, -1);
 		?>
 		<select id="upload_folder">
-		<option class="main" value="<?=$dirname?>/"><?=$dirname?></option>
-		<? $FM -> listDirs(0, $dirname."/");?>
+		<option class="main" value="<?php echo $dirname?>/"><?php echo $dirname?></option>
+		<?php $FM -> listDirs(0, $dirname."/");?>
 		</select>
-		<?
+		<?php
 		break;
 	case 'select_folder':
 		$dirname=substr(FILES_FOLDER, 0, -1);
 		?>
 		<select id="sel_fol">
-		<option><?=$text["nav_dir"]?></option>
-		<option class="main" value="<?=$dirname?>/"><?=$dirname?></option>
-		<? $FM -> listDirs(0, $dirname."/");?>
+		<option><?php echo $text["nav_dir"]?></option>
+		<option class="main" value="<?php echo $dirname?>/"><?php echo $dirname?></option>
+		<?php $FM -> listDirs(0, $dirname."/");?>
 		</select>
-		<?
+		<?php
 		break;
 	case 'fileinfo':
 		$path= pathinfo($_POST['path']);
@@ -131,7 +131,7 @@ switch ($getAction) {
 			$size=filesize($_POST['path']);	
 			echo "$text[dimensioni]: ";
 			echo $FM->bytesToSize($size);
-			if($path['extension']=="jpeg" || $path['extension']=="jpg" || $path['extension']=="gif" || $path['extension']=="png" || $path['extension']=="JPG" ){
+			if(isset($path['extension']) && ($path['extension']=="jpeg" || $path['extension']=="jpg" || $path['extension']=="gif" || $path['extension']=="png" || $path['extension']=="JPG" )){
 				echo "<img src='thumb.php?path=$_POST[path]' width='100%' />";
 			}
 		} else {
