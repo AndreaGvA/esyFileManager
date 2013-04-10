@@ -29,9 +29,9 @@ if ($quota=="user") {
 	$used_to_print=$FM->bytesToSize($used_n);
 	$disp_to_print=$FM->bytesToSize($disp_n);
 } else {
-	$quota_to_print=$FM->bytesToSize($quota."000");
-	$used_to_print=$FM->bytesToSize($used."000");
-	$disp_to_print=$FM->bytesToSize($quota-$used."000");
+	$quota_to_print=$FM->bytesToSize($quota);
+	$used_to_print=$FM->bytesToSize($used);
+	$disp_to_print=$FM->bytesToSize($quota-$used);
 }
 ?>
 <!DOCTYPE html>
