@@ -307,3 +307,4 @@ header, section, footer, aside, article, figure {
 .path_li{background-color: #ccc;}
 .path_dir{margin:0px; padding:0px; margin-left:-25px; font-size:10px;}
 .small{ font-size:12px;}
+.ui-draggable-dragging{ overflow: hidden; width:50px;}
