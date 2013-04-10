@@ -7,6 +7,7 @@ Ajax Php jQuery File Manager
 Changelog:
 
 ```
+10-04-2013 - Remove php short tags and correct the Notice reporting (Thanks to bsramin)
 09-04-2013 - Solved some usability issues
 07-04-2013 - RELASE VERSION 1.2
 07-04-2013 - Language file(need some fixes)
