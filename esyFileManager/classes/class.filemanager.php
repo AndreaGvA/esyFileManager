@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  *
  *
@@ -30,7 +30,7 @@ class esyFileManager {
 	function init() {
 		echo "<ul>
 				<li class='path_li'><div class='path_dir'>Path: public</div></li>
-				<li rel='$dirname' class='dir edit'><div class='filename maindir'>public</div><div class='opendir'></div>";
+				<li rel='".(isset($dirname)?$dirname:"")."' class='dir edit'><div class='filename maindir'>public</div><div class='opendir'></div>";
 		$this -> listFiles();
 		echo "</li></ul>";
 	}
@@ -274,7 +274,7 @@ class esyFileManager {
 				}
 			}
 
-			if (is_array($item)) {
+			if (isset($item) && is_array($item)) {
 				// Obtain a list of columns
 				foreach ($item as $key => $row) {
 					$file[$key] = $row['file'];
