@@ -1,7 +1,8 @@
-public/*
-!public/README.md
+esyFileManager/public/*
+!esyFileManagere/public/README.md
 .project
 esyFileManager.zip
 update_zip.php
 download
 download_zip.php
+robots.txt
