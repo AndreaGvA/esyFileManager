@@ -570,7 +570,7 @@ dragTree = function(selector, event) {
 		drag: function(){
 			var clone_pos=$(".ui-draggable-dragging").offset();
 			var filemanager_pos=$(".filemanager").offset();
-			_debug(clone_pos.top + " - " + filemanager_pos.top);
+			//_debug(clone_pos.top + " - " + filemanager_pos.top);
 			if(clone_pos.top<filemanager_pos.top+30 ) {
 				$(".filemanager").scrollTop( $(".filemanager").scrollTop() - 10 );
 			}
