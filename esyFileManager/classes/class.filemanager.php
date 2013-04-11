@@ -339,7 +339,7 @@ class esyFileManager {
 				}
 			}
 
-			if (is_array($item)) {
+			if (isset($item) && is_array($item)) {
 				// Obtain a list of columns
 				foreach ($item as $key => $row) {
 					$file[$key] = $row['file'];
