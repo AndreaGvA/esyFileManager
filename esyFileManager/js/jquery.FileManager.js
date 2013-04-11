@@ -859,6 +859,8 @@ $(document).ready(function() {
 					dragTree(this, ev);
 				});
 			});
+			crt=$(".maindir").html();
+			reload(crt);
 			_debug("upload success!!");
 			/*
 			 setTimeout(function(){
