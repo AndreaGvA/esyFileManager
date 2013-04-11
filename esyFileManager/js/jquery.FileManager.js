@@ -210,6 +210,7 @@ select_file = function() {
 			// close popup window
 			tinyMCEPopup.close();
 		} else {
+			document.location.href="download.php?file="+encodeURIComponent(fileUrl);
 		}
 
 	});
@@ -565,14 +566,31 @@ dragTree = function(selector, event) {
 	 * Rendo l'elemento selezionato draggable
 	 */
 	$(".selected").draggable({
-		appendTo : "body", helper : "clone"
-	});
+		appendTo : "body", helper : "clone", scroll: false, 
+		drag: function(){
+			var clone_pos=$(".ui-draggable-dragging").offset();
+			var filemanager_pos=$(".filemanager").offset();
+			_debug(clone_pos.top + " - " + filemanager_pos.top);
+			if(clone_pos.top<filemanager_pos.top+30 ) {
+				$(".filemanager").scrollTop( $(".filemanager").scrollTop() - 10 );
+			}
+			
+			var fm_height=$(".filemanager").height();
+			if(clone_pos.top>filemanager_pos.top+fm_height-30) {
+				$(".filemanager").scrollTop( $(".filemanager").scrollTop() + 10 );
+			}
+		}
+	}); 
 	/**
 	 * Funzione per il drag&drop nel cestino
 	 * Rendo il cetino droppable
 	 */
 	$('.trash').droppable({
-		activeClass : "ui-state-default", hoverClass : "trashon", accept : ":not(.maindir)", drop : function(event, ui) {
+		
+		tolerance: "pointer",
+		activeClass : "ui-state-default", 
+		hoverClass : "trashon", accept : ":not(.maindir)", 
+		drop : function(event, ui) {
 			/**
 			 * Se è una cartella
 			 */
@@ -611,7 +629,11 @@ dragTree = function(selector, event) {
 	 * imposto le classi per il drag&drop
 	 */
 	$('.dir').children('.filename').droppable({
-		activeClass : "ui-state-default", hoverClass : "drop", accept : ":not(.maindir)",
+		
+		tolerance: "pointer",
+		activeClass : "ui-state-default", 
+		hoverClass : "drop", 
+		accept : ":not(.maindir)",
 		/**
 		 * Quando sto il draggable è sopra a un droppable ne recupero il path
 		 */
