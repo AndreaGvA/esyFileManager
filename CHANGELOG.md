@@ -7,6 +7,9 @@ Ajax Php jQuery File Manager
 Changelog:
 
 ```
+11-04-2013 - DblClick Download on standalone
+11-04-2013 - Fixed long name files trash issue
+11-04-2013 - Added scroll on dragging files(for long lists of files)
 10-04-2013 - Remove php short tags and correct the Notice reporting (Thanks to bsramin)
 09-04-2013 - Solved some usability issues
 07-04-2013 - RELASE VERSION 1.2

@@ -14,7 +14,7 @@
  */
  
  define("FILES_FOLDER", "public/"); //il path della cartella dei files a partire dalla root del sito
- define("DEBUG", "true"); //abilita il debug JS
+ define("DEBUG", "false"); //abilita il debug JS
  define("REPLACE_PATH", "public/");
  define("REPLACE_WITH", "esyFileManager/public/"); 
  define("QUOTA", "1"); 
