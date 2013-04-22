@@ -653,8 +653,9 @@ dragTree = function(selector, event) {
 						}
 					}
 				});
-			} else
-				_debug("Eliminazione file annullata: " + move_from + file);
+			} else {
+				if (move_from != undefined) {_debug("Eliminazione file annullata: " + move_from + file);}
+			}
 		}
 	})
 	/**
@@ -851,7 +852,7 @@ $(document).ready(function() {
 	 */
 	$('.uploader').fineUploader({
 		request : {
-			endpoint : '_aj_calls.php',
+			endpoint : '_aj_calls.php'
 		}, debug : true
 		/**
 		 * In caso di errore mi fermo
@@ -991,7 +992,9 @@ $(document).ready(function() {
 						}
 					}
 				});
-			} else _debug("Eliminazione file annullata: " + move_from + file);
+			} else {
+				if (move_from != undefined) {_debug("Eliminazione file annullata: " + move_from + file);}
+			}
 		}
 		
 	});
