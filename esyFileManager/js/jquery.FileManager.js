@@ -109,6 +109,7 @@ sposta = function(file, new_file) {
 		}
 	});
 }
+
 reload = function(crt){
 		$(".filemanager").load('_aj_calls.php', {
 			'folder' : crt, 'action' : 'jump'
@@ -129,12 +130,14 @@ reload = function(crt){
 			jump();
 		});
 }
+
 getUrlParam = function(paramName) {
 	var reParam = new RegExp('(?:[\?&]|&amp;)' + paramName + '=([^&]+)', 'i');
 	var match = window.location.search.match(reParam);
 
 	return (match && match.length > 1) ? match[1] : '';
 }
+
 trova_sposta = function() {
 	upload_folder = $('.main').val();
 	$("#upload_folder").change(function() {
@@ -193,6 +196,7 @@ create_folder = function(folder, name) {
 		}
 	});
 }
+
 select_file = function() {
 	$(".file").find(".filename").doubleTap(function(e) {
 		var path1 = $(this).parent(".edit").attr("rel");
@@ -239,9 +243,10 @@ select_file = function() {
 
 	});
 }
+
 jump = function(dir) {
 	select_file();
-	$(".edit").find(".filename").on("dblclick", function(e) {
+	$(".edit").find(".filename").doubleTap(function(e) {
 		var check = $(this).hasClass('maindir');
 		if (check == false) {
 			var bool = $(this).parent("li").hasClass("dir");
@@ -273,6 +278,7 @@ jump = function(dir) {
 		}
 	});
 }
+
 load_select = function(folder) {
 	$('.selectb').load('_aj_calls.php', {
 		'action' : "select", "folder" : folder
