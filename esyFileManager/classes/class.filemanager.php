@@ -28,9 +28,19 @@ class esyFileManager {
 	}
 
 	function init() {
+		$path_arr=explode("/", $this -> files_folder);
+		$num=count($path_arr);
+		$dir_to_print=$path_arr[$num-2];
+		$rel_to_print="";
+		
+		for($n=0; $n<count($path_arr)-2; $n++)
+		{
+			$rel_to_print.="$path_arr[$n]/";
+		}
+		
 		echo "<ul>
 				<li class='path_li'><div class='path_dir'>Path: public</div></li>
-				<li rel='".(isset($dirname)?$dirname:"")."' class='dir edit'><div class='filename maindir'>public</div><div class='opendir'></div>";
+				<li rel='$rel_to_print' class='dir edit'><div class='filename maindir'>$dir_to_print</div><div class='opendir'></div>";
 		$this -> listFiles();
 		echo "</li></ul>";
 	}
@@ -339,7 +349,7 @@ class esyFileManager {
 				}
 			}
 
-			if (is_array($item)) {
+			if (isset($item) && is_array($item)) {
 				// Obtain a list of columns
 				foreach ($item as $key => $row) {
 					$file[$key] = $row['file'];

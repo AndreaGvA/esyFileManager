@@ -22,23 +22,43 @@ if(utilizzo==3) {
 	$.getScript("js/tiny_mce_popup.js");
 }
 
-jQuery.fn.selectText = function() {
-	var doc = document;
-	var element = this[0];
-	console.log(this, element);
-	if (doc.body.createTextRange) {
-		var range = document.body.createTextRange();
-		range.moveToElementText(element);
-		range.select();
-	} else if (window.getSelection) {
-		var selection = window.getSelection();
-		var range = document.createRange();
-		range.selectNodeContents(element);
-		selection.removeAllRanges();
-		selection.addRange(range);
-	}
-};
+(function($) {
+     $.fn.doubleTap = function(doubleTapCallback) {
+         return this.each(function(){
+			var elm = this;
+			var lastTap = 0;
+			$(elm).click(function (e) {
+                var now = (new Date()).valueOf();
+				var diff = (now - lastTap);
+                lastTap = now ;
+                if (diff < 250) {
+		        if($.isFunction( doubleTapCallback )) {
+		        	doubleTapCallback.call(elm);
+		        }
+             }      
+		  });
+       });
+    }
+})(jQuery);
 
+(function($) {
+	jQuery.fn.selectText = function() {
+		var doc = document;
+		var element = this[0];
+		console.log(this, element);
+		if (doc.body.createTextRange) {
+			var range = document.body.createTextRange();
+			range.moveToElementText(element);
+			range.select();
+		} else if (window.getSelection) {
+			var selection = window.getSelection();
+			var range = document.createRange();
+			range.selectNodeContents(element);
+			selection.removeAllRanges();
+			selection.addRange(range);
+		}
+	};
+})(jQuery);
 /**
  * Funzione debug
  */
@@ -174,7 +194,7 @@ create_folder = function(folder, name) {
 	});
 }
 select_file = function() {
-	$(".file").find(".filename").on("dblclick", function(e) {
+	$(".file").find(".filename").doubleTap(function(e) {
 		var path1 = $(this).parent(".edit").attr("rel");
 		var path2 = $(this).html();
 		var fileUrl = path1 + path2;
@@ -210,6 +230,10 @@ select_file = function() {
 			// close popup window
 			tinyMCEPopup.close();
 		} else {
+			//_debug(fileUrl);
+			var path1 = $(this).parent(".edit").attr("rel");
+			var path2 = $(this).html();
+			var fileUrl = path1 + path2;
 			document.location.href="download.php?file="+encodeURIComponent(fileUrl);
 		}
 
@@ -585,6 +609,15 @@ dragTree = function(selector, event) {
 	 * Funzione per il drag&drop nel cestino
 	 * Rendo il cetino droppable
 	 */
+	$('.trash').hover(function(){
+		$(this).addClass("trashon");
+		$(this).css("cursor", "pointer");
+	});
+	$('.trash').mouseout(function(){
+		$(this).removeClass("trashon");
+	});
+	
+	
 	$('.trash').droppable({
 		
 		tolerance: "pointer",
@@ -620,8 +653,9 @@ dragTree = function(selector, event) {
 						}
 					}
 				});
-			} else
-				_debug("Eliminazione file annullata: " + move_from + file);
+			} else {
+				if (move_from != undefined) {_debug("Eliminazione file annullata: " + move_from + file);}
+			}
 		}
 	})
 	/**
@@ -818,7 +852,7 @@ $(document).ready(function() {
 	 */
 	$('.uploader').fineUploader({
 		request : {
-			endpoint : '_aj_calls.php',
+			endpoint : '_aj_calls.php'
 		}, debug : true
 		/**
 		 * In caso di errore mi fermo
@@ -929,6 +963,41 @@ $(document).ready(function() {
 	
 	$(".selectBox-dropdown").width("100%");
 	$(".selectBox-label").width("100%");
+	
+	$('.trash').click(function(){
+		if ($(".selected")[0]){
+   			if (confirm("Do you want to delete selected files?")) {
+				$('.selected').each(function() {
+					var bool = $(this).parent('li').hasClass('dir');
+					var move_from = $(this).parent('li').attr('rel');
+					if (move_from != undefined) {
+						var file = $(this).html();
+						var li_to_move = $(this).parent("li");
+						if (bool == true) {
+							$(this).remove();
+							li_to_move.remove();
+							_debug("Elimina cartella:" + move_from + file);
+							elimina(move_from + file + "/");
+							var dire = $(".main").val();
+							dire = dire.substring(0, dire.length - 1);
+							load_select(dire);
+						} else {
+							$(this).remove();
+							li_to_move.remove();
+							/**
+							 * Imposto la chiamata aJax per la rimozione del file
+							 */
+							_debug("Elimina file:" + move_from + file);
+							elimina(move_from + file);
+						}
+					}
+				});
+			} else {
+				if (move_from != undefined) {_debug("Eliminazione file annullata: " + move_from + file);}
+			}
+		}
+		
+	});
 	
 });
 $(window).resize(function() {
