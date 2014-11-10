@@ -38,7 +38,7 @@ if(utilizzo==3) {
              }      
 		  });
        });
-    }
+    };
 })(jQuery);
 
 (function($) {
@@ -70,7 +70,7 @@ _debug = function(value) {
 			alert(value);
 		}
 	}
-}
+};
 elimina = function(file) {
 	$.ajax({
 		type : 'post', url : '_aj_calls.php', data : {
@@ -80,7 +80,7 @@ elimina = function(file) {
 			_debug('Eliminato: ' + file);
 		}
 	});
-}
+};
 sposta = function(file, new_file) {
 	$.ajax({
 		type : 'post', url : '_aj_calls.php', data : {
@@ -108,7 +108,7 @@ sposta = function(file, new_file) {
 			}
 		}
 	});
-}
+};
 
 reload = function(crt){
 		$(".filemanager").load('_aj_calls.php', {
@@ -129,22 +129,22 @@ reload = function(crt){
 			});
 			jump();
 		});
-}
+};
 
 getUrlParam = function(paramName) {
 	var reParam = new RegExp('(?:[\?&]|&amp;)' + paramName + '=([^&]+)', 'i');
 	var match = window.location.search.match(reParam);
 
 	return (match && match.length > 1) ? match[1] : '';
-}
+};
 
 trova_sposta = function() {
 	upload_folder = $('.main').val();
 	$("#upload_folder").change(function() {
 		upload_folder = $(this).find("option:selected").val();
 		_debug("Change:" + upload_folder);
-	})
-}
+	});
+};
 
 folder_select_tree = function(){
 	$("#sel_fol").change(function(){
@@ -153,7 +153,7 @@ folder_select_tree = function(){
 		_debug(crt);
 		reload(crt);
 	});
-}
+};
 
 create_folder = function(folder, name) {
 	$.ajax({
@@ -195,7 +195,7 @@ create_folder = function(folder, name) {
 			}
 		}
 	});
-}
+};
 
 select_file = function() {
 	$(".file").find(".filename").doubleTap(function(e) {
@@ -242,7 +242,7 @@ select_file = function() {
 		}
 
 	});
-}
+};
 
 jump = function(dir) {
 	select_file();
@@ -277,7 +277,7 @@ jump = function(dir) {
 			}
 		}
 	});
-}
+};
 
 load_select = function(folder) {
 	$('.selectb').load('_aj_calls.php', {
@@ -289,7 +289,7 @@ load_select = function(folder) {
 		trova_sposta();
 	});
 	_debug("upload della select");
-}
+};
 
 load_select_folder = function() {
 	$('.select_folder').load('_aj_calls.php', {
@@ -301,7 +301,7 @@ load_select_folder = function() {
 		folder_select_tree();
 	});
 	_debug("upload della select");
-}
+};
 /**
  * Funzione per le icone
  */
@@ -502,13 +502,13 @@ dropIconClass = function(filename) {
 		ico = 'ico';
 	}
 	return ico;
-}
+};
 /**
  * Funzione per le stringhe
  */
 beginsWith = function(needle, haystack) {
 	return (haystack.substr(0, needle.length) == needle);
-}
+};
 /**
  * Funzione dragTree - Permette il drag&drop ecc.
  */
@@ -554,6 +554,7 @@ dragTree = function(selector, event) {
 			}
 			a.selectText();
 			a.focus();
+			_debug("Ho selezionato il testo");
 			setTimeout(function() {
 				salva_rinomina = $('body').one("click", function(e) {
 
@@ -567,6 +568,7 @@ dragTree = function(selector, event) {
 						//var new_filename = testob.replace(/ /g, "_");
 						new_filename = testob;
 						// Qui aggiungere la funzione per mantenere l'estensione del file
+						_debug(folder_w + filename, folder_w + new_filename);
 						sposta(folder_w + filename, folder_w + new_filename);
 						_debug("salvo il nuovo nome");
 					}
@@ -663,7 +665,7 @@ dragTree = function(selector, event) {
 				if (move_from != undefined) {_debug("Eliminazione file annullata: " + move_from + file);}
 			}
 		}
-	})
+	});
 	/**
 	 * Rendo le cartelle droppable
 	 * imposto le classi per il drag&drop
@@ -808,9 +810,9 @@ dragTree = function(selector, event) {
 				});
 			});
 		});
-	}
+	};
 
-}
+};
 /**
  * Fine Funzione dragTree
  */
@@ -942,7 +944,7 @@ $(document).ready(function() {
 			$(".folderF form").remove();
 		});
 		_debug("Crea cartella");
-	})
+	});
 	
 	/**
 	 * Un po di js per il template
@@ -1006,6 +1008,7 @@ $(document).ready(function() {
 	});
 	
 });
+
 $(window).resize(function() {
 	var height = $(this).height();
 	var cont_height = height - 80 - 40 - 20;
