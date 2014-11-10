@@ -8,9 +8,9 @@
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title>EsyFileManager - A web File Manager in Ajax jQuery e PHP - demo</title>
+		<title>EsyFileManager - Un web file manager in Ajax jQuery e PHP - demo</title>
 
-		<meta name="description" content="EsyFileManager is an open source web ajax file manager written jquery e php. Easy configurationa and easy integration in editor wyswyg like cKeditor e tinyMCE">
+		<meta name="description" content="EsyFileManager è un web ajax file manager open source scritto con jquery e php. Il web file manager è facilmente configurabile e può essere facilmente integrato in editor wyswyg come cKeditor e tinyMCE">
 		<meta name="keywords" content="web file manager, web file manager open source, file manager web, file manager ajax, ajax file manager, jquery file manager, file manager browser, web file browser, ajax file browser, tiny mce file manager, tiny mce image">
 		<meta name="viewport" content="width=980">
 
@@ -28,8 +28,8 @@
 		<div class="header yellow">
 			<header>
 				<div class="wrapper nobtpadding">
-					<a href="index.html"><h1>EsyFileManager - file manager in jQuery e PHP</h1></a>
-					<div class="ver">Demo ver 1.2 Touch - by SmartGaP - <a href="index_ita.html">VERSIONE ITALIANA</a></div>
+					<a href="index.html"><h1>EsyFileManager - Un file manager in jQuery e PHP</h1></a>
+					<div class="ver">Demo ver 1.2 Touch - by SmartGaP - <a href="index.html">ENGLISH VERSION</a></div>
 				</div>
 			</header>
 		</div>
@@ -38,122 +38,127 @@
 				<div class="box1">
 					<h3>EsyFileManager</h3>
 					<p>
-						Is an openSource File Manger written in PHP e jQuery that works directly on the filesystem without a database.
+						&Egrave; un filemanager openSource scritto in PHP e jQuery che lavora direttamente sul filesystem senza l'ausilio di un database.
 					</p>
 					<p>
-						EsyFileManager is easy to configure and install
+						EsyFileManager non necessita di installazioni particolari sul server ed è semplicissimo da installare
 					</p>
 				</div>
 				<div class="box2 ex lf mt40">
-					<h3 align="center">Example 1 - Standalone</h3>
-					<div align="center"><button class="standalone">Open filemanger</button></div>
+					<h3 align="center">Esempio 1 - Standalone</h3>
+					<div align="center"><button class="standalone">Apri filemanger</button></div>
 				</div>
 				<br><br>
 			</div>
 			<div class="wrapper pt20 grey bt">
 				<div class="box2 ex">
 					<div align="center">
-						<h3>Example 2 - Input field</h3>
-						<h5>Link example</h5>
+						<h3>Esempio 2 - Input field</h3>
+						<h5>Esempio con link</h5>
 						<input type="text" id="file" name="file" >&nbsp;&nbsp;<a href="#" class="pickAfile"><img src="img/link_32.png"></a>
-						<h5>Simple example</h5>
+						<h5>Esempio senza link</h5>
 						<input type="text" id="file2" name="file2" class="pickNo">
 					</div>
 				</div>
 				<div class="box1 lf">
-					<p>You can use EsyFileManager to select files in a inputfield.</p>
-					<p>Uou can use EsyFileManager as a plugin for WysWyg text editors like cKeditor e tinyMCE</p>
-					<p>This sowtware is relased with the opensource licenses: <a href="http://www.gnu.org/licenses/gpl-2.0.txt" target="_blank">GPL</a> and <a href="http://www.gnu.org/licenses/lgpl-3.0.txt" target="_blank">LGPL</a></p>
-					<a href="https://github.com/AndreaGvA/esyFileManager/archive/master.zip" class="button" >Download source code</a><a href="https://github.com/AndreaGvA/esyFileManager" class="button ml50" target="_blank">Fork on gitHub</a>
+					<p>&Egrave; possibile utilizzare esyfilemanager per selezionare file all'interno di un campo di input.</p>
+					<p>EsyFileManager può essere usato come plugin per editor di testi WysWyg come cKeditor e tinyMCE</p>
+					<p>Il software è rilasciato con le licenze open source <a href="http://www.gnu.org/licenses/gpl-2.0.txt" target="_blank">GPL</a> e <a href="http://www.gnu.org/licenses/lgpl-3.0.txt" target="_blank">LGPL</a></p>
+					<a href="https://github.com/AndreaGvA/esyFileManager/archive/master.zip" class="button" >Scarica sorgente</a><a href="https://github.com/AndreaGvA/esyFileManager" class="button ml50" target="_blank">Vedi su gitHub</a>
 				</div>
 			</div>
 			<div class="wrapper pt20 grey bt">
 				<h1 id="esyfilemanager">esyFileManager</h1>
 				<hr>
 				<p>
-					<strong>Version 1.2 Touch</strong>
+					<strong>Versione 1.2 Touch</strong>
 				</p>
 				<hr>
-				<h4 id="funzionalità">Functions</h4>
-					1. Inline rename (olding click on selected element)<br>
-					2. Upload in Ajax<br>
-					3. drag&drop move and delete<br>
+				<h4 id="funzionalità">Funzionalità</h4>
+					1. Rename inline (mantenendo il click sull'elemento selezionato)<br>
+					2. Upload Asincrono in Ajax<br>
+					3. Spostamento ed eliminazione con drag&drop<br>
 					4. Hard disk space o Quota
 				<hr>
-				<h4 id="istruzioni">Setup</h4>
-				
+				<h4 id="istruzioni">Istruzioni</h4>
 				<p>
-					Link jQuery and file popup.functions.js in your project
+					Includere la cartella esyFileManager ed il file js/popup.functions.js nel proprio progetto
+				</p>
+				<p>
+					<strong>Include</strong>
+				</p>
+				<p>
+					Includere jQuery ed il file popup.functions.js nel proprio progetto
 				</p>
 <pre>
 &lt;script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">&lt;/script> 
 &lt;script src="js/popup.functions.js">&lt;/script></pre>
 				<p>
-					<strong>Standalone setup</strong>
+					<strong>Installazione standalone</strong>
 				</p>
 				<p>
-					Create a button
+					Creare un bottone
 				</p>
-<pre>&lt;button class="standalone">Open filemanger&lt;/button></pre>
+<pre>&lt;button class="standalone">Apri filemanger&lt;/button></pre>
 				<p>
-					Insert the launch code
+					Inserire il codice per lanciare il filemanager
 				</p>
 <pre>$(".standalone").click(function(){ popStandalone(); });</pre>
 				<p>
-					<strong>Input field setup</strong>
+					<strong>Installazione su input field</strong>
 				</p>
 				<p>
-					Create an input field
+					Creare un campo input per un file
 				</p>
 <pre>&lt;input type="text" id="file" name="file" &gt;</pre>
 				<p>
-					Add the launch code
+					Aggiungere il codice per lanciare il filemanager specificando l'id del campo di testo
 				</p>
 <pre>$("#file").click(function(){ popFile("file"); });</pre>
 				<p>
-					<strong>cKeditor install</strong>
+					<strong>Installazione in cKeditor</strong>
 				</p>
 				<p>
-					Install ckeditor
+					Installare cKeditor seguendo le istruzioni del produttore
 					<a href="http://ckeditor.com" target="_blank">http://ckeditor.com</a>
 				</p>
 				<p>
-					Edit config.js in cKeditor and add:
+					editare il file config.js in cKeditor ed aggiungere la seguente stringa
 				</p>
 <pre>config.filebrowserBrowseUrl = 'path/to/esyFileManager/index.php?u=2';</pre>
 				<p>
-					<strong>tinyMCE install</strong>
+					<strong>Installazione in tinyMCE</strong>
 				</p>
 				<p>
-					Install tinyMCE
+					Installare tinyMCE seguendo le istruzioni del produttore
 					<a href="http://www.tinymce.com" target="_blank">http://www.tinymce.com</a>
 				</p>
 				<p>
-					edit tinyMCE.init and add:
+					aggiungere la seguente stringa nella funzione tinyMCE.init
 				</p>
 <pre>file_browser_callback : "esyFileManage"</pre>
 				<p>
-					include tinyMCE_connect.js
+					ed includere il file tinyMCE_connect.js
 				</p>
 <pre>&lt;script src="js/tinyMCE_connect.js">&lt;/script></pre>
 				<p>
-					odify the path in tinyMCE_connect.js with esyfileManger path
+					Nel caso in cui la cartella esyFileManager sia in una posizione diversa dalla root del sito modificare il path nel file tinyMCE_connect.js con quello corretto
 				</p>
 <pre>var cmsURL = "/esyFileManager/index.php?u=3"</pre><br><br>
 			</div>
 			<div class="wrapper pt20 grey bt">
-				<h3>Example 3 - filemanager in cKeditor</h3>
+				<h3>Esempio 3 - filemanager in cKeditor</h3>
 				<textarea class="ckeditor" id="editor1" name="editor1"><img src="img/accordion3.jpg"></textarea>
 				<br><br>
 			</div>
 			<div class="wrapper pt20 grey bt">
-				<h3>Other Examples</h3>
-				<p><b>tinyMCE support</b> <a href="tinyMCE.html" target="_blank">See the example</a></p>
+				<h3>Altri Esempi</h3>
+				<p><b>Aggiunto il supporto per tinyMCE</b> <a href="tinyMCE.html" target="_blank">Guarda l'esempio</a></p>
 			</div>
 			<div class="wrapper pt20 grey bt">
-				<h3>EsyFileManager - libraries</h3>
+				<h3>EsyFileManager - dettagli tecnici</h3>
 				<p>
-					EsyFileManager uses the following OpenSource libraries:
+					EsyFileManager utilizza le seguenti librerie OpenSource:
 				</p>
 				<ul>
 					<li>fine-uploader | <a href="https://github.com/Widen/fine-uploader" target="_blank">https://github.com/Widen/fine-uploader</a></li>
@@ -167,7 +172,7 @@
 				<ul>
 					<li><a href="http://www.fatcow.com/free-icons">http://www.fatcow.com/free-icons</a></li>
 				</ul>
-				<h3>Tested on</h3>
+				<h3>Testato su</h3>
 				<ul>
 					<li>IE8</li>
 					<li>IE9</li>
