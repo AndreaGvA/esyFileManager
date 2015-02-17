@@ -2,7 +2,7 @@
  *
  *
  * @author AndreaG | andrea@smartgap.it
- * @version 0.0.1
+ * @version 1.2.1
  * @copyright SmartGaP s.r.l.
  * @package esyFileManager
  * @site http://www.smartgap.it | http://esyfilemanager.smartgap.it
@@ -1005,6 +1005,47 @@ $(document).ready(function() {
 			}
 		}
 		
+	});
+	
+	$("#sel").click(function(){
+	    var path1 = $(".selected").parent(".edit").attr("rel");
+	    var path2 = $(".selected").html();
+	    var fileUrl = path1 + path2;
+	    fileUrl = fileUrl.replace(replacement, replace_with);
+	    switch(utilizzo){
+	        case "1":
+	        	
+	            var textarea = $.url().param("cl");
+	            window.opener.urlimg(fileUrl, textarea);
+	            window.close();
+	            break;
+	        case "2":
+	            // Helper function to get parameters from the query string.
+	            var funcNum = getUrlParam('CKEditorFuncNum');
+	            //fileUrl = fileUrl.replace(replacement, replace_with);
+	            window.opener.CKEDITOR.tools.callFunction(funcNum, fileUrl);
+	            window.close();
+	            break;
+	        case "3": 
+	            var URL = fileUrl;
+	            var win = tinyMCEPopup.getWindowArg("window");
+	            win.document.getElementById(tinyMCEPopup.getWindowArg("input")).value = URL;
+	            if ( typeof (win.ImageDialog) != "undefined") {
+	                if (win.ImageDialog.getImageData)
+	                    win.ImageDialog.getImageData();
+	                if (win.ImageDialog.showPreviewImage)
+	                    win.ImageDialog.showPreviewImage(URL);
+	            }
+	            tinyMCEPopup.close();
+	            break;
+	        default:
+	            //_debug(fileUrl);
+	            var path1 = $(".selected").parent(".edit").attr("rel");
+	            var path2 = $(".selected").html();
+	            var fileUrl = path1 + path2;
+	            document.location.href="download.php?file="+encodeURIComponent(fileUrl);
+	            break;
+	    }
 	});
 	
 });

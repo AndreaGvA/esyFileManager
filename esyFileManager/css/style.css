@@ -216,6 +216,16 @@ header img{margin-top:25px; margin-bottom:10px; margin-left:30px; }
 	top: -70px;
 	left: 330px;
 }
+#sel {
+	position: absolute;
+	text-align:center;
+	cursor:pointer;
+	background: url('../images/attach.png') no-repeat;
+	width: 60px;
+	height: 60px;
+	top: -70px;
+	left: 400px;
+}
 .trashon {
 	background: url('../images/Recycle-Bin-full-icon.png') no-repeat;
 }

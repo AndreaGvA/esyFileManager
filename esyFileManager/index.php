@@ -111,6 +111,7 @@ if ($quota=="user") {
 				<div class="trash">
 					&nbsp;
 				</div>
+				<div id="sel"></div>
 				<div class="indsd" rel="<?php echo FILES_FOLDER ?>">
 					&nbsp;
 				</div>

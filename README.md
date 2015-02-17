@@ -3,7 +3,7 @@
 # esyFileManager 
 ______________
 
-**Versione 1.2 Touch**
+**Versione 1.2.1 Touch**
 
 **[SEE ENGLISH SETUP GUIDE AND DEMO](http://esyfilemanager.smartgap.it)**
 **[GUARDA LA DEMO](http://esyfilemanager.smartgap.it/index_ita.html)**
@@ -42,6 +42,8 @@ ______________
 * Safari
 * Firefox
 * Safari iPad
+* Chrome Android
+* Inbuilt android browser
 
 _______________
 
