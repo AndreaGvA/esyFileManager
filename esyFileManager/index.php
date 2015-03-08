@@ -117,7 +117,9 @@ if ($quota=="user") {
 				</div>
 				<div class="order">
 					&nbsp;&nbsp;&nbsp;<?php echo $text["nome"]?>
-					<span style="float: right; margin-right:10px;"><?php echo $text["dimensioni"]?></span>
+					<?php if ( VIEW_QUOTA ) { ?>
+						<span style="float: right; margin-right:10px;"><?php echo $text["dimensioni"]?></span>
+					<?php } ?>
 				</div>
 				<div class="filemanager">
 					<div class="bg">
@@ -131,11 +133,15 @@ if ($quota=="user") {
 				</div>
 				<!-- end .content -->
 			</article>
+			
 			<footer>
+				<?php if ( VIEW_QUOTA ) { ?> 
 				<p>
-					<?php echo $text["spazio_disponibile"]?>: <?php echo $disp_to_print?> - <?php echo $text["spazio_utilizzato"]?>: <?php echo $used_to_print?> - <?php echo $text["spazio_totale"]?>: <?php echo $quota_to_print?>
+					<?php echo $text["spazio_disponibile"]?>: <?php  echo $disp_to_print?> - <?php echo  $text["spazio_utilizzato"]?>: <?php echo $used_to_print?> - <?php echo $text["spazio_totale"]?>: <?php echo $quota_to_print?>
 				</p>
+				<?php } ?>
 			</footer>
+			
 			<!-- end .container -->
 		</div>
 	</body>
