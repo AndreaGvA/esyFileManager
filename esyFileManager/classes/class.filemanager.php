@@ -364,9 +364,14 @@ class esyFileManager {
 				for ($n = 0; $n < $num; $n++) {
 					//echo $item[$n]['type']." ".$item[$n]['file']."<br>";
 					if ($item[$n]['type'] == 1) {
-						echo "<li rel='" . $item[$n]['dirname'] . "' class='file edit " . $this -> dropIconClass($item[$n]['file']) . "'><div class='filename'>" . $item[$n]['file'] . "</div><div class='dett_file'>".$this->bytesToSize(filesize($item[$n]['dirname'] . $item[$n]['file']))."</div> \n";
+						echo "<li rel='" . $item[$n]['dirname'] . "' class='file edit " . $this -> dropIconClass($item[$n]['file']) . "'><div class='filename'>" . $item[$n]['file'] . "</div>";
+						if ( VIEW_QUOTA )
+							echo "<div class='dett_file'>".$this->bytesToSize(filesize($item[$n]['dirname'] . $item[$n]['file']))."</div> \n";
 					} else if ($item[$n]['type'] == 0) {
-						echo "<li rel='" . $item[$n]['dirname'] . "' class='dir edit'><div class='filename'>" . $item[$n]['file'] . "</div><div class='dett_file'>".$this->bytesToSize($this->dirSize($item[$n]['dirname'] . $item[$n]['file']))."</div><div class='opendir'></div> \n";
+						echo "<li rel='" . $item[$n]['dirname'] . "' class='dir edit'><div class='filename'>" . $item[$n]['file'] . "</div>";
+						if ( VIEW_QUOTA )
+							echo "<div class='dett_file'>".$this->bytesToSize($this->dirSize($item[$n]['dirname'] . $item[$n]['file']))."</div><div class='opendir'></div> \n";
+
 						$new_liv = $livello + 1;
 						$this -> listFiles($new_liv, $item[$n]['dirname'] . $item[$n]['file'] . "/");
 					}

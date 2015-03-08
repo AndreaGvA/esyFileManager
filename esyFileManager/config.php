@@ -17,7 +17,8 @@
  define("DEBUG", "true"); //abilita il debug JS
  define("REPLACE_PATH", "public/");
  define("REPLACE_WITH", "esyFileManager/public/"); 
- define("QUOTA", "1"); 
+ define("QUOTA", "1");
+ define("VIEW_QUOTA", false);
  
  require 'lang/eng.php';
  /**
